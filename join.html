@@ -1,18 +1,23 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Join Techsavvy Tanzania</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
     <style>
 
@@ -20,6 +25,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,15 +42,16 @@
             width: 90%;
             max-width: 850px;
             margin: auto;
-            padding: 80px 0;
+            padding: 60px 0 80px;
         }
 
         .back {
             display: inline-block;
-            color: #9ba3b4;
+            color: #9ca5b5;
             text-decoration: none;
-            margin-bottom: 40px;
             font-size: 14px;
+            margin-bottom: 45px;
+            transition: .2s;
         }
 
         .back:hover {
@@ -58,14 +68,14 @@
             font-size: 11px;
             font-weight: 800;
             letter-spacing: .18em;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         h1 {
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(42px, 7vw, 70px);
-            line-height: 1;
-            letter-spacing: -.05em;
+            font-size: clamp(45px, 7vw, 75px);
+            line-height: .98;
+            letter-spacing: -.055em;
         }
 
         h1 span {
@@ -73,25 +83,27 @@
         }
 
         .header p {
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: 620px;
+            margin: 22px auto 0;
             color: #9da5b5;
+            line-height: 1.7;
         }
 
         .form-box {
             background: #0f131c;
-            border: 1px solid #242b39;
-            border-radius: 15px;
+            border: 1px solid #252c3a;
+            border-radius: 16px;
             padding: 35px;
+            box-shadow: 0 30px 80px rgba(0,0,0,.25);
         }
 
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 23px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
             font-size: 13px;
             font-weight: 700;
         }
@@ -103,22 +115,38 @@
             padding: 14px 15px;
             border-radius: 7px;
             border: 1px solid #303847;
-            background: #090c12;
+            background: #080b11;
             color: white;
             outline: none;
             font-family: inherit;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #626b7b;
         }
 
         input:focus,
         select:focus,
         textarea:focus {
             border-color: #1455ff;
-            box-shadow: 0 0 0 3px rgba(20, 85, 255, .12);
+            box-shadow: 0 0 0 3px rgba(20,85,255,.12);
         }
 
         textarea {
-            min-height: 130px;
+            min-height: 125px;
             resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #0f131c;
+            color: white;
         }
 
         .submit-btn {
@@ -139,27 +167,70 @@
             transform: translateY(-2px);
         }
 
+        .submit-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .note {
             text-align: center;
             color: #737c8d;
             font-size: 11px;
+            line-height: 1.6;
             margin-top: 20px;
         }
 
-        @media(max-width:600px) {
+        .success {
+            display: none;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .success-icon {
+            width: 65px;
+            height: 65px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #1455ff;
+            font-size: 28px;
+        }
+
+        .success h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .success p {
+            color: #9da5b5;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        @media(max-width: 600px) {
 
             .container {
-                padding: 50px 0;
+                width: 92%;
+                padding: 40px 0 60px;
             }
 
             .form-box {
                 padding: 22px;
             }
 
+            h1 {
+                font-size: 48px;
+            }
+
         }
 
     </style>
+
 </head>
+
 
 <body>
 
@@ -168,6 +239,7 @@
     <a href="index.html" class="back">
         ← Back to Techsavvy
     </a>
+
 
     <div class="header">
 
@@ -190,7 +262,18 @@
 
     <div class="form-box">
 
-        <form>
+
+        <!-- ==========================
+             APPLICATION FORM
+        =========================== -->
+
+        <form
+            id="joinForm"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSd_AaIMPPDizGRXuoGgdXSo1he4sDUVHPD1MRG1eW5S8JpxKA/formResponse"
+            method="POST"
+            target="hidden_iframe"
+        >
+
 
             <!-- FULL NAME -->
 
@@ -203,7 +286,7 @@
                 <input
                     type="text"
                     id="name"
-                    name="name"
+                    name="entry.811165618"
                     placeholder="Enter your full name"
                     required
                 >
@@ -222,7 +305,7 @@
                 <input
                     type="email"
                     id="email"
-                    name="email"
+                    name="entry.47138216"
                     placeholder="example@email.com"
                     required
                 >
@@ -241,7 +324,7 @@
                 <input
                     type="tel"
                     id="phone"
-                    name="phone"
+                    name="entry.932223343"
                     placeholder="+255..."
                     required
                 >
@@ -260,7 +343,7 @@
                 <input
                     type="number"
                     id="age"
-                    name="age"
+                    name="entry.391198364"
                     placeholder="Your age"
                     min="13"
                     max="100"
@@ -281,7 +364,7 @@
                 <input
                     type="text"
                     id="location"
-                    name="location"
+                    name="entry.551949083"
                     placeholder="City / Region"
                     required
                 >
@@ -297,45 +380,49 @@
                     Area of Interest *
                 </label>
 
-                <select id="interest" name="interest" required>
+                <select
+                    id="interest"
+                    name="entry.268278995"
+                    required
+                >
 
                     <option value="">
                         Select your area
                     </option>
 
-                    <option>
+                    <option value="Artificial Intelligence">
                         Artificial Intelligence
                     </option>
 
-                    <option>
+                    <option value="Web Development">
                         Web Development
                     </option>
 
-                    <option>
+                    <option value="Graphic Design">
                         Graphic Design
                     </option>
 
-                    <option>
+                    <option value="Networking">
                         Networking
                     </option>
 
-                    <option>
+                    <option value="Cybersecurity">
                         Cybersecurity
                     </option>
 
-                    <option>
+                    <option value="Digital Marketing">
                         Digital Marketing
                     </option>
 
-                    <option>
+                    <option value="Technology & Innovation">
                         Technology & Innovation
                     </option>
 
-                    <option>
+                    <option value="Media & Community">
                         Media & Community
                     </option>
 
-                    <option>
+                    <option value="Other">
                         Other
                     </option>
 
@@ -344,7 +431,7 @@
             </div>
 
 
-            <!-- SKILLS -->
+            <!-- CURRENT SKILLS -->
 
             <div class="form-group">
 
@@ -354,7 +441,7 @@
 
                 <textarea
                     id="skills"
-                    name="skills"
+                    name="entry.1780372524"
                     placeholder="Tell us about your current skills..."
                 ></textarea>
 
@@ -371,8 +458,7 @@
 
                 <textarea
                     id="reason"
-                    name="reason"
-                    placeholder="Tell us why you want to join..."
+                    placeholder="Tell us why you want to join Techsavvy..."
                     required
                 ></textarea>
 
@@ -390,31 +476,100 @@
                 <input
                     type="url"
                     id="portfolio"
-                    name="portfolio"
                     placeholder="https://..."
                 >
 
             </div>
 
 
+            <!-- SUBMIT -->
+
             <button
                 type="submit"
                 class="submit-btn"
+                id="submitBtn"
             >
                 Submit Application →
             </button>
 
+
         </form>
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        <div
+            class="success"
+            id="successMessage"
+        >
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Application Received!
+            </h2>
+
+            <p>
+                Thank you for your interest in Techsavvy Tanzania.
+                We have received your application and will get back
+                to you soon.
+            </p>
+
+        </div>
+
 
         <p class="note">
             By submitting this application, you agree to provide
             accurate information to Techsavvy Tanzania.
         </p>
 
+
     </div>
 
 </div>
 
+
+<!-- HIDDEN GOOGLE FORM FRAME -->
+
+<iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display:none;"
+></iframe>
+
+
+<script>
+
+    const form = document.getElementById("joinForm");
+
+    const submitBtn = document.getElementById("submitBtn");
+
+    const successMessage = document.getElementById("successMessage");
+
+
+    form.addEventListener("submit", function () {
+
+        submitBtn.disabled = true;
+
+        submitBtn.innerHTML = "Submitting Application...";
+
+        setTimeout(function () {
+
+            form.style.display = "none";
+
+            successMessage.style.display = "block";
+
+        }, 1200);
+
+    });
+
+</script>
+
+
 </body>
+
 </html>
 ```
+
