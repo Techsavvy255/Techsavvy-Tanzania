@@ -25,12 +25,11 @@
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-
 <header class="navbar">
 
     <div class="logo">
         <div class="logo-box">T</div>
+
         <div class="logo-text">
             TECH<span>SAVVY</span>
         </div>
@@ -44,7 +43,10 @@
         <a href="#courses">Courses</a>
         <a href="#projects">Projects</a>
         <a href="#articles">Articles</a>
-        <a href="#join">Join Us</a>
+
+        <!-- JOIN US OPENS THE APPLICATION PAGE -->
+        <a href="join.html">Join Us</a>
+
         <a href="#contact">Contact</a>
 
     </nav>
@@ -87,7 +89,8 @@
                 Explore Programs →
             </a>
 
-            <a href="#join" class="btn secondary">
+            <!-- JOIN FORM -->
+            <a href="join.html" class="btn secondary">
                 Join Techsavvy
             </a>
 
@@ -171,7 +174,7 @@
                 knowledge into real-world solutions.
             </p>
 
-            <a href="#join" class="text-link">
+            <a href="join.html" class="text-link">
                 Become part of the movement →
             </a>
 
@@ -257,7 +260,6 @@
 
     <div class="program-grid">
 
-
         <article class="program-card">
 
             <span class="card-number">01</span>
@@ -317,7 +319,7 @@
                 and technology enthusiasts.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Join Community →
             </a>
 
@@ -357,7 +359,6 @@
 
     <div class="course-grid">
 
-
         <article class="course-card">
 
             <div class="course-icon">
@@ -373,7 +374,7 @@
                 modern AI workflows.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -395,7 +396,7 @@
                 content and brand assets.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -417,7 +418,7 @@
                 idea to deployment.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -439,7 +440,7 @@
                 protocols and connectivity.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -461,7 +462,7 @@
                 security and safe computing.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -483,7 +484,7 @@
                 presence and audience growth.
             </p>
 
-            <a href="#join">
+            <a href="join.html">
                 Explore →
             </a>
 
@@ -522,7 +523,6 @@
 
 
     <div class="project-grid">
-
 
         <article class="project-card project-main">
 
@@ -634,7 +634,6 @@
 
 
     <div class="article-grid">
-
 
         <article class="article-card">
 
@@ -755,7 +754,7 @@
         </p>
 
         <a
-            href="mailto:hello@techsavvy.tz?subject=Joining%20Techsavvy"
+            href="join.html"
             class="btn white-btn"
         >
             Join Techsavvy →
@@ -848,12 +847,10 @@
 
     </div>
 
-
     <p>
         © 2026 Techsavvy Tanzania.
         Empowering Youth Through Technology.
     </p>
-
 
     <a href="#home">
         Back to top ↑
@@ -862,9 +859,34 @@
 </footer>
 
 
-<script src="script.js"></script>
+<!-- ================= MOBILE MENU ================= -->
+
+<script>
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    menuBtn.addEventListener("click", function () {
+
+        navMenu.classList.toggle("active");
+
+    });
+
+
+    document.querySelectorAll(".nav-menu a").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            navMenu.classList.remove("active");
+
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
 ```
+
 
