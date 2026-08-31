@@ -1,14 +1,19 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
         content="Join Techsavvy Tanzania and become part of a community of young people learning, creating and innovating through technology.">
+
+    <meta name="keywords"
+        content="Techsavvy Tanzania, Join Techsavvy, technology, digital skills, Tanzania">
+
+    <meta name="author" content="Techsavvy Tanzania">
 
     <title>Join Techsavvy Tanzania</title>
 
@@ -19,7 +24,6 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-
     <style>
 
         * {
@@ -28,9 +32,7 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             font-family: "Inter", sans-serif;
 
             background:
@@ -42,153 +44,86 @@
                 #07090e;
 
             color: #ffffff;
-
             min-height: 100vh;
-
         }
-
 
         .container {
-
             width: 92%;
-
             max-width: 850px;
-
             margin: auto;
-
             padding: 45px 0 80px;
-
         }
-
 
         .back {
-
             display: inline-block;
-
             color: #8e98aa;
-
             text-decoration: none;
-
             font-size: 14px;
-
             margin-bottom: 45px;
-
             transition: .2s;
-
         }
-
 
         .back:hover {
-
             color: #3f75ff;
-
         }
-
 
         .header {
-
             text-align: center;
-
             margin-bottom: 40px;
-
         }
-
 
         .badge {
-
             display: inline-block;
-
             color: #6f98ff;
-
             font-size: 11px;
-
             font-weight: 800;
-
             letter-spacing: .18em;
-
             margin-bottom: 20px;
-
         }
-
 
         h1 {
-
             font-family: "Space Grotesk", sans-serif;
-
             font-size: clamp(45px, 8vw, 75px);
-
             line-height: .95;
-
             letter-spacing: -.06em;
-
         }
-
 
         h1 span {
-
             color: #1455ff;
-
         }
-
 
         .header p {
-
             max-width: 620px;
-
             margin: 22px auto 0;
-
             color: #9da5b5;
-
             line-height: 1.7;
-
             font-size: 15px;
-
         }
 
-
         .form-box {
-
             background: rgba(15, 19, 28, .96);
-
             border: 1px solid #252c3a;
-
             border-radius: 18px;
-
             padding: 35px;
 
             box-shadow:
-
                 0 30px 90px rgba(0, 0, 0, .35);
-
         }
-
 
         .form-group {
-
             margin-bottom: 22px;
-
         }
-
 
         label {
-
             display: block;
-
             margin-bottom: 9px;
-
             font-size: 13px;
-
             font-weight: 700;
-
         }
-
 
         label span {
-
             color: #5f88ff;
-
         }
-
 
         input,
         select,
@@ -213,17 +148,12 @@
             font-size: 14px;
 
             transition: .2s;
-
         }
-
 
         input::placeholder,
         textarea::placeholder {
-
             color: #626b7b;
-
         }
-
 
         input:focus,
         select:focus,
@@ -233,34 +163,21 @@
 
             box-shadow:
                 0 0 0 3px rgba(20, 85, 255, .12);
-
         }
-
 
         textarea {
-
             min-height: 120px;
-
             resize: vertical;
-
         }
-
 
         select {
-
             cursor: pointer;
-
         }
-
 
         select option {
-
             background: #0f131c;
-
             color: white;
-
         }
-
 
         .submit-btn {
 
@@ -283,66 +200,41 @@
             cursor: pointer;
 
             transition: .2s;
-
         }
-
 
         .submit-btn:hover {
-
             background: #0d43d5;
-
             transform: translateY(-2px);
-
         }
-
 
         .submit-btn:disabled {
-
             opacity: .65;
-
             cursor: wait;
-
             transform: none;
-
         }
-
 
         .note {
-
             text-align: center;
-
             color: #70798a;
-
             font-size: 11px;
-
             line-height: 1.6;
-
             margin-top: 18px;
-
         }
-
 
         .success {
-
             display: none;
-
             text-align: center;
-
             padding: 40px 15px;
-
         }
-
 
         .success-icon {
 
             width: 70px;
-
             height: 70px;
 
             margin: 0 auto 20px;
 
             display: grid;
-
             place-items: center;
 
             border-radius: 50%;
@@ -350,11 +242,8 @@
             background: #1455ff;
 
             font-size: 30px;
-
             font-weight: 800;
-
         }
-
 
         .success h2 {
 
@@ -363,18 +252,12 @@
             font-size: 35px;
 
             margin-bottom: 12px;
-
         }
-
 
         .success p {
-
             color: #9da5b5;
-
             line-height: 1.7;
-
         }
-
 
         .home-btn {
 
@@ -395,30 +278,25 @@
             font-size: 13px;
 
             font-weight: 700;
-
         }
 
+        .home-btn:hover {
+            border-color: #1455ff;
+        }
 
         @media(max-width: 600px) {
 
             .container {
-
                 padding-top: 30px;
-
             }
 
             .form-box {
-
                 padding: 22px;
-
             }
 
             h1 {
-
                 font-size: 50px;
-
             }
-
         }
 
     </style>
@@ -460,17 +338,12 @@
     <div class="form-box">
 
 
-        <!-- =====================================
-             GOOGLE FORM CONNECTION
-        ====================================== -->
+        <!-- GOOGLE FORM -->
 
         <form
             id="joinForm"
-
             action="https://docs.google.com/forms/d/e/1FAIpQLSd_AaIMPPDizGRXuoGgdXSo1he4sDUVHPD1MRG1eW5S8JpxKA/formResponse"
-
             method="POST"
-
             target="hidden_iframe"
         >
 
@@ -494,40 +367,37 @@
             </div>
 
 
-            <!-- EMAIL -->
+            <!-- GENDER -->
 
             <div class="form-group">
 
-                <label for="email">
-                    Email Address <span>*</span>
+                <label for="gender">
+                    Gender <span>*</span>
                 </label>
 
-                <input
-                    type="email"
-                    id="email"
-                    name="entry.47138216"
-                    placeholder="example@email.com"
+                <select
+                    id="gender"
+                    name="entry.893593779"
                     required
                 >
 
-            </div>
+                    <option value="">
+                        Select gender
+                    </option>
 
+                    <option value="Male">
+                        Male
+                    </option>
 
-            <!-- PHONE -->
+                    <option value="Female">
+                        Female
+                    </option>
 
-            <div class="form-group">
+                    <option value="Prefer not to say">
+                        Prefer not to say
+                    </option>
 
-                <label for="phone">
-                    Phone / WhatsApp <span>*</span>
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    name="entry.932223343"
-                    placeholder="+255 7XX XXX XXX"
-                    required
-                >
+                </select>
 
             </div>
 
@@ -553,6 +423,44 @@
             </div>
 
 
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone / WhatsApp <span>*</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="entry.932223343"
+                    placeholder="+255 7XX XXX XXX"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address <span>*</span>
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="entry.47138216"
+                    placeholder="example@email.com"
+                    required
+                >
+
+            </div>
+
+
             <!-- LOCATION -->
 
             <div class="form-group">
@@ -567,6 +475,89 @@
                     name="entry.551949083"
                     placeholder="e.g. Dar es Salaam"
                     required
+                >
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="form-group">
+
+                <label for="education">
+                    Education Level <span>*</span>
+                </label>
+
+                <select
+                    id="education"
+                    name="entry.1327138229"
+                    required
+                >
+
+                    <option value="">
+                        Select education level
+                    </option>
+
+                    <option value="Secondary">
+                        Secondary
+                    </option>
+
+                    <option value="Certificate">
+                        Certificate
+                    </option>
+
+                    <option value="Diploma">
+                        Diploma
+                    </option>
+
+                    <option value="Bachelor">
+                        Bachelor Degree
+                    </option>
+
+                    <option value="Masters">
+                        Masters
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- INSTITUTION -->
+
+            <div class="form-group">
+
+                <label for="institution">
+                    Institution
+                </label>
+
+                <input
+                    type="text"
+                    id="institution"
+                    name="entry.1620312208"
+                    placeholder="School / College / University"
+                >
+
+            </div>
+
+
+            <!-- FIELD -->
+
+            <div class="form-group">
+
+                <label for="field">
+                    Field of Study
+                </label>
+
+                <input
+                    type="text"
+                    id="field"
+                    name="entry.748346077"
+                    placeholder="e.g. IT, Computer Science"
                 >
 
             </div>
@@ -667,6 +658,23 @@
             </div>
 
 
+            <!-- EXPERIENCE -->
+
+            <div class="form-group">
+
+                <label for="experience">
+                    Previous Experience
+                </label>
+
+                <textarea
+                    id="experience"
+                    name="entry.793774108"
+                    placeholder="Tell us about your previous experience..."
+                ></textarea>
+
+            </div>
+
+
             <!-- PORTFOLIO -->
 
             <div class="form-group">
@@ -699,9 +707,7 @@
         </form>
 
 
-        <!-- =====================================
-             SUCCESS MESSAGE
-        ====================================== -->
+        <!-- SUCCESS -->
 
         <div
             class="success"
@@ -744,9 +750,7 @@
 </div>
 
 
-<!-- =====================================
-     HIDDEN GOOGLE FORM FRAME
-====================================== -->
+<!-- HIDDEN GOOGLE FORM FRAME -->
 
 <iframe
     name="hidden_iframe"
@@ -757,34 +761,49 @@
 
 <script>
 
-    const form =
-        document.getElementById("joinForm");
+const form =
+    document.getElementById("joinForm");
 
-    const submitBtn =
-        document.getElementById("submitBtn");
+const submitBtn =
+    document.getElementById("submitBtn");
 
-    const successMessage =
-        document.getElementById("successMessage");
+const successMessage =
+    document.getElementById("successMessage");
+
+const iframe =
+    document.getElementById("hidden_iframe");
 
 
-    form.addEventListener("submit", function () {
+form.addEventListener("submit", function () {
 
-        submitBtn.disabled = true;
+    submitBtn.disabled = true;
 
-        submitBtn.innerHTML =
-            "Submitting Application...";
+    submitBtn.innerHTML =
+        "Submitting Application...";
 
+});
+
+
+/*
+   Google Form response iframe.
+   After submission, show success page.
+*/
+
+iframe.addEventListener("load", function () {
+
+    if (submitBtn.disabled) {
 
         setTimeout(function () {
 
             form.style.display = "none";
 
-            successMessage.style.display =
-                "block";
+            successMessage.style.display = "block";
 
-        }, 1500);
+        }, 800);
 
-    });
+    }
+
+});
 
 </script>
 
@@ -792,4 +811,3 @@
 </body>
 
 </html>
-```
