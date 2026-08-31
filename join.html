@@ -5,19 +5,20 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Join Techsavvy Tanzania and become part of a community of young people learning, creating and innovating through technology.">
 
     <title>Join Techsavvy Tanzania</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
+
 
     <style>
 
@@ -27,202 +28,395 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
 
         body {
+
             font-family: "Inter", sans-serif;
-            background: #07090e;
-            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(20, 85, 255, .15),
+                    transparent 35%
+                ),
+                #07090e;
+
+            color: #ffffff;
+
             min-height: 100vh;
+
         }
+
 
         .container {
-            width: 90%;
+
+            width: 92%;
+
             max-width: 850px;
+
             margin: auto;
-            padding: 60px 0 80px;
+
+            padding: 45px 0 80px;
+
         }
+
 
         .back {
+
             display: inline-block;
-            color: #9ca5b5;
+
+            color: #8e98aa;
+
             text-decoration: none;
+
             font-size: 14px;
+
             margin-bottom: 45px;
+
             transition: .2s;
+
         }
+
 
         .back:hover {
-            color: #1455ff;
+
+            color: #3f75ff;
+
         }
+
 
         .header {
+
             text-align: center;
-            margin-bottom: 45px;
+
+            margin-bottom: 40px;
+
         }
+
 
         .badge {
+
+            display: inline-block;
+
             color: #6f98ff;
+
             font-size: 11px;
+
             font-weight: 800;
+
             letter-spacing: .18em;
+
             margin-bottom: 20px;
+
         }
+
 
         h1 {
+
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(45px, 7vw, 75px);
-            line-height: .98;
-            letter-spacing: -.055em;
+
+            font-size: clamp(45px, 8vw, 75px);
+
+            line-height: .95;
+
+            letter-spacing: -.06em;
+
         }
+
 
         h1 span {
+
             color: #1455ff;
+
         }
+
 
         .header p {
+
             max-width: 620px;
+
             margin: 22px auto 0;
+
             color: #9da5b5;
+
             line-height: 1.7;
+
+            font-size: 15px;
+
         }
+
 
         .form-box {
-            background: #0f131c;
+
+            background: rgba(15, 19, 28, .96);
+
             border: 1px solid #252c3a;
-            border-radius: 16px;
+
+            border-radius: 18px;
+
             padding: 35px;
-            box-shadow: 0 30px 80px rgba(0,0,0,.25);
+
+            box-shadow:
+
+                0 30px 90px rgba(0, 0, 0, .35);
+
         }
+
 
         .form-group {
-            margin-bottom: 23px;
+
+            margin-bottom: 22px;
+
         }
 
+
         label {
+
             display: block;
+
             margin-bottom: 9px;
+
             font-size: 13px;
+
             font-weight: 700;
+
         }
+
+
+        label span {
+
+            color: #5f88ff;
+
+        }
+
 
         input,
         select,
         textarea {
+
             width: 100%;
-            padding: 14px 15px;
-            border-radius: 7px;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
             border: 1px solid #303847;
+
             background: #080b11;
+
             color: white;
+
             outline: none;
+
             font-family: inherit;
+
             font-size: 14px;
+
             transition: .2s;
+
         }
+
 
         input::placeholder,
         textarea::placeholder {
+
             color: #626b7b;
+
         }
+
 
         input:focus,
         select:focus,
         textarea:focus {
+
             border-color: #1455ff;
-            box-shadow: 0 0 0 3px rgba(20,85,255,.12);
+
+            box-shadow:
+                0 0 0 3px rgba(20, 85, 255, .12);
+
         }
+
 
         textarea {
-            min-height: 125px;
+
+            min-height: 120px;
+
             resize: vertical;
+
         }
+
 
         select {
+
             cursor: pointer;
+
         }
+
 
         select option {
+
             background: #0f131c;
+
             color: white;
+
         }
+
 
         .submit-btn {
+
             width: 100%;
-            border: none;
+
             padding: 16px;
-            border-radius: 7px;
+
+            border: none;
+
+            border-radius: 8px;
+
             background: #1455ff;
+
             color: white;
+
             font-size: 14px;
+
             font-weight: 800;
+
             cursor: pointer;
+
             transition: .2s;
+
         }
+
 
         .submit-btn:hover {
+
             background: #0d43d5;
+
             transform: translateY(-2px);
+
         }
+
 
         .submit-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
+
+            opacity: .65;
+
+            cursor: wait;
+
             transform: none;
+
         }
+
 
         .note {
+
             text-align: center;
-            color: #737c8d;
+
+            color: #70798a;
+
             font-size: 11px;
+
             line-height: 1.6;
-            margin-top: 20px;
+
+            margin-top: 18px;
+
         }
+
 
         .success {
+
             display: none;
+
             text-align: center;
-            padding: 45px 20px;
+
+            padding: 40px 15px;
+
         }
+
 
         .success-icon {
-            width: 65px;
-            height: 65px;
-            display: grid;
-            place-items: center;
+
+            width: 70px;
+
+            height: 70px;
+
             margin: 0 auto 20px;
+
+            display: grid;
+
+            place-items: center;
+
             border-radius: 50%;
+
             background: #1455ff;
-            font-size: 28px;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
         }
+
 
         .success h2 {
+
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 35px;
+
             margin-bottom: 12px;
+
         }
 
+
         .success p {
+
             color: #9da5b5;
-            max-width: 500px;
-            margin: auto;
+
+            line-height: 1.7;
+
         }
+
+
+        .home-btn {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 13px 20px;
+
+            border: 1px solid #303847;
+
+            border-radius: 7px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
 
         @media(max-width: 600px) {
 
             .container {
-                width: 92%;
-                padding: 40px 0 60px;
+
+                padding-top: 30px;
+
             }
 
             .form-box {
+
                 padding: 22px;
+
             }
 
             h1 {
-                font-size: 48px;
+
+                font-size: 50px;
+
             }
 
         }
@@ -234,7 +428,9 @@
 
 <body>
 
+
 <div class="container">
+
 
     <a href="index.html" class="back">
         ← Back to Techsavvy
@@ -248,13 +444,14 @@
         </div>
 
         <h1>
-            Build the <span>future.</span>
+            Build the
+            <span>future.</span>
         </h1>
 
         <p>
-            Join Techsavvy Tanzania and become part of a community
-            of young people learning, creating and using technology
-            to shape the future.
+            Join Techsavvy Tanzania and become part of a
+            community of young people learning, creating
+            and using technology to shape the future.
         </p>
 
     </div>
@@ -263,14 +460,17 @@
     <div class="form-box">
 
 
-        <!-- ==========================
-             APPLICATION FORM
-        =========================== -->
+        <!-- =====================================
+             GOOGLE FORM CONNECTION
+        ====================================== -->
 
         <form
             id="joinForm"
+
             action="https://docs.google.com/forms/d/e/1FAIpQLSd_AaIMPPDizGRXuoGgdXSo1he4sDUVHPD1MRG1eW5S8JpxKA/formResponse"
+
             method="POST"
+
             target="hidden_iframe"
         >
 
@@ -280,7 +480,7 @@
             <div class="form-group">
 
                 <label for="name">
-                    Full Name *
+                    Full Name <span>*</span>
                 </label>
 
                 <input
@@ -299,7 +499,7 @@
             <div class="form-group">
 
                 <label for="email">
-                    Email Address *
+                    Email Address <span>*</span>
                 </label>
 
                 <input
@@ -318,14 +518,14 @@
             <div class="form-group">
 
                 <label for="phone">
-                    Phone / WhatsApp *
+                    Phone / WhatsApp <span>*</span>
                 </label>
 
                 <input
                     type="tel"
                     id="phone"
                     name="entry.932223343"
-                    placeholder="+255..."
+                    placeholder="+255 7XX XXX XXX"
                     required
                 >
 
@@ -337,16 +537,16 @@
             <div class="form-group">
 
                 <label for="age">
-                    Age *
+                    Age <span>*</span>
                 </label>
 
                 <input
                     type="number"
                     id="age"
                     name="entry.391198364"
-                    placeholder="Your age"
                     min="13"
                     max="100"
+                    placeholder="Your age"
                     required
                 >
 
@@ -358,14 +558,14 @@
             <div class="form-group">
 
                 <label for="location">
-                    Location *
+                    Location <span>*</span>
                 </label>
 
                 <input
                     type="text"
                     id="location"
                     name="entry.551949083"
-                    placeholder="City / Region"
+                    placeholder="e.g. Dar es Salaam"
                     required
                 >
 
@@ -377,7 +577,7 @@
             <div class="form-group">
 
                 <label for="interest">
-                    Area of Interest *
+                    Area of Interest <span>*</span>
                 </label>
 
                 <select
@@ -453,11 +653,13 @@
             <div class="form-group">
 
                 <label for="reason">
-                    Why do you want to join Techsavvy? *
+                    Why do you want to join Techsavvy?
+                    <span>*</span>
                 </label>
 
                 <textarea
                     id="reason"
+                    name="entry.469653974"
                     placeholder="Tell us why you want to join Techsavvy..."
                     required
                 ></textarea>
@@ -476,6 +678,7 @@
                 <input
                     type="url"
                     id="portfolio"
+                    name="entry.1001545398"
                     placeholder="https://..."
                 >
 
@@ -496,7 +699,9 @@
         </form>
 
 
-        <!-- SUCCESS MESSAGE -->
+        <!-- =====================================
+             SUCCESS MESSAGE
+        ====================================== -->
 
         <div
             class="success"
@@ -512,17 +717,25 @@
             </h2>
 
             <p>
-                Thank you for your interest in Techsavvy Tanzania.
-                We have received your application and will get back
-                to you soon.
+                Thank you for applying to Techsavvy Tanzania.
+                Your application has been submitted successfully.
+                Our team will review your application and contact
+                you when necessary.
             </p>
+
+            <a
+                href="index.html"
+                class="home-btn"
+            >
+                ← Back to Website
+            </a>
 
         </div>
 
 
         <p class="note">
-            By submitting this application, you agree to provide
-            accurate information to Techsavvy Tanzania.
+            By submitting this application, you confirm that
+            the information provided is accurate.
         </p>
 
 
@@ -531,7 +744,9 @@
 </div>
 
 
-<!-- HIDDEN GOOGLE FORM FRAME -->
+<!-- =====================================
+     HIDDEN GOOGLE FORM FRAME
+====================================== -->
 
 <iframe
     name="hidden_iframe"
@@ -542,26 +757,32 @@
 
 <script>
 
-    const form = document.getElementById("joinForm");
+    const form =
+        document.getElementById("joinForm");
 
-    const submitBtn = document.getElementById("submitBtn");
+    const submitBtn =
+        document.getElementById("submitBtn");
 
-    const successMessage = document.getElementById("successMessage");
+    const successMessage =
+        document.getElementById("successMessage");
 
 
     form.addEventListener("submit", function () {
 
         submitBtn.disabled = true;
 
-        submitBtn.innerHTML = "Submitting Application...";
+        submitBtn.innerHTML =
+            "Submitting Application...";
+
 
         setTimeout(function () {
 
             form.style.display = "none";
 
-            successMessage.style.display = "block";
+            successMessage.style.display =
+                "block";
 
-        }, 1200);
+        }, 1500);
 
     });
 
@@ -572,4 +793,3 @@
 
 </html>
 ```
-
