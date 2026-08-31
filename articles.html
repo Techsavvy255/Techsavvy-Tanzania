@@ -5,47 +5,32 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="How AI is changing the way young people learn and work — Techsavvy Tanzania Knowledge Hub.">
-
-    <meta name="keywords"
-        content="AI, Artificial Intelligence, ChatGPT, technology, digital skills, Techsavvy Tanzania">
+        content="Techsavvy Tanzania Knowledge Hub — technology articles, AI, cybersecurity, web development and digital skills.">
 
     <meta name="author" content="Techsavvy Tanzania">
 
-    <title>How AI is Changing the Way Young People Learn and Work | Techsavvy Tanzania</title>
-
-
-    <!-- GOOGLE FONTS -->
+    <title>Articles | Techsavvy Tanzania</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-
-    <!-- MAIN CSS -->
-
     <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
-
 
     <div class="logo">
 
@@ -62,25 +47,15 @@
 
     <nav class="nav-menu" id="navMenu">
 
-        <a href="index.html">
-            Home
-        </a>
+        <a href="index.html">Home</a>
 
-        <a href="index.html#about">
-            About
-        </a>
+        <a href="index.html#about">About</a>
 
-        <a href="index.html#programs">
-            Programs
-        </a>
+        <a href="index.html#programs">Programs</a>
 
-        <a href="index.html#courses">
-            Courses
-        </a>
+        <a href="index.html#courses">Courses</a>
 
-        <a href="index.html#projects">
-            Projects
-        </a>
+        <a href="index.html#projects">Projects</a>
 
         <a href="articles.html" class="active">
             Articles
@@ -100,130 +75,104 @@
     <button
         class="menu-btn"
         id="menuBtn"
-        aria-label="Open navigation menu">
+        aria-label="Open menu">
 
         ☰
 
     </button>
 
-
 </header>
 
 
 
-<!-- =====================================================
-     ARTICLE HERO
-===================================================== -->
+<!-- ================= HERO ================= -->
 
-<main>
+<section class="knowledge-hero">
 
-
-<section class="article-hero">
-
-
-    <div class="article-breadcrumb">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <span>
-            /
-        </span>
-
-        <a href="articles.html">
-            Articles
-        </a>
-
-        <span>
-            /
-        </span>
-
-        <span>
-            AI & Technology
-        </span>
-
-    </div>
-
-
-    <div class="article-category">
-
-        AI & TECHNOLOGY
-
+    <div class="section-label">
+        TECHSAVVY TANZANIA • KNOWLEDGE HUB
     </div>
 
 
     <h1>
 
-        How AI is Changing the Way
-        Young People Learn and Work
+        Ideas. Knowledge.
+        <span>Technology.</span>
 
     </h1>
 
 
-    <p class="article-intro">
+    <p>
 
-        Artificial Intelligence is changing how people
-        learn, create, communicate and work. Here's how
-        young people can use AI to build better skills
-        and discover new opportunities.
+        Explore technology insights, tutorials, digital skills,
+        AI, cybersecurity and innovation stories designed to help
+        young people learn and build the future.
 
     </p>
 
-
-    <div class="article-meta">
-
-        <span>
-            Techsavvy Tanzania
-        </span>
-
-        <span>
-            •
-        </span>
-
-        <span>
-            August 31, 2026
-        </span>
-
-        <span>
-            •
-        </span>
-
-        <span>
-            5 min read
-        </span>
-
-    </div>
-
-
 </section>
 
 
 
-<!-- =====================================================
-     ARTICLE FEATURE
-===================================================== -->
+<!-- ================= SEARCH ================= -->
 
-<section class="article-feature">
+<section class="article-tools">
 
-    <div class="article-feature-content">
+    <div class="search-box">
 
-        <div class="article-feature-icon">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search articles...">
+
+    </div>
+
+
+    <div class="categories">
+
+        <button
+            class="category-btn active"
+            data-category="all">
+
+            All
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            data-category="ai">
+
             AI
-        </div>
 
-        <div>
+        </button>
 
-            <span>
-                TECHSAVVY KNOWLEDGE HUB
-            </span>
 
-            <h2>
-                The future is being built
-                with intelligent technology.
-            </h2>
+        <button
+            class="category-btn"
+            data-category="web">
 
-        </div>
+            Web Development
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            data-category="cyber">
+
+            Cybersecurity
+
+        </button>
+
+
+        <button
+            class="category-btn"
+            data-category="digital">
+
+            Digital Skills
+
+        </button>
 
     </div>
 
@@ -231,356 +180,90 @@
 
 
 
-<!-- =====================================================
-     ARTICLE CONTENT
-===================================================== -->
+<!-- ================= ARTICLES ================= -->
 
-<section class="article-layout">
+<section class="articles-container">
 
 
-    <!-- MAIN ARTICLE -->
+    <div
+        class="article-grid"
+        id="articleGrid">
 
-    <article class="article-body">
 
+        <!-- ARTICLE 1 -->
 
-        <p class="article-lead">
+        <article
+            class="article-card"
+            data-category="ai"
+            data-title="How AI is Changing the Way Young People Learn and Work">
 
-            Artificial Intelligence has quickly become one
-            of the most important technologies shaping the
-            digital world.
 
-        </p>
+            <div class="article-image">
+                AI
+            </div>
 
 
-        <p>
+            <div class="article-content">
 
-            From education and software development to
-            business, design and content creation, AI tools
-            are helping people perform tasks faster and
-            explore new ideas.
+                <span>
+                    AI & TECHNOLOGY
+                </span>
 
-        </p>
 
+                <h2>
 
-        <p>
+                    How AI is Changing the Way
+                    Young People Learn and Work
 
-            For young people, this transformation creates
-            an opportunity to learn new skills, solve problems
-            and build products that were once difficult to
-            create.
+                </h2>
 
-        </p>
 
+                <p>
 
+                    Discover practical ways young people can
+                    use artificial intelligence to improve
+                    learning, productivity and creativity.
 
-        <h2>
-            AI as a Learning Assistant
-        </h2>
+                </p>
 
 
-        <p>
+                <div class="article-meta">
 
-            Young people can use AI tools to understand
-            difficult concepts, generate study ideas,
-            summarize information and practice new skills.
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
 
-        </p>
+                    <span>
+                        •
+                    </span>
 
+                    <span>
+                        5 min read
+                    </span>
 
-        <p>
+                </div>
 
-            For example, a student learning programming can
-            ask an AI assistant to explain a difficult concept,
-            provide examples and help identify mistakes in
-            their code.
 
-        </p>
+                <a
+                    href="article.html?id=ai"
+                    class="read-more">
 
+                    Read Article →
 
-        <div class="article-callout">
-
-            <strong>
-                Techsavvy Insight
-            </strong>
-
-            <p>
-
-                Use AI to understand more,
-                not to think less.
-
-            </p>
-
-        </div>
-
-
-
-        <h2>
-            Building Digital Skills
-        </h2>
-
-
-        <p>
-
-            Technology is creating new opportunities for
-            people who understand how to use digital tools
-            effectively.
-
-        </p>
-
-
-        <p>
-
-            Skills such as programming, graphic design,
-            cybersecurity, digital marketing and artificial
-            intelligence are becoming increasingly valuable.
-
-        </p>
-
-
-        <p>
-
-            The important thing is not to learn everything
-            at once. Start with one skill, practice it
-            consistently and build real projects.
-
-        </p>
-
-
-
-        <h2>
-            Creating Opportunities
-        </h2>
-
-
-        <p>
-
-            AI can also help young creators turn ideas into
-            practical projects, businesses and digital products.
-
-        </p>
-
-
-        <p>
-
-            A young developer can use AI to prototype an
-            application. A designer can explore ideas faster.
-            A content creator can organize research and
-            develop content strategies.
-
-        </p>
-
-
-        <p>
-
-            The technology becomes powerful when it is combined
-            with human creativity, judgment and problem-solving.
-
-        </p>
-
-
-
-        <h2>
-            AI Does Not Replace Learning
-        </h2>
-
-
-        <p>
-
-            One of the biggest mistakes people can make is
-            depending completely on AI without developing
-            their own understanding.
-
-        </p>
-
-
-        <p>
-
-            AI can provide answers, but users still need to
-            evaluate information, ask good questions and
-            understand what they are building.
-
-        </p>
-
-
-        <div class="article-callout">
-
-            <strong>
-                Remember
-            </strong>
-
-            <p>
-
-                The goal is not to compete with AI.
-                The goal is to learn how to work with it.
-
-            </p>
-
-        </div>
-
-
-
-        <h2>
-            Start Building
-        </h2>
-
-
-        <p>
-
-            The best way to understand technology is to
-            experiment with it.
-
-        </p>
-
-
-        <p>
-
-            Start a small project. Build a website.
-            Create a digital product. Automate a simple task.
-            Write your first program.
-
-        </p>
-
-
-        <p>
-
-            Every project gives you experience that cannot
-            be gained by simply watching tutorials.
-
-        </p>
-
-
-
-        <h2>
-            Final Thoughts
-        </h2>
-
-
-        <p>
-
-            The future will belong to people who are willing
-            to continuously learn and adapt.
-
-        </p>
-
-
-        <p>
-
-            Artificial Intelligence is not just a technology
-            for large companies and experienced developers.
-            It is becoming a tool that young people can use
-            to learn, create and solve problems.
-
-        </p>
-
-
-        <p>
-
-            At Techsavvy Tanzania, our goal is to help young
-            people develop the knowledge, confidence and
-            digital skills needed to participate in that future.
-
-        </p>
-
-
-        <div class="article-signature">
-
-            <strong>
-                TECHSAVVY TANZANIA
-            </strong>
-
-            <span>
-                Empowering Youth Through Technology.
-            </span>
-
-        </div>
-
-
-    </article>
-
-
-
-    <!-- SIDEBAR -->
-
-    <aside class="article-sidebar">
-
-
-        <div class="sidebar-box">
-
-            <h3>
-                In This Article
-            </h3>
-
-            <a href="#learning">
-                AI as a Learning Assistant
-            </a>
-
-            <a href="#skills">
-                Building Digital Skills
-            </a>
-
-            <a href="#opportunities">
-                Creating Opportunities
-            </a>
-
-            <a href="#future">
-                Start Building
-            </a>
-
-        </div>
-
-
-        <div class="sidebar-box">
-
-            <h3>
-                Share Article
-            </h3>
-
-            <div class="share-buttons">
-
-                <button
-                    onclick="shareArticle()">
-                    Share
-                </button>
-
-                <button
-                    onclick="copyArticleLink()">
-                    Copy Link
-                </button>
+                </a>
 
             </div>
 
-        </div>
-
-
-    </aside>
-
-
-</section>
+        </article>
 
 
 
-<!-- =====================================================
-     RELATED ARTICLES
-===================================================== -->
+        <!-- ARTICLE 2 -->
 
-<section class="related-section">
-
-
-    <div class="section-label">
-        KEEP READING
-    </div>
-
-
-    <h2>
-        More from the
-        <span>Knowledge Hub.</span>
-    </h2>
-
-
-    <div class="article-grid">
-
-
-        <article class="article-card">
+        <article
+            class="article-card"
+            data-category="web"
+            data-title="From Idea to Website A Simple Path for Beginners">
 
 
             <div class="article-image">
@@ -594,18 +277,47 @@
                     WEB DEVELOPMENT
                 </span>
 
-                <h3>
+
+                <h2>
+
                     From Idea to Website:
                     A Simple Path for Beginners
-                </h3>
+
+                </h2>
+
 
                 <p>
-                    Learn the essential steps for turning
-                    an idea into a live website.
+
+                    Learn the essential steps involved in
+                    turning an idea into a professional
+                    website and putting it online.
+
                 </p>
 
-                <a href="articles.html">
+
+                <div class="article-meta">
+
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        6 min read
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="article.html?id=web"
+                    class="read-more">
+
                     Read Article →
+
                 </a>
 
             </div>
@@ -614,7 +326,12 @@
 
 
 
-        <article class="article-card">
+        <!-- ARTICLE 3 -->
+
+        <article
+            class="article-card"
+            data-category="cyber"
+            data-title="Digital Safety Basics Every Young Creator Should Know">
 
 
             <div class="article-image">
@@ -628,18 +345,47 @@
                     CYBERSECURITY
                 </span>
 
-                <h3>
+
+                <h2>
+
                     Digital Safety Basics Every
                     Young Creator Should Know
-                </h3>
+
+                </h2>
+
 
                 <p>
-                    Simple habits that can protect your
-                    accounts and digital identity.
+
+                    Learn simple cybersecurity habits that
+                    can help protect your accounts, devices
+                    and personal information.
+
                 </p>
 
-                <a href="articles.html">
+
+                <div class="article-meta">
+
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        5 min read
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="article.html?id=cyber"
+                    class="read-more">
+
                     Read Article →
+
                 </a>
 
             </div>
@@ -648,7 +394,12 @@
 
 
 
-        <article class="article-card">
+        <!-- ARTICLE 4 -->
+
+        <article
+            class="article-card"
+            data-category="digital"
+            data-title="7 Digital Skills Every Young Person Should Learn">
 
 
             <div class="article-image">
@@ -662,18 +413,183 @@
                     DIGITAL SKILLS
                 </span>
 
-                <h3>
+
+                <h2>
+
                     7 Digital Skills Every Young
                     Person Should Learn
-                </h3>
+
+                </h2>
+
 
                 <p>
-                    Explore important skills for today's
-                    technology-driven world.
+
+                    Explore important digital skills that can
+                    help you study, work, create and compete
+                    in today's technology-driven world.
+
                 </p>
 
-                <a href="articles.html">
+
+                <div class="article-meta">
+
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        7 min read
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="article.html?id=digital"
+                    class="read-more">
+
                     Read Article →
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ARTICLE 5 -->
+
+        <article
+            class="article-card"
+            data-category="ai"
+            data-title="How to Use ChatGPT as Your Personal Learning Assistant">
+
+
+            <div class="article-image">
+                CHATGPT
+            </div>
+
+
+            <div class="article-content">
+
+                <span>
+                    ARTIFICIAL INTELLIGENCE
+                </span>
+
+
+                <h2>
+
+                    How to Use ChatGPT as Your
+                    Personal Learning Assistant
+
+                </h2>
+
+
+                <p>
+
+                    Learn how students and young professionals
+                    can use AI tools responsibly to research,
+                    understand concepts and improve productivity.
+
+                </p>
+
+
+                <div class="article-meta">
+
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        6 min read
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="article.html?id=chatgpt"
+                    class="read-more">
+
+                    Read Article →
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ARTICLE 6 -->
+
+        <article
+            class="article-card"
+            data-category="cyber"
+            data-title="How to Protect Your Social Media Accounts">
+
+
+            <div class="article-image">
+                SECURITY
+            </div>
+
+
+            <div class="article-content">
+
+                <span>
+                    ONLINE SECURITY
+                </span>
+
+
+                <h2>
+
+                    How to Protect Your
+                    Social Media Accounts
+
+                </h2>
+
+
+                <p>
+
+                    Strong passwords, two-factor authentication
+                    and smart online habits can improve your
+                    digital security.
+
+                </p>
+
+
+                <div class="article-meta">
+
+                    <span>
+                        Techsavvy Tanzania
+                    </span>
+
+                    <span>
+                        •
+                    </span>
+
+                    <span>
+                        4 min read
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="article.html?id=social-security"
+                    class="read-more">
+
+                    Read Article →
+
                 </a>
 
             </div>
@@ -683,13 +599,30 @@
 
     </div>
 
+
+
+    <!-- NO RESULTS -->
+
+    <div
+        id="noResults"
+        style="display:none; text-align:center; padding:60px 20px;">
+
+        <h2>
+            No articles found.
+        </h2>
+
+        <p>
+            Try another search or category.
+        </p>
+
+    </div>
+
+
 </section>
 
 
 
-<!-- =====================================================
-     JOIN CTA
-===================================================== -->
+<!-- ================= CTA ================= -->
 
 <section class="join-section">
 
@@ -704,12 +637,12 @@
 
         <h2>
 
-            Don't just learn technology.
+            Learn today.
 
             <br>
 
             <span>
-                Build with it.
+                Build tomorrow.
             </span>
 
         </h2>
@@ -734,17 +667,11 @@
 
     </div>
 
-
 </section>
 
 
-</main>
 
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -754,6 +681,7 @@
         <div class="logo-box">
             T
         </div>
+
 
         <div class="logo-text">
             TECH<span>SAVVY</span>
@@ -770,8 +698,8 @@
     </p>
 
 
-    <a href="articles.html">
-        Back to Articles ↑
+    <a href="index.html">
+        Back to Home ↑
     </a>
 
 
@@ -779,9 +707,7 @@
 
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
@@ -809,51 +735,151 @@ if (menuBtn && navMenu) {
 }
 
 
-/* SHARE ARTICLE */
 
-function shareArticle() {
+/* SEARCH */
 
-    if (navigator.share) {
+const searchInput =
+    document.getElementById("searchInput");
 
-        navigator.share({
+const articles =
+    document.querySelectorAll(".article-card");
 
-            title:
-                "How AI is Changing the Way Young People Learn and Work",
+const noResults =
+    document.getElementById("noResults");
 
-            text:
-                "Read this article from Techsavvy Tanzania.",
 
-            url:
-                window.location.href
+searchInput.addEventListener(
+    "input",
+    function () {
 
-        });
+        const query =
+            searchInput.value
+                .toLowerCase()
+                .trim();
 
-    } else {
 
-        copyArticleLink();
+        let visible = 0;
 
-        alert(
-            "Article link copied. You can now share it."
+
+        articles.forEach(
+            function (article) {
+
+                const title =
+                    article.dataset.title
+                        .toLowerCase();
+
+
+                const content =
+                    article.innerText
+                        .toLowerCase();
+
+
+                if (
+                    title.includes(query) ||
+                    content.includes(query)
+                ) {
+
+                    article.style.display =
+                        "flex";
+
+                    visible++;
+
+                } else {
+
+                    article.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        noResults.style.display =
+            visible === 0
+                ? "block"
+                : "none";
+
+    }
+);
+
+
+
+/* CATEGORY FILTER */
+
+const categoryButtons =
+    document.querySelectorAll(".category-btn");
+
+
+categoryButtons.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+
+                categoryButtons.forEach(
+                    function (btn) {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                const category =
+                    button.dataset.category;
+
+
+                let visible = 0;
+
+
+                articles.forEach(
+                    function (article) {
+
+
+                        if (
+                            category === "all" ||
+                            article.dataset.category === category
+                        ) {
+
+                            article.style.display =
+                                "flex";
+
+                            visible++;
+
+                        } else {
+
+                            article.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+
+                noResults.style.display =
+                    visible === 0
+                        ? "block"
+                        : "none";
+
+
+                searchInput.value = "";
+
+            }
         );
 
     }
-
-}
-
-
-/* COPY ARTICLE LINK */
-
-function copyArticleLink() {
-
-    navigator.clipboard.writeText(
-        window.location.href
-    );
-
-    alert(
-        "Article link copied!"
-    );
-
-}
+);
 
 
 </script>
