@@ -1,0 +1,420 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join Techsavvy Tanzania</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #07090e;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: auto;
+            padding: 80px 0;
+        }
+
+        .back {
+            display: inline-block;
+            color: #9ba3b4;
+            text-decoration: none;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: #1455ff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .badge {
+            color: #6f98ff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(42px, 7vw, 70px);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        h1 span {
+            color: #1455ff;
+        }
+
+        .header p {
+            max-width: 600px;
+            margin: 20px auto;
+            color: #9da5b5;
+        }
+
+        .form-box {
+            background: #0f131c;
+            border: 1px solid #242b39;
+            border-radius: 15px;
+            padding: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border-radius: 7px;
+            border: 1px solid #303847;
+            background: #090c12;
+            color: white;
+            outline: none;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #1455ff;
+            box-shadow: 0 0 0 3px rgba(20, 85, 255, .12);
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            padding: 16px;
+            border-radius: 7px;
+            background: #1455ff;
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .submit-btn:hover {
+            background: #0d43d5;
+            transform: translateY(-2px);
+        }
+
+        .note {
+            text-align: center;
+            color: #737c8d;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:600px) {
+
+            .container {
+                padding: 50px 0;
+            }
+
+            .form-box {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="index.html" class="back">
+        ← Back to Techsavvy
+    </a>
+
+    <div class="header">
+
+        <div class="badge">
+            TECHSAVVY TANZANIA • JOIN US
+        </div>
+
+        <h1>
+            Build the <span>future.</span>
+        </h1>
+
+        <p>
+            Join Techsavvy Tanzania and become part of a community
+            of young people learning, creating and using technology
+            to shape the future.
+        </p>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <form>
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address *
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@email.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone / WhatsApp *
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+255..."
+                    required
+                >
+
+            </div>
+
+
+            <!-- AGE -->
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age *
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Your age"
+                    min="13"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+
+                <label for="location">
+                    Location *
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="City / Region"
+                    required
+                >
+
+            </div>
+
+
+            <!-- AREA OF INTEREST -->
+
+            <div class="form-group">
+
+                <label for="interest">
+                    Area of Interest *
+                </label>
+
+                <select id="interest" name="interest" required>
+
+                    <option value="">
+                        Select your area
+                    </option>
+
+                    <option>
+                        Artificial Intelligence
+                    </option>
+
+                    <option>
+                        Web Development
+                    </option>
+
+                    <option>
+                        Graphic Design
+                    </option>
+
+                    <option>
+                        Networking
+                    </option>
+
+                    <option>
+                        Cybersecurity
+                    </option>
+
+                    <option>
+                        Digital Marketing
+                    </option>
+
+                    <option>
+                        Technology & Innovation
+                    </option>
+
+                    <option>
+                        Media & Community
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="form-group">
+
+                <label for="skills">
+                    Current Skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    name="skills"
+                    placeholder="Tell us about your current skills..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- WHY JOIN -->
+
+            <div class="form-group">
+
+                <label for="reason">
+                    Why do you want to join Techsavvy? *
+                </label>
+
+                <textarea
+                    id="reason"
+                    name="reason"
+                    placeholder="Tell us why you want to join..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- PORTFOLIO -->
+
+            <div class="form-group">
+
+                <label for="portfolio">
+                    Portfolio / LinkedIn / GitHub
+                </label>
+
+                <input
+                    type="url"
+                    id="portfolio"
+                    name="portfolio"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit Application →
+            </button>
+
+        </form>
+
+        <p class="note">
+            By submitting this application, you agree to provide
+            accurate information to Techsavvy Tanzania.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```
