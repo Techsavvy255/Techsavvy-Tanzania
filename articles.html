@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Techsavvy Tanzania Knowledge Hub — technology articles, AI, cybersecurity, web development and digital skills.">
-
-    <meta name="author" content="Techsavvy Tanzania">
+        content="Techsavvy Tanzania Knowledge Hub — technology articles, AI, cybersecurity, digital skills and innovation.">
 
     <title>Articles | Techsavvy Tanzania</title>
 
@@ -26,7 +23,6 @@
 </head>
 
 <body>
-
 
 <!-- ================= NAVBAR ================= -->
 
@@ -45,7 +41,7 @@
     </div>
 
 
-    <nav class="nav-menu" id="navMenu">
+    <nav class="nav-menu">
 
         <a href="index.html">Home</a>
 
@@ -71,186 +67,128 @@
 
     </nav>
 
-
-    <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Open menu">
-
-        ☰
-
-    </button>
-
 </header>
 
 
+<!-- ================= ARTICLES HERO ================= -->
 
-<!-- ================= HERO ================= -->
-
-<section class="knowledge-hero">
+<section class="articles-hero">
 
     <div class="section-label">
         TECHSAVVY TANZANIA • KNOWLEDGE HUB
     </div>
 
-
     <h1>
-
         Ideas. Knowledge.
         <span>Technology.</span>
-
     </h1>
 
-
     <p>
-
         Explore technology insights, tutorials, digital skills,
-        AI, cybersecurity and innovation stories designed to help
-        young people learn and build the future.
-
+        AI, cybersecurity and innovation stories designed to
+        help young people learn, build and grow.
     </p>
 
 </section>
 
 
+<!-- ================= CATEGORY FILTER ================= -->
 
-<!-- ================= SEARCH ================= -->
+<section class="article-hub">
 
-<section class="article-tools">
+    <div class="article-tools">
 
-    <div class="search-box">
+        <button class="category-btn active">
+            All
+        </button>
+
+        <button class="category-btn">
+            AI
+        </button>
+
+        <button class="category-btn">
+            Web Development
+        </button>
+
+        <button class="category-btn">
+            Cybersecurity
+        </button>
+
+        <button class="category-btn">
+            Digital Skills
+        </button>
+
+        <button class="category-btn">
+            Innovation
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="article-search">
 
         <input
             type="text"
-            id="searchInput"
-            placeholder="Search articles...">
+            id="articleSearch"
+            placeholder="Search articles..."
+        >
 
     </div>
 
 
-    <div class="categories">
+    <!-- ================= ARTICLE GRID ================= -->
 
-        <button
-            class="category-btn active"
-            data-category="all">
-
-            All
-
-        </button>
-
-
-        <button
-            class="category-btn"
-            data-category="ai">
-
-            AI
-
-        </button>
-
-
-        <button
-            class="category-btn"
-            data-category="web">
-
-            Web Development
-
-        </button>
-
-
-        <button
-            class="category-btn"
-            data-category="cyber">
-
-            Cybersecurity
-
-        </button>
-
-
-        <button
-            class="category-btn"
-            data-category="digital">
-
-            Digital Skills
-
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= ARTICLES ================= -->
-
-<section class="articles-container">
-
-
-    <div
-        class="article-grid"
-        id="articleGrid">
+    <div class="article-grid">
 
 
         <!-- ARTICLE 1 -->
 
         <article
             class="article-card"
-            data-category="ai"
-            data-title="How AI is Changing the Way Young People Learn and Work">
+            data-category="AI"
+            data-title="How AI is changing the way young people learn and work"
+        >
 
+            <div class="article-image ai-image">
 
-            <div class="article-image">
-                AI
+                <span>
+                    AI
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
+                <span class="article-category">
                     AI & TECHNOLOGY
                 </span>
 
-
                 <h2>
-
                     How AI is Changing the Way
                     Young People Learn and Work
-
                 </h2>
 
-
                 <p>
-
-                    Discover practical ways young people can
-                    use artificial intelligence to improve
-                    learning, productivity and creativity.
-
+                    Discover how artificial intelligence is
+                    transforming education, creativity,
+                    productivity and career opportunities.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         5 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=ai"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -262,63 +200,47 @@
 
         <article
             class="article-card"
-            data-category="web"
-            data-title="From Idea to Website A Simple Path for Beginners">
+            data-category="Web Development"
+            data-title="From idea to website a simple path for beginners"
+        >
 
+            <div class="article-image web-image">
 
-            <div class="article-image">
-                WEB
+                <span>
+                    WEB
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
+                <span class="article-category">
                     WEB DEVELOPMENT
                 </span>
 
-
                 <h2>
-
                     From Idea to Website:
                     A Simple Path for Beginners
-
                 </h2>
 
-
                 <p>
-
-                    Learn the essential steps involved in
-                    turning an idea into a professional
-                    website and putting it online.
-
+                    Learn the essential steps for turning
+                    a simple idea into a professional website.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         6 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=web"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -330,63 +252,47 @@
 
         <article
             class="article-card"
-            data-category="cyber"
-            data-title="Digital Safety Basics Every Young Creator Should Know">
+            data-category="Cybersecurity"
+            data-title="Digital safety basics every young creator should know"
+        >
 
+            <div class="article-image cyber-image">
 
-            <div class="article-image">
-                CYBER
+                <span>
+                    CYBER
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
+                <span class="article-category">
                     CYBERSECURITY
                 </span>
 
-
                 <h2>
-
                     Digital Safety Basics Every
                     Young Creator Should Know
-
                 </h2>
 
-
                 <p>
-
-                    Learn simple cybersecurity habits that
-                    can help protect your accounts, devices
-                    and personal information.
-
+                    Simple cybersecurity habits that can help
+                    protect your accounts, devices and data.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         5 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=cyber"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -398,63 +304,47 @@
 
         <article
             class="article-card"
-            data-category="digital"
-            data-title="7 Digital Skills Every Young Person Should Learn">
+            data-category="Digital Skills"
+            data-title="Digital skills you should learn in 2026"
+        >
 
+            <div class="article-image skills-image">
 
-            <div class="article-image">
-                SKILLS
+                <span>
+                    SKILLS
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
+                <span class="article-category">
                     DIGITAL SKILLS
                 </span>
 
-
                 <h2>
-
-                    7 Digital Skills Every Young
-                    Person Should Learn
-
+                    Digital Skills You Should
+                    Learn in 2026
                 </h2>
 
-
                 <p>
-
-                    Explore important digital skills that can
-                    help you study, work, create and compete
-                    in today's technology-driven world.
-
+                    Explore the most useful digital skills
+                    young people can develop for the modern economy.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         7 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=digital"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -466,63 +356,47 @@
 
         <article
             class="article-card"
-            data-category="ai"
-            data-title="How to Use ChatGPT as Your Personal Learning Assistant">
+            data-category="Innovation"
+            data-title="How young people can turn technology ideas into projects"
+        >
 
+            <div class="article-image innovation-image">
 
-            <div class="article-image">
-                CHATGPT
+                <span>
+                    INNOVATION
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
-                    ARTIFICIAL INTELLIGENCE
+                <span class="article-category">
+                    INNOVATION
                 </span>
 
-
                 <h2>
-
-                    How to Use ChatGPT as Your
-                    Personal Learning Assistant
-
+                    How Young People Can Turn
+                    Technology Ideas Into Projects
                 </h2>
 
-
                 <p>
-
-                    Learn how students and young professionals
-                    can use AI tools responsibly to research,
-                    understand concepts and improve productivity.
-
+                    Learn how to move from an idea on paper
+                    to a real technology project.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         6 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=chatgpt"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -534,63 +408,47 @@
 
         <article
             class="article-card"
-            data-category="cyber"
-            data-title="How to Protect Your Social Media Accounts">
+            data-category="AI"
+            data-title="How to use AI responsibly as a student"
+        >
 
+            <div class="article-image ai-image">
 
-            <div class="article-image">
-                SECURITY
+                <span>
+                    AI
+                </span>
+
             </div>
 
 
             <div class="article-content">
 
-                <span>
-                    ONLINE SECURITY
+                <span class="article-category">
+                    AI & EDUCATION
                 </span>
 
-
                 <h2>
-
-                    How to Protect Your
-                    Social Media Accounts
-
+                    How to Use AI Responsibly
+                    as a Student
                 </h2>
 
-
                 <p>
-
-                    Strong passwords, two-factor authentication
-                    and smart online habits can improve your
-                    digital security.
-
+                    Understand how students can use AI
+                    effectively without losing critical thinking.
                 </p>
 
 
-                <div class="article-meta">
-
-                    <span>
-                        Techsavvy Tanzania
-                    </span>
-
-                    <span>
-                        •
-                    </span>
+                <div class="article-bottom">
 
                     <span>
                         4 min read
                     </span>
 
+                    <a href="article.html">
+                        Read Article →
+                    </a>
+
                 </div>
-
-
-                <a
-                    href="article.html?id=social-security"
-                    class="read-more">
-
-                    Read Article →
-
-                </a>
 
             </div>
 
@@ -600,15 +458,15 @@
     </div>
 
 
-
     <!-- NO RESULTS -->
 
     <div
         id="noResults"
-        style="display:none; text-align:center; padding:60px 20px;">
+        style="display:none; text-align:center; padding:60px 20px;"
+    >
 
         <h2>
-            No articles found.
+            No articles found
         </h2>
 
         <p>
@@ -617,71 +475,51 @@
 
     </div>
 
-
 </section>
-
 
 
 <!-- ================= CTA ================= -->
 
 <section class="join-section">
 
-
     <div class="join-content">
 
-
         <div class="section-label">
-            TECHSAVVY TANZANIA
+            TECHSAVVY COMMUNITY
         </div>
 
-
         <h2>
-
-            Learn today.
-
+            Learn.
             <br>
-
-            <span>
-                Build tomorrow.
-            </span>
-
+            <span>Build. Grow.</span>
         </h2>
 
-
         <p>
-
-            Join a community of young people learning,
-            creating and using technology to shape the future.
-
+            Join Techsavvy Tanzania and become part
+            of a community building the future through technology.
         </p>
-
 
         <a
             href="join.html"
-            class="btn white-btn">
-
+            class="btn white-btn"
+        >
             Join Techsavvy →
-
         </a>
-
 
     </div>
 
 </section>
 
 
-
 <!-- ================= FOOTER ================= -->
 
 <footer>
-
 
     <div class="footer-brand">
 
         <div class="logo-box">
             T
         </div>
-
 
         <div class="logo-text">
             TECH<span>SAVVY</span>
@@ -691,196 +529,119 @@
 
 
     <p>
-
         © 2026 Techsavvy Tanzania.
         Empowering Youth Through Technology.
-
     </p>
 
 
     <a href="index.html">
-        Back to Home ↑
+        Back Home ↑
     </a>
-
 
 </footer>
 
 
-
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================= SEARCH & FILTER ================= -->
 
 <script>
 
-
-/* MOBILE MENU */
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const navMenu =
-    document.getElementById("navMenu");
-
-
-if (menuBtn && navMenu) {
-
-    menuBtn.addEventListener(
-        "click",
-        function () {
-
-            navMenu.classList.toggle("active");
-
-        }
-    );
-
-}
-
-
-
-/* SEARCH */
-
 const searchInput =
-    document.getElementById("searchInput");
+    document.getElementById("articleSearch");
 
-const articles =
+const cards =
     document.querySelectorAll(".article-card");
+
+const buttons =
+    document.querySelectorAll(".category-btn");
 
 const noResults =
     document.getElementById("noResults");
 
 
+let selectedCategory = "All";
+
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        buttons.forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        selectedCategory =
+            button.textContent.trim();
+
+        filterArticles();
+
+    });
+
+});
+
+
 searchInput.addEventListener(
     "input",
-    function () {
-
-        const query =
-            searchInput.value
-                .toLowerCase()
-                .trim();
-
-
-        let visible = 0;
-
-
-        articles.forEach(
-            function (article) {
-
-                const title =
-                    article.dataset.title
-                        .toLowerCase();
-
-
-                const content =
-                    article.innerText
-                        .toLowerCase();
-
-
-                if (
-                    title.includes(query) ||
-                    content.includes(query)
-                ) {
-
-                    article.style.display =
-                        "flex";
-
-                    visible++;
-
-                } else {
-
-                    article.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-
-        noResults.style.display =
-            visible === 0
-                ? "block"
-                : "none";
-
-    }
+    filterArticles
 );
 
 
+function filterArticles() {
 
-/* CATEGORY FILTER */
+    const search =
+        searchInput.value.toLowerCase().trim();
 
-const categoryButtons =
-    document.querySelectorAll(".category-btn");
-
-
-categoryButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
+    let visible = 0;
 
 
-                categoryButtons.forEach(
-                    function (btn) {
+    cards.forEach(card => {
 
-                        btn.classList.remove(
-                            "active"
-                        );
+        const category =
+            card.dataset.category;
 
-                    }
-                );
+        const title =
+            card.dataset.title.toLowerCase();
 
 
-                button.classList.add(
-                    "active"
-                );
+        const categoryMatch =
+            selectedCategory === "All" ||
+            category === selectedCategory;
 
 
-                const category =
-                    button.dataset.category;
+        const searchMatch =
+            title.includes(search);
 
 
-                let visible = 0;
+        if (
+            categoryMatch &&
+            searchMatch
+        ) {
+
+            card.style.display = "";
+
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
 
 
-                articles.forEach(
-                    function (article) {
+    if (visible === 0) {
 
+        noResults.style.display = "block";
 
-                        if (
-                            category === "all" ||
-                            article.dataset.category === category
-                        ) {
+    } else {
 
-                            article.style.display =
-                                "flex";
-
-                            visible++;
-
-                        } else {
-
-                            article.style.display =
-                                "none";
-
-                        }
-
-                    }
-                );
-
-
-                noResults.style.display =
-                    visible === 0
-                        ? "block"
-                        : "none";
-
-
-                searchInput.value = "";
-
-            }
-        );
+        noResults.style.display = "none";
 
     }
-);
 
+}
 
 </script>
 
@@ -888,4 +649,3 @@ categoryButtons.forEach(
 </body>
 
 </html>
-```
