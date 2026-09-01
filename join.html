@@ -1,19 +1,13 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Join Techsavvy Tanzania and become part of a community of young people learning, creating and innovating through technology.">
-
-    <meta name="keywords"
-        content="Techsavvy Tanzania, Join Techsavvy, technology, digital skills, Tanzania">
-
-    <meta name="author" content="Techsavvy Tanzania">
+        content="Join Techsavvy Tanzania. Register to become part of a youth-driven technology community.">
 
     <title>Join Techsavvy Tanzania</title>
 
@@ -24,790 +18,409 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Inter", sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(20, 85, 255, .15),
-                    transparent 35%
-                ),
-                #07090e;
-
-            color: #ffffff;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 92%;
-            max-width: 850px;
-            margin: auto;
-            padding: 45px 0 80px;
-        }
-
-        .back {
-            display: inline-block;
-            color: #8e98aa;
-            text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 45px;
-            transition: .2s;
-        }
-
-        .back:hover {
-            color: #3f75ff;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .badge {
-            display: inline-block;
-            color: #6f98ff;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: .18em;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(45px, 8vw, 75px);
-            line-height: .95;
-            letter-spacing: -.06em;
-        }
-
-        h1 span {
-            color: #1455ff;
-        }
-
-        .header p {
-            max-width: 620px;
-            margin: 22px auto 0;
-            color: #9da5b5;
-            line-height: 1.7;
-            font-size: 15px;
-        }
-
-        .form-box {
-            background: rgba(15, 19, 28, .96);
-            border: 1px solid #252c3a;
-            border-radius: 18px;
-            padding: 35px;
-
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, .35);
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 9px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        label span {
-            color: #5f88ff;
-        }
-
-        input,
-        select,
-        textarea {
-
-            width: 100%;
-
-            padding: 15px;
-
-            border-radius: 8px;
-
-            border: 1px solid #303847;
-
-            background: #080b11;
-
-            color: white;
-
-            outline: none;
-
-            font-family: inherit;
-
-            font-size: 14px;
-
-            transition: .2s;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #626b7b;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-
-            border-color: #1455ff;
-
-            box-shadow:
-                0 0 0 3px rgba(20, 85, 255, .12);
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        select {
-            cursor: pointer;
-        }
-
-        select option {
-            background: #0f131c;
-            color: white;
-        }
-
-        .submit-btn {
-
-            width: 100%;
-
-            padding: 16px;
-
-            border: none;
-
-            border-radius: 8px;
-
-            background: #1455ff;
-
-            color: white;
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-            cursor: pointer;
-
-            transition: .2s;
-        }
-
-        .submit-btn:hover {
-            background: #0d43d5;
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:disabled {
-            opacity: .65;
-            cursor: wait;
-            transform: none;
-        }
-
-        .note {
-            text-align: center;
-            color: #70798a;
-            font-size: 11px;
-            line-height: 1.6;
-            margin-top: 18px;
-        }
-
-        .success {
-            display: none;
-            text-align: center;
-            padding: 40px 15px;
-        }
-
-        .success-icon {
-
-            width: 70px;
-            height: 70px;
-
-            margin: 0 auto 20px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background: #1455ff;
-
-            font-size: 30px;
-            font-weight: 800;
-        }
-
-        .success h2 {
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 35px;
-
-            margin-bottom: 12px;
-        }
-
-        .success p {
-            color: #9da5b5;
-            line-height: 1.7;
-        }
-
-        .home-btn {
-
-            display: inline-block;
-
-            margin-top: 25px;
-
-            padding: 13px 20px;
-
-            border: 1px solid #303847;
-
-            border-radius: 7px;
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            font-weight: 700;
-        }
-
-        .home-btn:hover {
-            border-color: #1455ff;
-        }
-
-        @media(max-width: 600px) {
-
-            .container {
-                padding-top: 30px;
-            }
-
-            .form-box {
-                padding: 22px;
-            }
-
-            h1 {
-                font-size: 50px;
-            }
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<header class="navbar">
 
-<div class="container">
+    <div class="logo">
+        <div class="logo-box">T</div>
+
+        <div class="logo-text">
+            TECH<span>SAVVY</span>
+        </div>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#courses">Courses</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="articles.html">Articles</a>
+        <a href="join.html" class="active">Join Us</a>
+        <a href="index.html#contact">Contact</a>
+
+    </nav>
+
+    <button class="menu-btn" id="menuBtn">
+        ☰
+    </button>
+
+</header>
 
 
-    <a href="index.html" class="back">
-        ← Back to Techsavvy
-    </a>
+<main class="join-page">
 
+    <section class="join-hero">
 
-    <div class="header">
-
-        <div class="badge">
-            TECHSAVVY TANZANIA • JOIN US
+        <div class="section-label">
+            TECHSAVVY TANZANIA • REGISTRATION
         </div>
 
         <h1>
-            Build the
-            <span>future.</span>
+            Join <span>Techsavvy.</span>
         </h1>
 
         <p>
-            Join Techsavvy Tanzania and become part of a
-            community of young people learning, creating
-            and using technology to shape the future.
+            Become part of a community of young people
+            learning, building and creating with technology.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="form-box">
+    <section class="registration-section">
 
+        <div class="registration-container">
 
-        <!-- GOOGLE FORM -->
+            <div class="registration-header">
 
-        <form
-            id="joinForm"
-            action="https://docs.google.com/forms/d/e/1FAIpQLSd_AaIMPPDizGRXuoGgdXSo1he4sDUVHPD1MRG1eW5S8JpxKA/formResponse"
-            method="POST"
-            target="hidden_iframe"
-        >
+                <span class="section-label">
+                    MEMBER REGISTRATION
+                </span>
 
+                <h2>
+                    Create your Techsavvy profile.
+                </h2>
 
-            <!-- FULL NAME -->
-
-            <div class="form-group">
-
-                <label for="name">
-                    Full Name <span>*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    name="entry.811165618"
-                    placeholder="Enter your full name"
-                    required
-                >
+                <p>
+                    Fill in the information below to apply
+                    to join Techsavvy Tanzania.
+                </p>
 
             </div>
 
 
-            <!-- GENDER -->
+            <form id="registrationForm">
 
-            <div class="form-group">
+                <div class="form-row">
 
-                <label for="gender">
-                    Gender <span>*</span>
-                </label>
+                    <div class="form-group">
 
-                <select
-                    id="gender"
-                    name="entry.893593779"
-                    required
-                >
+                        <label for="firstName">
+                            First Name *
+                        </label>
 
-                    <option value="">
-                        Select gender
-                    </option>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="Enter your first name"
+                            required>
 
-                    <option value="Male">
-                        Male
-                    </option>
+                    </div>
 
-                    <option value="Female">
-                        Female
-                    </option>
 
-                    <option value="Prefer not to say">
-                        Prefer not to say
-                    </option>
+                    <div class="form-group">
 
-                </select>
+                        <label for="lastName">
+                            Last Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Enter your last name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address *
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+255 7XX XXX XXX"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="13"
+                        max="100"
+                        placeholder="Your age"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="interest">
+                        Area of Interest *
+                    </label>
+
+                    <select
+                        id="interest"
+                        name="interest"
+                        required>
+
+                        <option value="">
+                            Select your area of interest
+                        </option>
+
+                        <option value="AI">
+                            AI & ChatGPT
+                        </option>
+
+                        <option value="Graphic Design">
+                            Graphic Design
+                        </option>
+
+                        <option value="Web Development">
+                            Web Development
+                        </option>
+
+                        <option value="Networking">
+                            Networking
+                        </option>
+
+                        <option value="Cybersecurity">
+                            Cybersecurity
+                        </option>
+
+                        <option value="Digital Marketing">
+                            Digital Marketing
+                        </option>
+
+                        <option value="Technology">
+                            General Technology
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="experience">
+                        Technology Experience
+                    </label>
+
+                    <select
+                        id="experience"
+                        name="experience">
+
+                        <option value="">
+                            Select your level
+                        </option>
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="motivation">
+                        Why do you want to join Techsavvy? *
+                    </label>
+
+                    <textarea
+                        id="motivation"
+                        name="motivation"
+                        rows="5"
+                        placeholder="Tell us briefly about yourself and why you want to join..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-check">
+
+                    <input
+                        type="checkbox"
+                        id="agreement"
+                        required>
+
+                    <label for="agreement">
+                        I confirm that the information provided
+                        is correct and I agree to participate
+                        responsibly in Techsavvy activities.
+                    </label>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn primary submit-btn">
+
+                    Submit Registration →
+
+                </button>
+
+            </form>
+
+
+            <div
+                id="successMessage"
+                class="registration-success"
+                style="display:none;">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    Registration Submitted!
+                </h2>
+
+                <p>
+                    Thank you for your interest in joining
+                    Techsavvy Tanzania.
+                </p>
+
+                <p>
+                    Your registration has been received.
+                    Our team will review your application
+                    and contact you using the information
+                    you provided.
+                </p>
+
+                <a
+                    href="index.html"
+                    class="btn primary">
+
+                    Back to Home →
+
+                </a>
 
             </div>
-
-
-            <!-- AGE -->
-
-            <div class="form-group">
-
-                <label for="age">
-                    Age <span>*</span>
-                </label>
-
-                <input
-                    type="number"
-                    id="age"
-                    name="entry.391198364"
-                    min="13"
-                    max="100"
-                    placeholder="Your age"
-                    required
-                >
-
-            </div>
-
-
-            <!-- PHONE -->
-
-            <div class="form-group">
-
-                <label for="phone">
-                    Phone / WhatsApp <span>*</span>
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    name="entry.932223343"
-                    placeholder="+255 7XX XXX XXX"
-                    required
-                >
-
-            </div>
-
-
-            <!-- EMAIL -->
-
-            <div class="form-group">
-
-                <label for="email">
-                    Email Address <span>*</span>
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="entry.47138216"
-                    placeholder="example@email.com"
-                    required
-                >
-
-            </div>
-
-
-            <!-- LOCATION -->
-
-            <div class="form-group">
-
-                <label for="location">
-                    Location <span>*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="location"
-                    name="entry.551949083"
-                    placeholder="e.g. Dar es Salaam"
-                    required
-                >
-
-            </div>
-
-
-            <!-- EDUCATION -->
-
-            <div class="form-group">
-
-                <label for="education">
-                    Education Level <span>*</span>
-                </label>
-
-                <select
-                    id="education"
-                    name="entry.1327138229"
-                    required
-                >
-
-                    <option value="">
-                        Select education level
-                    </option>
-
-                    <option value="Secondary">
-                        Secondary
-                    </option>
-
-                    <option value="Certificate">
-                        Certificate
-                    </option>
-
-                    <option value="Diploma">
-                        Diploma
-                    </option>
-
-                    <option value="Bachelor">
-                        Bachelor Degree
-                    </option>
-
-                    <option value="Masters">
-                        Masters
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- INSTITUTION -->
-
-            <div class="form-group">
-
-                <label for="institution">
-                    Institution
-                </label>
-
-                <input
-                    type="text"
-                    id="institution"
-                    name="entry.1620312208"
-                    placeholder="School / College / University"
-                >
-
-            </div>
-
-
-            <!-- FIELD -->
-
-            <div class="form-group">
-
-                <label for="field">
-                    Field of Study
-                </label>
-
-                <input
-                    type="text"
-                    id="field"
-                    name="entry.748346077"
-                    placeholder="e.g. IT, Computer Science"
-                >
-
-            </div>
-
-
-            <!-- AREA OF INTEREST -->
-
-            <div class="form-group">
-
-                <label for="interest">
-                    Area of Interest <span>*</span>
-                </label>
-
-                <select
-                    id="interest"
-                    name="entry.268278995"
-                    required
-                >
-
-                    <option value="">
-                        Select your area
-                    </option>
-
-                    <option value="Artificial Intelligence">
-                        Artificial Intelligence
-                    </option>
-
-                    <option value="Web Development">
-                        Web Development
-                    </option>
-
-                    <option value="Graphic Design">
-                        Graphic Design
-                    </option>
-
-                    <option value="Networking">
-                        Networking
-                    </option>
-
-                    <option value="Cybersecurity">
-                        Cybersecurity
-                    </option>
-
-                    <option value="Digital Marketing">
-                        Digital Marketing
-                    </option>
-
-                    <option value="Technology & Innovation">
-                        Technology & Innovation
-                    </option>
-
-                    <option value="Media & Community">
-                        Media & Community
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- CURRENT SKILLS -->
-
-            <div class="form-group">
-
-                <label for="skills">
-                    Current Skills
-                </label>
-
-                <textarea
-                    id="skills"
-                    name="entry.1780372524"
-                    placeholder="Tell us about your current skills..."
-                ></textarea>
-
-            </div>
-
-
-            <!-- WHY JOIN -->
-
-            <div class="form-group">
-
-                <label for="reason">
-                    Why do you want to join Techsavvy?
-                    <span>*</span>
-                </label>
-
-                <textarea
-                    id="reason"
-                    name="entry.469653974"
-                    placeholder="Tell us why you want to join Techsavvy..."
-                    required
-                ></textarea>
-
-            </div>
-
-
-            <!-- EXPERIENCE -->
-
-            <div class="form-group">
-
-                <label for="experience">
-                    Previous Experience
-                </label>
-
-                <textarea
-                    id="experience"
-                    name="entry.793774108"
-                    placeholder="Tell us about your previous experience..."
-                ></textarea>
-
-            </div>
-
-
-            <!-- PORTFOLIO -->
-
-            <div class="form-group">
-
-                <label for="portfolio">
-                    Portfolio / LinkedIn / GitHub
-                </label>
-
-                <input
-                    type="url"
-                    id="portfolio"
-                    name="entry.1001545398"
-                    placeholder="https://..."
-                >
-
-            </div>
-
-
-            <!-- SUBMIT -->
-
-            <button
-                type="submit"
-                class="submit-btn"
-                id="submitBtn"
-            >
-                Submit Application →
-            </button>
-
-
-        </form>
-
-
-        <!-- SUCCESS -->
-
-        <div
-            class="success"
-            id="successMessage"
-        >
-
-            <div class="success-icon">
-                ✓
-            </div>
-
-            <h2>
-                Application Received!
-            </h2>
-
-            <p>
-                Thank you for applying to Techsavvy Tanzania.
-                Your application has been submitted successfully.
-                Our team will review your application and contact
-                you when necessary.
-            </p>
-
-            <a
-                href="index.html"
-                class="home-btn"
-            >
-                ← Back to Website
-            </a>
 
         </div>
 
+    </section>
 
-        <p class="note">
-            By submitting this application, you confirm that
-            the information provided is accurate.
-        </p>
+</main>
 
+
+<footer>
+
+    <div class="footer-brand">
+
+        <div class="logo-box">
+            T
+        </div>
+
+        <div class="logo-text">
+            TECH<span>SAVVY</span>
+        </div>
 
     </div>
 
-</div>
+    <p>
+        © 2026 Techsavvy Tanzania.
+        Empowering Youth Through Technology.
+    </p>
 
-
-<!-- HIDDEN GOOGLE FORM FRAME -->
-
-<iframe
-    name="hidden_iframe"
-    id="hidden_iframe"
-    style="display:none;"
-></iframe>
+</footer>
 
 
 <script>
 
-const form =
-    document.getElementById("joinForm");
-
-const submitBtn =
-    document.getElementById("submitBtn");
+const form = document.getElementById("registrationForm");
 
 const successMessage =
     document.getElementById("successMessage");
 
-const iframe =
-    document.getElementById("hidden_iframe");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    form.style.display = "none";
+
+    successMessage.style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
 
 
-form.addEventListener("submit", function () {
+const menuBtn =
+    document.getElementById("menuBtn");
 
-    submitBtn.disabled = true;
+const navMenu =
+    document.getElementById("navMenu");
 
-    submitBtn.innerHTML =
-        "Submitting Application...";
+
+menuBtn.addEventListener("click", function() {
+
+    navMenu.classList.toggle("active");
 
 });
 
 
-/*
-   Google Form response iframe.
-   After submission, show success page.
-*/
+document
+    .querySelectorAll(".nav-menu a")
+    .forEach(function(link) {
 
-iframe.addEventListener("load", function () {
+        link.addEventListener("click", function() {
 
-    if (submitBtn.disabled) {
+            navMenu.classList.remove("active");
 
-        setTimeout(function () {
+        });
 
-            form.style.display = "none";
-
-            successMessage.style.display = "block";
-
-        }, 800);
-
-    }
-
-});
+    });
 
 </script>
 
-
 </body>
-
 </html>
+```
