@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Techsavvy Tanzania Admin Dashboard">
+
+    <title>Admin Dashboard | Techsavvy Tanzania</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            T
+        </div>
+
+        <div class="brand-name">
+            TECH<span>SAVVY</span>
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-menu">
+
+        <a href="#dashboard" class="active">
+            <span>▣</span>
+            Dashboard
+        </a>
+
+        <a href="#applicants">
+            <span>♙</span>
+            Applicants
+        </a>
+
+        <a href="#analytics">
+            <span>◫</span>
+            Analytics
+        </a>
+
+        <a href="#settings">
+            <span>⚙</span>
+            Settings
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="../index.html">
+            ← Back to Website
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu">
+            ☰
+        </button>
+
+
+        <div>
+
+            <span class="topbar-label">
+                TECHSAVVY TANZANIA
+            </span>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+        </div>
+
+
+        <div class="admin-profile">
+
+            <div class="profile-avatar">
+                A
+            </div>
+
+            <div>
+
+                <strong>
+                    Administrator
+                </strong>
+
+                <small>
+                    Techsavvy Admin
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section id="dashboard" class="dashboard-section">
+
+
+        <div class="welcome">
+
+            <div>
+
+                <span>
+                    OVERVIEW
+                </span>
+
+                <h2>
+                    Welcome back, Admin.
+                </h2>
+
+                <p>
+                    Manage Techsavvy Tanzania applicants,
+                    applications and community information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        TOTAL APPLICANTS
+                    </span>
+
+                    <strong id="totalApplicants">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card pending">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        PENDING
+                    </span>
+
+                    <strong id="pendingApplicants">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card accepted">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        ACCEPTED
+                    </span>
+
+                    <strong id="acceptedApplicants">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card rejected">
+
+                <div class="stat-icon">
+                    ×
+                </div>
+
+                <div>
+
+                    <span>
+                        REJECTED
+                    </span>
+
+                    <strong id="rejectedApplicants">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= APPLICANTS ================= -->
+
+        <section
+            class="applicants-section"
+            id="applicants">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        APPLICATION MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Applicants
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="refresh-btn"
+                    id="refreshBtn">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+
+
+            <!-- FILTER BAR -->
+
+            <div class="filter-bar">
+
+
+                <div class="search-box">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search applicant...">
+
+                </div>
+
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Accepted">
+                        Accepted
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+
+
+                <select id="courseFilter">
+
+                    <option value="all">
+                        All Areas
+                    </option>
+
+                    <option value="AI & ChatGPT">
+                        AI & ChatGPT
+                    </option>
+
+                    <option value="Graphic Design">
+                        Graphic Design
+                    </option>
+
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+
+                    <option value="Networking">
+                        Networking
+                    </option>
+
+                    <option value="Cybersecurity">
+                        Cybersecurity
+                    </option>
+
+                    <option value="Digital Marketing">
+                        Digital Marketing
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Applicant
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Interest
+                            </th>
+
+                            <th>
+                                Location
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="applicantTable">
+
+                        <!-- DATA WILL APPEAR HERE -->
+
+                    </tbody>
+
+                </table>
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState">
+
+                    <div>
+                        ♙
+                    </div>
+
+                    <h3>
+                        No applicants yet
+                    </h3>
+
+                    <p>
+                        Applicants from your registration
+                        form will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <section
+            class="analytics-section"
+            id="analytics">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        INSIGHTS
+                    </span>
+
+                    <h2>
+                        Application Analytics
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <div class="analytics-card">
+
+                    <h3>
+                        Applications Overview
+                    </h3>
+
+                    <div class="chart-placeholder">
+
+                        <div class="chart-bar"
+                             style="height:35%">
+                            <span>
+                                Jan
+                            </span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:55%">
+                            <span>
+                                Feb
+                            </span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:45%">
+                            <span>
+                                Mar
+                            </span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:70%">
+                            <span>
+                                Apr
+                            </span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:85%">
+                            <span>
+                                May
+                            </span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:60%">
+                            <span>
+                                Jun
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="analytics-card">
+
+                    <h3>
+                        Quick Summary
+                    </h3>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Total Applications
+                        </span>
+
+                        <strong id="summaryTotal">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Pending Review
+                        </span>
+
+                        <strong id="summaryPending">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Accepted
+                        </span>
+
+                        <strong id="summaryAccepted">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Rejected
+                        </span>
+
+                        <strong id="summaryRejected">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section
+            class="settings-section"
+            id="settings">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span>
+                        SYSTEM
+                    </span>
+
+                    <h2>
+                        Settings
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div>
+
+                    <h3>
+                        Registration System
+                    </h3>
+
+                    <p>
+                        Google Forms registration is currently
+                        connected to the Techsavvy website.
+                    </p>
+
+                </div>
+
+
+                <span class="connection-status">
+
+                    ● Connected
+
+                </span>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div>
+
+                    <h3>
+                        Google Sheets
+                    </h3>
+
+                    <p>
+                        Applicant database connection will be
+                        configured in the next step.
+                    </p>
+
+                </div>
+
+
+                <span class="connection-status pending-status">
+
+                    ● Not Connected
+
+                </span>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Techsavvy Tanzania Admin Dashboard.
+        </p>
+
+        <a href="../index.html">
+            Visit Website →
+        </a>
+
+    </footer>
+
+</main>
+
+
+
+<!-- ================= APPLICANT MODAL ================= -->
+
+<div
+    class="modal"
+    id="applicantModal">
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            id="modalClose">
+
+            ×
+
+        </button>
+
+
+        <span class="modal-label">
+            APPLICANT DETAILS
+        </span>
+
+
+        <h2 id="modalName">
+            Applicant
+        </h2>
+
+
+        <div class="modal-details">
+
+            <div>
+                <small>Email</small>
+                <strong id="modalEmail">—</strong>
+            </div>
+
+            <div>
+                <small>Phone</small>
+                <strong id="modalPhone">—</strong>
+            </div>
+
+            <div>
+                <small>Location</small>
+                <strong id="modalLocation">—</strong>
+            </div>
+
+            <div>
+                <small>Area of Interest</small>
+                <strong id="modalInterest">—</strong>
+            </div>
+
+            <div>
+                <small>Education</small>
+                <strong id="modalEducation">—</strong>
+            </div>
+
+            <div>
+                <small>Status</small>
+                <strong id="modalStatus">Pending</strong>
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="accept-btn"
+                id="acceptBtn">
+
+                ✓ Accept
+
+            </button>
+
+
+            <button
+                class="reject-btn"
+                id="rejectBtn">
+
+                × Reject
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
