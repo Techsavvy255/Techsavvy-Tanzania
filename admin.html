@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Techsavvy Tanzania</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: #05070b;
+            color: white;
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .admin-header p {
+            margin: 6px 0 0;
+            color: #aab2c0;
+        }
+
+        .admin-container {
+            width: 88%;
+            max-width: 1400px;
+            margin: 40px auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+        }
+
+        .stat-card span {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .stat-card h2 {
+            margin: 10px 0 0;
+            font-size: 32px;
+        }
+
+        .admin-panel {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+        }
+
+        .panel-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .panel-top h2 {
+            margin: 0;
+        }
+
+        .search-box {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            min-width: 250px;
+            outline: none;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th,
+        td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background: #f8fafc;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pending {
+            background: #fff7d6;
+            color: #8a6500;
+        }
+
+        .approved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+
+        .approve {
+            background: #16a34a;
+            color: white;
+        }
+
+        .reject {
+            background: #dc2626;
+            color: white;
+        }
+
+        .view {
+            background: #111827;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+
+        .back-home {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #444;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .panel-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-box {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-container {
+                width: 92%;
+            }
+
+            .admin-panel {
+                padding: 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="admin-page">
+
+    <!-- HEADER -->
+
+    <header class="admin-header">
+
+        <div>
+
+            <h1>
+                TECHSAVVY ADMIN
+            </h1>
+
+            <p>
+                Member Registration Management
+            </p>
+
+        </div>
+
+        <a
+            href="index.html"
+            class="back-home">
+
+            ← Website
+
+        </a>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <main class="admin-container">
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <span>
+                    Total Members
+                </span>
+
+                <h2 id="totalMembers">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Pending
+                </span>
+
+                <h2 id="pendingMembers">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Approved
+                </span>
+
+                <h2 id="approvedMembers">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Rejected
+                </span>
+
+                <h2 id="rejectedMembers">
+                    0
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMBERS -->
+
+        <section class="admin-panel">
+
+            <div class="panel-top">
+
+                <h2>
+                    Registered Members
+                </h2>
+
+                <input
+                    type="text"
+                    id="memberSearch"
+                    class="search-box"
+                    placeholder="Search members...">
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Interest
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="membersTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="emptyState"
+                class="empty-state">
+
+                <h3>
+                    No registrations yet
+                </h3>
+
+                <p>
+                    New member applications will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /*
+    ----------------------------------------
+    TEMPORARY MEMBER DATA
+    ----------------------------------------
+    Later we will replace this with
+    a real database.
+    */
+
+    let members = JSON.parse(
+        localStorage.getItem("techsavvyMembers")
+    ) || [];
+
+
+    const table =
+        document.getElementById("membersTable");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+
+    function updateStats() {
+
+        const total =
+            members.length;
+
+        const pending =
+            members.filter(
+                member => member.status === "Pending"
+            ).length;
+
+        const approved =
+            members.filter(
+                member => member.status === "Approved"
+            ).length;
+
+        const rejected =
+            members.filter(
+                member => member.status === "Rejected"
+            ).length;
+
+
+        document.getElementById(
+            "totalMembers"
+        ).textContent = total;
+
+
+        document.getElementById(
+            "pendingMembers"
+        ).textContent = pending;
+
+
+        document.getElementById(
+            "approvedMembers"
+        ).textContent = approved;
+
+
+        document.getElementById(
+            "rejectedMembers"
+        ).textContent = rejected;
+
+    }
+
+
+    function renderMembers(list = members) {
+
+        table.innerHTML = "";
+
+
+        if (list.length === 0) {
+
+            emptyState.style.display = "block";
+
+            return;
+
+        }
+
+
+        emptyState.style.display = "none";
+
+
+        list.forEach(
+            function(member, index) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        <strong>
+                            ${member.firstName || ""}
+                            ${member.lastName || ""}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${member.email || "-"}
+                    </td>
+
+                    <td>
+                        ${member.phone || "-"}
+                    </td>
+
+                    <td>
+                        ${member.interest || "-"}
+                    </td>
+
+                    <td>
+
+                        <span class="status
+                            ${member.status.toLowerCase()}">
+
+                            ${member.status}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-btn approve"
+                            onclick="approveMember(${index})">
+
+                            Approve
+
+                        </button>
+
+                        <button
+                            class="action-btn reject"
+                            onclick="rejectMember(${index})">
+
+                            Reject
+
+                        </button>
+
+                        <button
+                            class="action-btn view"
+                            onclick="viewMember(${index})">
+
+                            View
+
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                table.appendChild(row);
+
+            }
+        );
+
+    }
+
+
+    function approveMember(index) {
+
+        members[index].status =
+            "Approved";
+
+        saveMembers();
+
+        renderMembers();
+
+    }
+
+
+    function rejectMember(index) {
+
+        members[index].status =
+            "Rejected";
+
+        saveMembers();
+
+        renderMembers();
+
+    }
+
+
+    function viewMember(index) {
+
+        const member =
+            members[index];
+
+
+        alert(
+
+            "TECHSAVVY MEMBER\n\n" +
+
+            "Name: " +
+            member.firstName +
+            " " +
+            member.lastName +
+
+            "\nEmail: " +
+            member.email +
+
+            "\nPhone: " +
+            member.phone +
+
+            "\nAge: " +
+            member.age +
+
+            "\nInterest: " +
+            member.interest +
+
+            "\nExperience: " +
+            member.experience +
+
+            "\n\nMotivation:\n" +
+            member.motivation
+
+        );
+
+    }
+
+
+    function saveMembers() {
+
+        localStorage.setItem(
+            "techsavvyMembers",
+            JSON.stringify(members)
+        );
+
+        updateStats();
+
+    }
+
+
+    document
+        .getElementById("memberSearch")
+        .addEventListener(
+            "input",
+            function() {
+
+                const search =
+                    this.value
+                    .toLowerCase()
+                    .trim();
+
+
+                const filtered =
+                    members.filter(
+                        member => {
+
+                            const text =
+                                JSON.stringify(member)
+                                .toLowerCase();
+
+                            return text.includes(search);
+
+                        }
+                    );
+
+
+                renderMembers(filtered);
+
+            }
+        );
+
+
+    updateStats();
+
+    renderMembers();
+
+</script>
+
+</body>
+</html>
