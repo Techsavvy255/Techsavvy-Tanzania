@@ -2,12 +2,8 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Techsavvy Tanzania Member Dashboard">
 
     <title>Member Dashboard | Techsavvy Tanzania</title>
 
@@ -18,1045 +14,1177 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #050505;
+            color: #fff;
+        }
+
+        .dashboard {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #0b0b0b;
+            border-right: 1px solid #222;
+            padding: 25px 18px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            padding: 0 8px;
+        }
+
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            background: #155eef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Space Grotesk";
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .brand-name {
+            font-family: "Space Grotesk";
+            font-weight: 700;
+        }
+
+        .brand-name span {
+            color: #155eef;
+        }
+
+        .nav-title {
+            color: #555;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin: 0 10px 12px;
+        }
+
+        .nav a {
+            display: block;
+            color: #888;
+            text-decoration: none;
+            padding: 12px 13px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            background: #151515;
+            color: #fff;
+        }
+
+        .nav a.active {
+            border-left: 3px solid #155eef;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            background: transparent;
+            color: #aaa;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            color: #fff;
+            border-color: #155eef;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .topbar h1 {
+            font-family: "Space Grotesk";
+            font-size: 30px;
+        }
+
+        .topbar p {
+            color: #777;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .profile-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #155eef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .profile-mini strong {
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            display: block;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            padding: 35px;
+            border: 1px solid #252525;
+            border-radius: 15px;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(21,94,239,.20),
+                    transparent 40%
+                ),
+                #0d0d0d;
+            margin-bottom: 25px;
+        }
+
+        .welcome-label {
+            color: #4d8aff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .welcome h2 {
+            font-family: "Space Grotesk";
+            font-size: 32px;
+        }
+
+        .welcome h2 span {
+            color: #155eef;
+        }
+
+        .welcome p {
+            color: #888;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: #0d0d0d;
+            border: 1px solid #252525;
+            border-radius: 13px;
+            padding: 22px;
+        }
+
+        .card-label {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .card-value {
+            font-family: "Space Grotesk";
+            font-size: 25px;
+            margin-top: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 9px;
+            background: #352c12;
+            color: #f0ca58;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        /* CONTENT GRID */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: #0d0d0d;
+            border: 1px solid #252525;
+            border-radius: 13px;
+            padding: 25px;
+        }
+
+        .panel h3 {
+            font-family: "Space Grotesk";
+            margin-bottom: 20px;
+        }
+
+        .course {
+            padding: 15px 0;
+            border-bottom: 1px solid #202020;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course:last-child {
+            border-bottom: none;
+        }
+
+        .course strong {
+            font-size: 14px;
+        }
+
+        .course small {
+            display: block;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .course-badge {
+            color: #4d8aff;
+            font-size: 11px;
+        }
+
+        .profile-row {
+            padding: 13px 0;
+            border-bottom: 1px solid #202020;
+        }
+
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+
+        .profile-row small {
+            display: block;
+            color: #666;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .profile-row span {
+            font-size: 13px;
+            color: #ddd;
+            word-break: break-word;
+        }
+
+        /* LOADING */
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #loading div {
+            text-align: center;
+        }
+
+        .loader-logo {
+            width: 55px;
+            height: 55px;
+            background: #155eef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        #loading p {
+            color: #777;
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+            }
+
+            .main {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+                padding: 25px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                border-right: none;
+                border-bottom: 1px solid #222;
+            }
+
+            .dashboard {
+                display: block;
+            }
+
+            .sidebar-bottom {
+                position: static;
+                margin-top: 25px;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 22px 15px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+            }
+
+            .profile-mini {
+                display: none;
+            }
+
+            .welcome {
+                padding: 25px;
+            }
+
+            .welcome h2 {
+                font-size: 26px;
+            }
+        }
+
+    </style>
 
 </head>
 
 
-<body class="dashboard-body">
+<body>
 
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+<!-- LOADING -->
 
-<aside class="dashboard-sidebar" id="dashboardSidebar">
+<div id="loading">
 
-    <a href="index.html" class="dashboard-brand">
+    <div>
 
-        <div class="logo-box">
+        <div class="loader-logo">
             T
         </div>
 
-        <div class="logo-text">
-            TECH<span>SAVVY</span>
-        </div>
-
-    </a>
-
-
-    <div class="member-mini-profile">
-
-        <div class="member-avatar">
-            TS
-        </div>
-
-        <div>
-
-            <strong id="sidebarMemberName">
-                Techsavvy Member
-            </strong>
-
-            <small>
-                Member
-            </small>
-
-        </div>
+        <p>
+            Loading your dashboard...
+        </p>
 
     </div>
 
-
-    <nav class="dashboard-nav">
-
-        <a href="#dashboard" class="dashboard-nav-link active">
-
-            <span>⌂</span>
-
-            Dashboard
-
-        </a>
-
-
-        <a href="#profile" class="dashboard-nav-link">
-
-            <span>◉</span>
-
-            My Profile
-
-        </a>
-
-
-        <a href="#courses" class="dashboard-nav-link">
-
-            <span>▣</span>
-
-            My Courses
-
-        </a>
-
-
-        <a href="#resources" class="dashboard-nav-link">
-
-            <span>◇</span>
-
-            Resources
-
-        </a>
-
-
-        <a href="#projects" class="dashboard-nav-link">
-
-            <span>✦</span>
-
-            Projects
-
-        </a>
-
-
-        <a href="#announcements" class="dashboard-nav-link">
-
-            <span>!</span>
-
-            Announcements
-
-        </a>
-
-    </nav>
-
-
-    <div class="sidebar-bottom">
-
-        <a href="index.html">
-            ← Back to Website
-        </a>
-
-        <button id="logoutBtn">
-            ↪ Logout
-        </button>
-
-    </div>
-
-</aside>
+</div>
 
 
 
-<!-- =====================================================
-     MAIN DASHBOARD
-===================================================== -->
-
-<main class="dashboard-main" id="dashboard">
+<div class="dashboard">
 
 
-    <!-- TOPBAR -->
+    <!-- SIDEBAR -->
 
-    <header class="dashboard-topbar">
+    <aside class="sidebar">
 
-        <button
-            class="dashboard-menu-btn"
-            id="dashboardMenuBtn"
-            aria-label="Open dashboard menu"
-        >
-            ☰
-        </button>
+        <div class="brand">
 
-
-        <div>
-
-            <span class="dashboard-overline">
-                TECHSAVVY TANZANIA
-            </span>
-
-            <h1>
-                Member Dashboard
-            </h1>
-
-        </div>
-
-
-        <div class="topbar-profile">
-
-            <div class="member-avatar small">
-                TS
+            <div class="logo-box">
+                T
             </div>
+
+            <div class="brand-name">
+                TECH<span>SAVVY</span>
+            </div>
+
+        </div>
+
+
+        <div class="nav-title">
+            MEMBER
+        </div>
+
+
+        <nav class="nav">
+
+            <a class="active">
+                Dashboard
+            </a>
+
+            <a href="#courses">
+                My Courses
+            </a>
+
+            <a href="#projects">
+                Projects
+            </a>
+
+            <a href="#profile">
+                My Profile
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
 
             <div>
 
-                <strong id="topMemberName">
-                    Techsavvy Member
-                </strong>
+                <h1>
+                    Member Dashboard
+                </h1>
 
-                <small>
-                    Member
-                </small>
+                <p>
+                    Welcome back to Techsavvy Tanzania.
+                </p>
+
+            </div>
+
+
+            <div class="profile-mini">
+
+                <div
+                    class="avatar"
+                    id="topAvatar"
+                >
+                    T
+                </div>
+
+                <div>
+
+                    <strong id="topName">
+                        Member
+                    </strong>
+
+                    <small>
+                        Techsavvy Member
+                    </small>
+
+                </div>
 
             </div>
 
         </div>
 
-    </header>
 
 
+        <!-- WELCOME -->
 
-    <!-- WELCOME -->
+        <section class="welcome">
 
-    <section class="dashboard-welcome">
-
-        <div>
-
-            <span class="section-label">
+            <div class="welcome-label">
                 MEMBER AREA
-            </span>
+            </div>
 
             <h2>
-                Welcome back,
-                <span id="welcomeMemberName">
-                    Member.
-                </span>
+                Hello,
+                <span id="welcomeName">
+                    Member
+                </span> 👋
             </h2>
 
             <p>
-                Continue learning, explore projects,
-                and grow with the Techsavvy community.
+                Continue learning, building projects and
+                growing with Techsavvy Tanzania.
             </p>
 
-        </div>
-
-
-        <div class="member-status">
-
-            <small>
-                MEMBERSHIP STATUS
-            </small>
-
-            <strong id="memberStatus">
-                Pending
-            </strong>
-
-        </div>
-
-    </section>
+        </section>
 
 
 
-    <!-- =================================================
-         QUICK STATS
-    ================================================= -->
+        <!-- STATS -->
 
-    <section class="dashboard-stats">
+        <section class="cards">
 
 
-        <div class="dashboard-stat-card">
+            <div class="card">
 
-            <div class="stat-icon">
-                ◈
-            </div>
-
-            <div>
-
-                <span>
-                    COURSES
-                </span>
-
-                <strong>
-                    6
-                </strong>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="dashboard-stat-card">
-
-            <div class="stat-icon">
-                ✓
-            </div>
-
-            <div>
-
-                <span>
-                    COMPLETED
-                </span>
-
-                <strong>
-                    0
-                </strong>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="dashboard-stat-card">
-
-            <div class="stat-icon">
-                ✦
-            </div>
-
-            <div>
-
-                <span>
-                    PROJECTS
-                </span>
-
-                <strong>
-                    3
-                </strong>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="dashboard-stat-card">
-
-            <div class="stat-icon">
-                %
-            </div>
-
-            <div>
-
-                <span>
-                    PROGRESS
-                </span>
-
-                <strong>
-                    0%
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         COURSES
-    ================================================= -->
-
-    <section
-        class="dashboard-section"
-        id="courses"
-    >
-
-        <div class="dashboard-section-header">
-
-            <div>
-
-                <span class="section-label">
-                    LEARNING
-                </span>
-
-                <h2>
-                    My Courses
-                </h2>
-
-            </div>
-
-            <a href="join.html">
-                Explore all →
-            </a>
-
-        </div>
-
-
-        <div class="dashboard-course-grid">
-
-
-            <article class="dashboard-course-card">
-
-                <div class="dashboard-course-icon">
-                    AI
+                <div class="card-label">
+                    Membership Status
                 </div>
 
-                <div>
-
-                    <span>
-                        TECHNOLOGY
-                    </span>
-
-                    <h3>
-                        AI & ChatGPT
-                    </h3>
-
-                    <p>
-                        Practical AI concepts and workflows.
-                    </p>
-
+                <div
+                    class="card-value"
+                    id="memberStatus"
+                >
+                    Pending
                 </div>
 
-                <div class="course-progress">
+                <span class="status">
+                    Account
+                </span>
 
-                    <div class="progress-track">
-                        <div class="progress-fill"
-                             style="width:0%">
-                        </div>
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-label">
+                    Main Interest
+                </div>
+
+                <div
+                    class="card-value"
+                    id="memberInterest"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-label">
+                    Member Since
+                </div>
+
+                <div
+                    class="card-value"
+                    id="memberSince"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="content-grid">
+
+
+            <!-- COURSES -->
+
+            <section
+                class="panel"
+                id="courses"
+            >
+
+                <h3>
+                    Recommended Courses
+                </h3>
+
+
+                <div class="course">
+
+                    <div>
+
+                        <strong>
+                            AI & ChatGPT
+                        </strong>
+
+                        <small>
+                            Practical Artificial Intelligence
+                        </small>
+
                     </div>
 
-                    <small>
-                        0% complete
-                    </small>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="dashboard-course-card">
-
-                <div class="dashboard-course-icon">
-                    WD
-                </div>
-
-                <div>
-
-                    <span>
-                        DEVELOPMENT
+                    <span class="course-badge">
+                        Explore →
                     </span>
 
-                    <h3>
-                        Web Development
-                    </h3>
-
-                    <p>
-                        Build websites from idea to deployment.
-                    </p>
-
                 </div>
 
-                <div class="course-progress">
 
-                    <div class="progress-track">
-                        <div class="progress-fill"
-                             style="width:0%">
-                        </div>
+                <div class="course">
+
+                    <div>
+
+                        <strong>
+                            Web Development
+                        </strong>
+
+                        <small>
+                            Build modern websites
+                        </small>
+
                     </div>
 
-                    <small>
-                        0% complete
-                    </small>
-
-                </div>
-
-            </article>
-
-
-
-            <article class="dashboard-course-card">
-
-                <div class="dashboard-course-icon">
-                    CY
-                </div>
-
-                <div>
-
-                    <span>
-                        SECURITY
+                    <span class="course-badge">
+                        Explore →
                     </span>
 
-                    <h3>
-                        Cybersecurity
-                    </h3>
-
-                    <p>
-                        Learn digital safety fundamentals.
-                    </p>
-
                 </div>
 
-                <div class="course-progress">
 
-                    <div class="progress-track">
-                        <div class="progress-fill"
-                             style="width:0%">
-                        </div>
+                <div class="course">
+
+                    <div>
+
+                        <strong>
+                            Cybersecurity
+                        </strong>
+
+                        <small>
+                            Digital security fundamentals
+                        </small>
+
                     </div>
 
-                    <small>
-                        0% complete
-                    </small>
+                    <span class="course-badge">
+                        Explore →
+                    </span>
 
                 </div>
 
-            </article>
+
+                <div class="course">
+
+                    <div>
+
+                        <strong>
+                            Networking
+                        </strong>
+
+                        <small>
+                            Networks and connectivity
+                        </small>
+
+                    </div>
+
+                    <span class="course-badge">
+                        Explore →
+                    </span>
+
+                </div>
+
+            </section>
 
 
-        </div>
 
-    </section>
+            <!-- PROFILE -->
 
+            <section
+                class="panel"
+                id="profile"
+            >
 
-
-    <!-- =================================================
-         PROFILE
-    ================================================= -->
-
-    <section
-        class="dashboard-section"
-        id="profile"
-    >
-
-        <div class="dashboard-section-header">
-
-            <div>
-
-                <span class="section-label">
-                    ACCOUNT
-                </span>
-
-                <h2>
+                <h3>
                     My Profile
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="profile-card">
-
-
-            <div class="profile-card-header">
-
-                <div class="large-member-avatar">
-                    TS
-                </div>
-
-                <div>
-
-                    <h3 id="profileName">
-                        Techsavvy Member
-                    </h3>
-
-                    <p id="profileEmail">
-                        member@example.com
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="profile-details">
-
-
-                <div>
-
-                    <small>
-                        FIRST NAME
-                    </small>
-
-                    <strong id="profileFirstName">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>
-                        LAST NAME
-                    </small>
-
-                    <strong id="profileLastName">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>
-                        EMAIL
-                    </small>
-
-                    <strong id="profileEmailDetails">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>
-                        INTEREST
-                    </small>
-
-                    <strong id="profileInterest">
-                        —
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         RESOURCES
-    ================================================= -->
-
-    <section
-        class="dashboard-section"
-        id="resources"
-    >
-
-        <div class="dashboard-section-header">
-
-            <div>
-
-                <span class="section-label">
-                    KNOWLEDGE
-                </span>
-
-                <h2>
-                    Learning Resources
-                </h2>
-
-            </div>
-
-            <a href="articles.html">
-                Articles →
-            </a>
-
-        </div>
-
-
-        <div class="resource-grid">
-
-
-            <a
-                href="articles.html"
-                class="resource-card"
-            >
-
-                <span>
-                    01
-                </span>
-
-                <div>
-
-                    <h3>
-                        Tech Articles
-                    </h3>
-
-                    <p>
-                        Explore technology insights,
-                        tutorials and ideas.
-                    </p>
-
-                </div>
-
-                <strong>
-                    →
-                </strong>
-
-            </a>
-
-
-
-            <a
-                href="ai-learning.html"
-                class="resource-card"
-            >
-
-                <span>
-                    02
-                </span>
-
-                <div>
-
-                    <h3>
-                        AI Learning
-                    </h3>
-
-                    <p>
-                        Start learning practical
-                        artificial intelligence.
-                    </p>
-
-                </div>
-
-                <strong>
-                    →
-                </strong>
-
-            </a>
-
-
-
-            <a
-                href="index.html#courses"
-                class="resource-card"
-            >
-
-                <span>
-                    03
-                </span>
-
-                <div>
-
-                    <h3>
-                        Technology Courses
-                    </h3>
-
-                    <p>
-                        Discover skills for the
-                        digital era.
-                    </p>
-
-                </div>
-
-                <strong>
-                    →
-                </strong>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         PROJECTS
-    ================================================= -->
-
-    <section
-        class="dashboard-section"
-        id="projects"
-    >
-
-        <div class="dashboard-section-header">
-
-            <div>
-
-                <span class="section-label">
-                    INNOVATION
-                </span>
-
-                <h2>
-                    Techsavvy Projects
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="dashboard-project-grid">
-
-
-            <article class="dashboard-project-card">
-
-                <span>
-                    DIGITAL PLATFORM
-                </span>
-
-                <h3>
-                    DaLink
                 </h3>
 
-                <p>
-                    A digital marketplace concept
-                    connecting sellers and buyers
-                    in Tanzania.
-                </p>
 
-                <a href="index.html#projects">
-                    View Project →
-                </a>
+                <div class="profile-row">
 
-            </article>
+                    <small>
+                        Full Name
+                    </small>
 
+                    <span id="profileName">
+                        —
+                    </span>
 
-
-            <article class="dashboard-project-card">
-
-                <span>
-                    AI • MOBILE
-                </span>
-
-                <h3>
-                    SimuPulse
-                </h3>
-
-                <p>
-                    An AI-powered concept for
-                    identifying smartphone issues.
-                </p>
-
-                <a href="index.html#projects">
-                    View Project →
-                </a>
-
-            </article>
+                </div>
 
 
+                <div class="profile-row">
 
-            <article class="dashboard-project-card">
+                    <small>
+                        Email
+                    </small>
 
-                <span>
-                    COMMUNITY
-                </span>
+                    <span id="profileEmail">
+                        —
+                    </span>
 
-                <h3>
-                    Techsavvy Learning
-                </h3>
-
-                <p>
-                    Practical digital learning
-                    experiences for young people.
-                </p>
-
-                <a href="index.html#projects">
-                    View Project →
-                </a>
-
-            </article>
-
-        </div>
-
-    </section>
+                </div>
 
 
+                <div class="profile-row">
 
-    <!-- =================================================
-         ANNOUNCEMENTS
-    ================================================= -->
+                    <small>
+                        Phone
+                    </small>
 
-    <section
-        class="dashboard-section"
-        id="announcements"
-    >
+                    <span id="profilePhone">
+                        —
+                    </span>
 
-        <div class="dashboard-section-header">
+                </div>
 
-            <div>
 
-                <span class="section-label">
-                    COMMUNITY
-                </span>
+                <div class="profile-row">
 
-                <h2>
-                    Announcements
-                </h2>
+                    <small>
+                        Age
+                    </small>
 
-            </div>
+                    <span id="profileAge">
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="profile-row">
+
+                    <small>
+                        Interest
+                    </small>
+
+                    <span id="profileInterest">
+                        —
+                    </span>
+
+                </div>
+
+
+            </section>
+
 
         </div>
 
 
-        <div class="announcement-card">
 
-            <div class="announcement-icon">
-                !
-            </div>
+        <!-- PROJECTS -->
 
-            <div>
+        <section
+            class="panel"
+            id="projects"
+            style="margin-top:20px;"
+        >
 
-                <span>
-                    TECHSAVVY TANZANIA
+            <h3>
+                Techsavvy Projects
+            </h3>
+
+            <div class="course">
+
+                <div>
+
+                    <strong>
+                        DaLink
+                    </strong>
+
+                    <small>
+                        Digital marketplace platform
+                    </small>
+
+                </div>
+
+                <span class="course-badge">
+                    Project →
                 </span>
 
-                <h3>
-                    Welcome to the Techsavvy Member Portal
-                </h3>
+            </div>
 
-                <p>
-                    Your dashboard will become the central
-                    place for courses, projects, resources,
-                    community updates and your Techsavvy
-                    membership.
-                </p>
 
-                <small>
-                    Latest announcement
-                </small>
+            <div class="course">
+
+                <div>
+
+                    <strong>
+                        SimuPulse
+                    </strong>
+
+                    <small>
+                        AI-powered smartphone diagnostics
+                    </small>
+
+                </div>
+
+                <span class="course-badge">
+                    Project →
+                </span>
 
             </div>
 
-        </div>
 
-    </section>
-
-
-</main>
+        </section>
 
 
+    </main>
 
-<!-- =====================================================
-     DASHBOARD JAVASCRIPT
-===================================================== -->
+</div>
+
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
-const dashboardMenuBtn =
-    document.getElementById("dashboardMenuBtn");
+    /* ==========================================
+       SUPABASE CONFIG
+       ========================================== */
 
-const dashboardSidebar =
-    document.getElementById("dashboardSidebar");
+    const SUPABASE_URL =
+        "WEKA_SUPABASE_URL_HAPA";
 
-
-dashboardMenuBtn.addEventListener(
-    "click",
-    function () {
-
-        dashboardSidebar.classList.toggle("open");
-
-    }
-);
+    const SUPABASE_KEY =
+        "WEKA_SUPABASE_PUBLISHABLE_KEY_HAPA";
 
 
-document
-    .querySelectorAll(".dashboard-nav-link")
-    .forEach(function(link) {
-
-        link.addEventListener(
-            "click",
-            function() {
-
-                document
-                    .querySelectorAll(".dashboard-nav-link")
-                    .forEach(function(item) {
-
-                        item.classList.remove("active");
-
-                    });
-
-                link.classList.add("active");
-
-                dashboardSidebar.classList.remove("open");
-
-            }
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
         );
 
-    });
+
+
+    /* ==========================================
+       ELEMENTS
+       ========================================== */
+
+    const loading =
+        document.getElementById("loading");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
 
 
 
-/*
-==========================================================
-TEMPORARY MEMBER DATA
+    /* ==========================================
+       LOAD MEMBER
+       ========================================== */
 
-This will later be replaced with Supabase authentication
-and the real Techsavvy members database.
-==========================================================
-*/
+    async function loadMember() {
 
-const member = {
+        try {
 
-    firstName: "Techsavvy",
+            /*
+            GET CURRENT USER
+            */
 
-    lastName: "Member",
-
-    email: "member@example.com",
-
-    interest: "Technology",
-
-    status: "Pending"
-
-};
+            const {
+                data: {
+                    user
+                },
+                error: userError
+            } = await supabaseClient.auth.getUser();
 
 
-const fullName =
-    member.firstName + " " + member.lastName;
+            if (userError || !user) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
 
 
-document.getElementById(
-    "sidebarMemberName"
-).textContent = fullName;
+            /*
+            GET MEMBER PROFILE
+            */
+
+            const {
+                data: member,
+                error: memberError
+            } =
+                await supabaseClient
+                .from("techsavvy_members")
+                .select("*")
+                .eq("id", user.id)
+                .single();
 
 
-document.getElementById(
-    "topMemberName"
-).textContent = fullName;
+            if (memberError) {
+
+                console.error(memberError);
+
+                alert(
+                    "Unable to load your member profile."
+                );
+
+                return;
+
+            }
 
 
-document.getElementById(
-    "welcomeMemberName"
-).textContent =
-    member.firstName + ".";
+            /*
+            FULL NAME
+            */
+
+            const fullName =
+                member.first_name +
+                " " +
+                member.last_name;
 
 
-document.getElementById(
-    "memberStatus"
-).textContent =
-    member.status;
+            /*
+            TOPBAR
+            */
+
+            document.getElementById(
+                "topName"
+            ).textContent = fullName;
 
 
-document.getElementById(
-    "profileName"
-).textContent =
-    fullName;
+            document.getElementById(
+                "welcomeName"
+            ).textContent =
+                member.first_name;
 
 
-document.getElementById(
-    "profileEmail"
-).textContent =
-    member.email;
+            /*
+            AVATAR
+            */
+
+            document.getElementById(
+                "topAvatar"
+            ).textContent =
+                member.first_name
+                .charAt(0)
+                .toUpperCase();
 
 
-document.getElementById(
-    "profileFirstName"
-).textContent =
-    member.firstName;
+            /*
+            STATUS
+            */
+
+            document.getElementById(
+                "memberStatus"
+            ).textContent =
+                member.status || "Pending";
 
 
-document.getElementById(
-    "profileLastName"
-).textContent =
-    member.lastName;
+            /*
+            INTEREST
+            */
+
+            document.getElementById(
+                "memberInterest"
+            ).textContent =
+                member.interest || "—";
 
 
-document.getElementById(
-    "profileEmailDetails"
-).textContent =
-    member.email;
+            /*
+            MEMBER SINCE
+            */
+
+            if (member.created_at) {
+
+                const date =
+                    new Date(member.created_at);
+
+                document.getElementById(
+                    "memberSince"
+                ).textContent =
+                    date.toLocaleDateString(
+                        "en-GB",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    );
+
+            }
 
 
-document.getElementById(
-    "profileInterest"
-).textContent =
-    member.interest;
+            /*
+            PROFILE
+            */
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                fullName;
+
+
+            document.getElementById(
+                "profileEmail"
+            ).textContent =
+                member.email;
+
+
+            document.getElementById(
+                "profilePhone"
+            ).textContent =
+                member.phone;
+
+
+            document.getElementById(
+                "profileAge"
+            ).textContent =
+                member.age;
+
+
+            document.getElementById(
+                "profileInterest"
+            ).textContent =
+                member.interest;
 
 
 
-/*
-==========================================================
-LOGOUT
-==========================================================
-*/
+            /*
+            HIDE LOADING
+            */
 
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        function() {
+            loading.style.display =
+                "none";
+
+
+        } catch (error) {
+
+            console.error(error);
 
             window.location.href =
-                "index.html";
+                "login.html";
+
+        }
+
+    }
+
+
+
+    /* ==========================================
+       LOGOUT
+       ========================================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async function () {
+
+            logoutBtn.disabled = true;
+
+            logoutBtn.textContent =
+                "Logging out...";
+
+
+            const {
+                error
+            } =
+                await supabaseClient.auth.signOut();
+
+
+            if (error) {
+
+                alert(error.message);
+
+                logoutBtn.disabled = false;
+
+                logoutBtn.textContent =
+                    "Logout";
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "login.html";
 
         }
     );
+
+
+
+    /* ==========================================
+       START
+       ========================================== */
+
+    loadMember();
 
 </script>
 
 
 </body>
+
 </html>
