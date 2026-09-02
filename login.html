@@ -1,270 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Login to your Techsavvy Tanzania member account.">
 
     <title>Member Login | Techsavvy Tanzania</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #050505;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-box {
+            width: 55px;
+            height: 55px;
+            background: #155eef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+            font-weight: 800;
+            border-radius: 12px;
+        }
+
+        .brand h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 25px;
+        }
+
+        .brand h1 span {
+            color: #155eef;
+        }
+
+        .brand p {
+            color: #999;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .login-card {
+            background: #111111;
+            border: 1px solid #252525;
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        .login-card h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .login-card > p {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border-radius: 9px;
+            border: 1px solid #333;
+            background: #080808;
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #155eef;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #155eef;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .login-btn:hover {
+            opacity: .9;
+        }
+
+        .login-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .error {
+            background: #351414;
+            color: #ff8b8b;
+            border: 1px solid #642222;
+        }
+
+        .success {
+            background: #12351d;
+            color: #8df0a2;
+            border: 1px solid #245c31;
+        }
+
+        .bottom-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .bottom-text a {
+            color: #4d8aff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        @media (max-width: 500px) {
+            .login-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="navbar">
+    <div class="login-container">
 
-    <a href="index.html" class="logo">
-        <div class="logo-box">T</div>
+        <div class="brand">
 
-        <div class="logo-text">
-            TECH<span>SAVVY</span>
-        </div>
-    </a>
-
-    <nav class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="articles.html">Articles</a>
-        <a href="join.html">Join Us</a>
-    </nav>
-
-</header>
-
-
-<main class="auth-page">
-
-    <div class="auth-container">
-
-        <div class="auth-header">
-
-            <div class="auth-logo">
+            <div class="logo-box">
                 T
             </div>
 
-            <span class="section-label">
-                MEMBER PORTAL
-            </span>
-
             <h1>
-                Welcome <span>Back.</span>
+                TECH<span>SAVVY</span>
             </h1>
 
-            <p>
-                Login to access your Techsavvy Tanzania member dashboard.
-            </p>
+            <p>Empowering Youth Through Technology</p>
 
         </div>
 
 
-        <form id="loginForm" class="auth-form">
+        <div class="login-card">
 
-            <div class="form-group">
+            <h2>Member Login</h2>
 
-                <label for="email">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="you@example.com"
-                    required
-                >
-
-            </div>
+            <p>Login to access your Techsavvy account.</p>
 
 
-            <div class="form-group">
+            <div id="errorMessage" class="message error"></div>
 
-                <label for="password">
-                    Password
-                </label>
+            <div id="successMessage" class="message success"></div>
 
-                <div class="password-wrapper">
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
 
                     <input
                         type="password"
                         id="password"
-                        name="password"
                         placeholder="Enter your password"
                         required
                     >
 
-                    <button
-                        type="button"
-                        id="togglePassword"
-                        class="password-toggle"
-                    >
-                        Show
-                    </button>
-
                 </div>
 
-            </div>
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    id="loginButton"
+                >
+                    Login
+                </button>
+
+            </form>
 
 
-            <div class="auth-options">
+            <div class="bottom-text">
 
-                <label class="remember">
+                Don't have an account?
 
-                    <input
-                        type="checkbox"
-                        id="remember"
-                    >
-
-                    <span>
-                        Remember me
-                    </span>
-
-                </label>
-
-                <a href="#" id="forgotPassword">
-                    Forgot password?
+                <a href="join.html">
+                    Join Techsavvy
                 </a>
 
             </div>
 
-
-            <button
-                type="submit"
-                class="btn primary auth-submit"
-            >
-                Login to Dashboard →
-            </button>
-
-
-            <div
-                id="loginMessage"
-                class="auth-message"
-            ></div>
-
-        </form>
-
-
-        <div class="auth-footer">
-
-            <p>
-                Don't have a Techsavvy account?
-            </p>
-
-            <a href="join.html">
-                Become a Member →
-            </a>
-
         </div>
+
+
+        <a href="index.html" class="back">
+            ← Back to Techsavvy Tanzania
+        </a>
 
     </div>
 
-</main>
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-<footer>
+    <script>
 
-    <div class="footer-brand">
+        const SUPABASE_URL = "WEKA_SUPABASE_URL_HAPA";
 
-        <div class="logo-box">
-            T
-        </div>
-
-        <div class="logo-text">
-            TECH<span>SAVVY</span>
-        </div>
-
-    </div>
-
-    <p>
-        © 2026 Techsavvy Tanzania.
-        Empowering Youth Through Technology.
-    </p>
-
-    <a href="index.html">
-        Back to website ↑
-    </a>
-
-</footer>
+        const SUPABASE_KEY = "WEKA_SUPABASE_PUBLISHABLE_KEY_HAPA";
 
 
-<script>
-
-const loginForm =
-    document.getElementById("loginForm");
-
-const password =
-    document.getElementById("password");
-
-const togglePassword =
-    document.getElementById("togglePassword");
-
-const loginMessage =
-    document.getElementById("loginMessage");
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
 
-togglePassword.addEventListener("click", function () {
+        const loginForm = document.getElementById("loginForm");
 
-    if (password.type === "password") {
+        const loginButton = document.getElementById("loginButton");
 
-        password.type = "text";
-        togglePassword.textContent = "Hide";
+        const errorMessage = document.getElementById("errorMessage");
 
-    } else {
-
-        password.type = "password";
-        togglePassword.textContent = "Show";
-
-    }
-
-});
+        const successMessage = document.getElementById("successMessage");
 
 
-loginForm.addEventListener("submit", function (event) {
+        loginForm.addEventListener("submit", async function (e) {
 
-    event.preventDefault();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const passwordValue =
-        password.value.trim();
+            e.preventDefault();
 
 
-    if (!email || !passwordValue) {
+            errorMessage.style.display = "none";
 
-        loginMessage.textContent =
-            "Please enter your email and password.";
-
-        loginMessage.className =
-            "auth-message error";
-
-        return;
-
-    }
+            successMessage.style.display = "none";
 
 
-    /*
-      TEMPORARY LOGIN
+            const email =
+                document.getElementById("email").value.trim();
 
-      Supabase authentication will be connected
-      in the next step.
-    */
+            const password =
+                document.getElementById("password").value;
 
-    loginMessage.textContent =
-        "Login system is ready. Database authentication will be connected next.";
 
-    loginMessage.className =
-        "auth-message success";
+            loginButton.disabled = true;
 
-});
+            loginButton.textContent = "Logging in...";
 
-</script>
+
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+
+            if (error) {
+
+                errorMessage.textContent =
+                    error.message;
+
+                errorMessage.style.display = "block";
+
+                loginButton.disabled = false;
+
+                loginButton.textContent = "Login";
+
+                return;
+            }
+
+
+            successMessage.textContent =
+                "Login successful. Opening dashboard...";
+
+            successMessage.style.display = "block";
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1000);
+
+        });
+
+    </script>
 
 </body>
+
 </html>
