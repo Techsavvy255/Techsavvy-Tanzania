@@ -11,7 +11,7 @@
         content="Join Techsavvy Tanzania and become part of a youth-driven technology community.">
 
     <meta name="keywords"
-        content="Techsavvy Tanzania, join Techsavvy, technology community, Tanzania">
+        content="Techsavvy Tanzania, Join Techsavvy, technology community, Tanzania">
 
     <meta name="author" content="Techsavvy Tanzania">
 
@@ -21,7 +21,6 @@
     <!-- GOOGLE FONTS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
@@ -36,9 +35,15 @@
 
     <style>
 
-        /* ===============================
-           JOIN PAGE
-        =============================== */
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+        }
+
 
         .join-page {
             min-height: 100vh;
@@ -46,110 +51,195 @@
         }
 
 
-        /* ===============================
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .nav-menu a.active {
+            color: #4f8cff;
+        }
+
+
+        /* =========================
            HERO
-        =============================== */
+        ========================= */
 
         .join-hero {
-            background: #05070b;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(79,140,255,.18),
+                    transparent 35%
+                ),
+                #05070b;
+
             color: white;
-            padding: 120px 8% 90px;
+
+            padding: 120px 20px 90px;
+
             text-align: center;
+
         }
+
 
         .join-hero .section-label {
+
             color: #4f8cff;
+
             margin-bottom: 25px;
+
         }
+
 
         .join-hero h1 {
+
             font-family: "Space Grotesk", sans-serif;
-            font-size: clamp(45px, 7vw, 90px);
+
+            font-size: clamp(48px, 8vw, 90px);
+
             line-height: 1;
+
             margin: 0 0 25px;
+
+            font-weight: 700;
+
         }
+
 
         .join-hero h1 span {
+
             color: #4f8cff;
+
         }
+
 
         .join-hero p {
-            max-width: 700px;
+
+            max-width: 720px;
+
             margin: auto;
-            color: #b8bec9;
+
+            color: #b9c0cc;
+
             font-size: 18px;
+
             line-height: 1.8;
+
         }
 
 
-        /* ===============================
+        /* =========================
            REGISTRATION
-        =============================== */
+        ========================= */
 
         .registration-section {
+
             padding: 80px 20px;
+
         }
 
+
         .registration-container {
+
             width: 100%;
+
             max-width: 850px;
+
             margin: auto;
+
             background: white;
+
             padding: 50px;
+
             border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,.08);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.08);
+
         }
 
 
         .registration-header {
+
             margin-bottom: 40px;
+
         }
+
 
         .registration-header .section-label {
+
             color: #4f8cff;
+
         }
+
 
         .registration-header h2 {
+
             font-family: "Space Grotesk", sans-serif;
+
             font-size: 38px;
+
+            line-height: 1.15;
+
             margin: 12px 0;
+
         }
+
 
         .registration-header p {
+
             color: #666;
+
             line-height: 1.7;
+
         }
 
 
-        /* ===============================
+        /* =========================
            FORM
-        =============================== */
+        ========================= */
 
         .form-row {
+
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 20px;
+
         }
+
 
         .form-group {
+
             margin-bottom: 22px;
+
         }
 
+
         .form-group label {
+
             display: block;
+
             margin-bottom: 8px;
-            font-weight: 600;
+
             font-size: 14px;
+
+            font-weight: 700;
+
+            color: #16181d;
+
         }
+
 
         .form-group input,
         .form-group select,
         .form-group textarea {
 
             width: 100%;
-            box-sizing: border-box;
 
-            padding: 14px 15px;
+            padding: 15px;
 
             border: 1px solid #d9dce2;
 
@@ -161,9 +251,20 @@
 
             font-size: 15px;
 
+            color: #17191f;
+
             outline: none;
 
             transition: .2s;
+
+        }
+
+
+        .form-group textarea {
+
+            resize: vertical;
+
+            min-height: 140px;
 
         }
 
@@ -180,14 +281,9 @@
         }
 
 
-        .form-group textarea {
-            resize: vertical;
-        }
-
-
-        /* ===============================
-           AGREEMENT
-        =============================== */
+        /* =========================
+           CHECKBOX
+        ========================= */
 
         .form-check {
 
@@ -197,30 +293,40 @@
 
             gap: 10px;
 
-            margin: 10px 0 25px;
+            margin: 8px 0 25px;
+
+            color: #555;
 
             font-size: 14px;
 
             line-height: 1.6;
 
-            color: #555;
-
         }
+
 
         .form-check input {
 
-            margin-top: 4px;
+            width: 17px;
 
-            width: 16px;
+            height: 17px;
 
-            height: 16px;
+            margin-top: 3px;
+
+            flex-shrink: 0;
 
         }
 
 
-        /* ===============================
-           SUBMIT
-        =============================== */
+        .form-check label {
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================
+           SUBMIT BUTTON
+        ========================= */
 
         .submit-btn {
 
@@ -230,28 +336,85 @@
 
             cursor: pointer;
 
-            font-size: 16px;
+            font-family: "Inter", sans-serif;
+
+            font-weight: 700;
 
         }
 
 
-        /* ===============================
-           SUCCESS
-        =============================== */
+        .submit-btn:disabled {
+
+            opacity: .65;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =========================
+           FORM MESSAGE
+        ========================= */
+
+        .form-message {
+
+            display: none;
+
+            padding: 15px 18px;
+
+            margin-bottom: 22px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .form-message.error {
+
+            background: #fff1f2;
+
+            color: #be123c;
+
+            border: 1px solid #fecdd3;
+
+        }
+
+
+        .form-message.success {
+
+            background: #f0fdf4;
+
+            color: #15803d;
+
+            border: 1px solid #bbf7d0;
+
+        }
+
+
+        /* =========================
+           SUCCESS SCREEN
+        ========================= */
 
         .registration-success {
 
+            display: none;
+
             text-align: center;
 
-            padding: 30px 10px;
+            padding: 25px 10px;
 
         }
 
+
         .success-icon {
 
-            width: 75px;
+            width: 78px;
 
-            height: 75px;
+            height: 78px;
 
             margin: 0 auto 25px;
 
@@ -273,15 +436,17 @@
 
         }
 
+
         .registration-success h2 {
 
             font-family: "Space Grotesk", sans-serif;
 
             font-size: 38px;
 
-            margin-bottom: 15px;
+            margin: 0 0 15px;
 
         }
+
 
         .registration-success p {
 
@@ -289,11 +454,31 @@
 
             margin: 10px auto;
 
-            line-height: 1.7;
-
             color: #666;
 
+            line-height: 1.7;
+
         }
+
+
+        .member-id {
+
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 10px 16px;
+
+            background: #f1f5f9;
+
+            border-radius: 8px;
+
+            font-family: monospace;
+
+            font-weight: 700;
+
+        }
+
 
         .registration-success .btn {
 
@@ -304,32 +489,55 @@
         }
 
 
-        /* ===============================
+        /* =========================
            MOBILE
-        =============================== */
+        ========================= */
 
         @media (max-width: 700px) {
 
             .join-hero {
+
                 padding: 90px 20px 70px;
+
             }
+
+
+            .join-hero h1 {
+
+                font-size: 52px;
+
+            }
+
 
             .registration-section {
+
                 padding: 45px 15px;
+
             }
+
 
             .registration-container {
+
                 padding: 30px 20px;
-                border-radius: 14px;
+
+                border-radius: 15px;
+
             }
+
 
             .registration-header h2 {
+
                 font-size: 30px;
+
             }
 
+
             .form-row {
+
                 grid-template-columns: 1fr;
+
                 gap: 0;
+
             }
 
         }
@@ -342,9 +550,9 @@
 <body>
 
 
-<!-- ===============================
+<!-- =========================
      NAVBAR
-=============================== -->
+========================= -->
 
 <header class="navbar">
 
@@ -401,6 +609,7 @@
     <button
         class="menu-btn"
         id="menuBtn"
+        type="button"
         aria-label="Open menu">
 
         ☰
@@ -411,9 +620,9 @@
 
 
 
-<!-- ===============================
+<!-- =========================
      MAIN
-=============================== -->
+========================= -->
 
 <main class="join-page">
 
@@ -457,6 +666,8 @@
         <div class="registration-container">
 
 
+            <!-- FORM HEADER -->
+
             <div
                 class="registration-header"
                 id="registrationHeader">
@@ -485,17 +696,25 @@
             </div>
 
 
+            <!-- ERROR MESSAGE -->
 
-            <!-- ===============================
-                 FORM
-            =============================== -->
+            <div
+                id="formMessage"
+                class="form-message">
+            </div>
+
+
+
+            <!-- =========================
+                 REGISTRATION FORM
+            ========================= -->
 
             <form
                 id="registrationForm"
                 novalidate>
 
 
-                <!-- NAME -->
+                <!-- FIRST + LAST NAME -->
 
                 <div class="form-row">
 
@@ -503,11 +722,8 @@
                     <div class="form-group">
 
                         <label for="firstName">
-
                             First Name *
-
                         </label>
-
 
                         <input
                             type="text"
@@ -520,15 +736,11 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="lastName">
-
                             Last Name *
-
                         </label>
-
 
                         <input
                             type="text"
@@ -540,7 +752,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -550,11 +761,8 @@
                 <div class="form-group">
 
                     <label for="email">
-
                         Email Address *
-
                     </label>
-
 
                     <input
                         type="email"
@@ -573,11 +781,8 @@
                 <div class="form-group">
 
                     <label for="phone">
-
                         Phone Number *
-
                     </label>
-
 
                     <input
                         type="tel"
@@ -596,11 +801,8 @@
                 <div class="form-group">
 
                     <label for="age">
-
                         Age *
-
                     </label>
-
 
                     <input
                         type="number"
@@ -620,11 +822,8 @@
                 <div class="form-group">
 
                     <label for="interest">
-
                         Area of Interest *
-
                     </label>
-
 
                     <select
                         id="interest"
@@ -632,51 +831,35 @@
                         required>
 
                         <option value="">
-
                             Select your area of interest
-
                         </option>
 
                         <option value="AI & ChatGPT">
-
                             AI & ChatGPT
-
                         </option>
 
                         <option value="Graphic Design">
-
                             Graphic Design
-
                         </option>
 
                         <option value="Web Development">
-
                             Web Development
-
                         </option>
 
                         <option value="Networking">
-
                             Networking
-
                         </option>
 
                         <option value="Cybersecurity">
-
                             Cybersecurity
-
                         </option>
 
                         <option value="Digital Marketing">
-
                             Digital Marketing
-
                         </option>
 
                         <option value="General Technology">
-
                             General Technology
-
                         </option>
 
                     </select>
@@ -690,38 +873,27 @@
                 <div class="form-group">
 
                     <label for="experience">
-
                         Technology Experience
-
                     </label>
-
 
                     <select
                         id="experience"
                         name="experience">
 
                         <option value="">
-
                             Select your level
-
                         </option>
 
                         <option value="Beginner">
-
                             Beginner
-
                         </option>
 
                         <option value="Intermediate">
-
                             Intermediate
-
                         </option>
 
                         <option value="Advanced">
-
                             Advanced
-
                         </option>
 
                     </select>
@@ -735,11 +907,8 @@
                 <div class="form-group">
 
                     <label for="motivation">
-
                         Why do you want to join Techsavvy? *
-
                     </label>
-
 
                     <textarea
                         id="motivation"
@@ -760,7 +929,6 @@
                         type="checkbox"
                         id="agreement"
                         required>
-
 
                     <label for="agreement">
 
@@ -786,32 +954,26 @@
 
                 </button>
 
-
             </form>
 
 
 
-            <!-- ===============================
-                 SUCCESS MESSAGE
-            =============================== -->
+            <!-- =========================
+                 SUCCESS
+            ========================= -->
 
             <div
                 id="successMessage"
-                class="registration-success"
-                style="display:none;">
+                class="registration-success">
 
 
                 <div class="success-icon">
-
                     ✓
-
                 </div>
 
 
                 <h2>
-
                     Registration Submitted!
-
                 </h2>
 
 
@@ -831,6 +993,15 @@
                 </p>
 
 
+                <div
+                    id="memberId"
+                    class="member-id">
+                </div>
+
+
+                <br>
+
+
                 <a
                     href="index.html"
                     class="btn primary">
@@ -838,7 +1009,6 @@
                     Back to Techsavvy →
 
                 </a>
-
 
             </div>
 
@@ -850,26 +1020,20 @@
 
 
 
-<!-- ===============================
+<!-- =========================
      FOOTER
-=============================== -->
+========================= -->
 
 <footer>
-
 
     <div class="footer-brand">
 
         <div class="logo-box">
-
             T
-
         </div>
 
-
         <div class="logo-text">
-
             TECH<span>SAVVY</span>
-
         </div>
 
     </div>
@@ -884,30 +1048,69 @@
 
 
     <a href="index.html">
-
         Back to Home ↑
-
     </a>
-
 
 </footer>
 
 
 
-<!-- ===============================
-     JAVASCRIPT
-=============================== -->
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
 
-/* ==================================
-   REGISTRATION
-================================== */
+/* ==================================================
+   SUPABASE CONFIGURATION
+================================================== */
+
+
+/*
+    WEKA TAARIFA ZAKO HAPA
+
+    SUPABASE_URL:
+    Supabase → Project Settings → API → Project URL
+
+    SUPABASE_KEY:
+    Supabase → Project Settings → API
+    → Publishable key / anon key
+
+    USIWEKE service_role KEY KWENYE HTML.
+*/
+
+
+const SUPABASE_URL =
+    "WEKA_PROJECT_URL_HAPA";
+
+
+const SUPABASE_KEY =
+    "WEKA_PUBLISHABLE_KEY_HAPA";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
 
 const registrationForm =
     document.getElementById(
         "registrationForm"
+    );
+
+
+const registrationHeader =
+    document.getElementById(
+        "registrationHeader"
     );
 
 
@@ -917,21 +1120,86 @@ const successMessage =
     );
 
 
+const memberId =
+    document.getElementById(
+        "memberId"
+    );
+
+
 const submitBtn =
     document.getElementById(
         "submitBtn"
     );
 
 
+const formMessage =
+    document.getElementById(
+        "formMessage"
+    );
+
+
+
+/* ==================================================
+   SHOW MESSAGE
+================================================== */
+
+function showMessage(
+    message,
+    type = "error"
+) {
+
+    formMessage.textContent =
+        message;
+
+    formMessage.className =
+        "form-message " + type;
+
+    formMessage.style.display =
+        "block";
+
+
+
+    formMessage.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
+
+}
+
+
+
+/* ==================================================
+   HIDE MESSAGE
+================================================== */
+
+function hideMessage() {
+
+    formMessage.style.display =
+        "none";
+
+}
+
+
+
+/* ==================================================
+   SUBMIT REGISTRATION
+================================================== */
+
 registrationForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
 
         event.preventDefault();
 
 
+        hideMessage();
+
+
         /* ==========================
-           GET FORM VALUES
+           GET VALUES
         ========================== */
 
         const firstName =
@@ -952,7 +1220,8 @@ registrationForm.addEventListener(
             document
                 .getElementById("email")
                 .value
-                .trim();
+                .trim()
+                .toLowerCase();
 
 
         const phone =
@@ -963,10 +1232,11 @@ registrationForm.addEventListener(
 
 
         const age =
-            document
-                .getElementById("age")
-                .value
-                .trim();
+            Number(
+                document
+                    .getElementById("age")
+                    .value
+            );
 
 
         const interest =
@@ -1010,7 +1280,7 @@ registrationForm.addEventListener(
             !agreement
         ) {
 
-            alert(
+            showMessage(
                 "Please complete all required fields."
             );
 
@@ -1019,10 +1289,27 @@ registrationForm.addEventListener(
         }
 
 
-        if (Number(age) < 13) {
+        if (
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email)
+        ) {
 
-            alert(
-                "You must be at least 13 years old to register."
+            showMessage(
+                "Please enter a valid email address."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            age < 13 ||
+            age > 100
+        ) {
+
+            showMessage(
+                "Age must be between 13 and 100."
             );
 
             return;
@@ -1032,140 +1319,187 @@ registrationForm.addEventListener(
 
 
         /* ==========================
-           MEMBER OBJECT
+           LOADING
         ========================== */
 
-        const member = {
+        submitBtn.disabled =
+            true;
 
-            id:
-                "TS-" +
-                Date.now(),
-
-            firstName:
-                firstName,
-
-            lastName:
-                lastName,
-
-            email:
-                email,
-
-            phone:
-                phone,
-
-            age:
-                age,
-
-            interest:
-                interest,
-
-            experience:
-                experience || "Not specified",
-
-            motivation:
-                motivation,
-
-            status:
-                "Pending",
-
-            registeredAt:
-                new Date().toISOString()
-
-        };
+        submitBtn.textContent =
+            "Submitting...";
 
 
 
-        /* ==========================
-           GET EXISTING MEMBERS
-        ========================== */
-
-        let members =
-            JSON.parse(
-                localStorage.getItem(
-                    "techsavvyMembers"
-                )
-            ) || [];
+        try {
 
 
+            /* ==========================
+               INSERT INTO DATABASE
+            ========================== */
 
-        /* ==========================
-           DUPLICATE EMAIL CHECK
-        ========================== */
+            const { data, error } =
+                await supabaseClient
+                    .from("techsavvy_members")
+                    .insert({
 
-        const emailExists =
-            members.some(
-                function(existingMember) {
+                        first_name:
+                            firstName,
 
-                    return (
-                        existingMember.email
-                            .toLowerCase() ===
-                        email.toLowerCase()
+                        last_name:
+                            lastName,
+
+                        email:
+                            email,
+
+                        phone:
+                            phone,
+
+                        age:
+                            age,
+
+                        interest:
+                            interest,
+
+                        experience:
+                            experience || null,
+
+                        motivation:
+                            motivation,
+
+                        status:
+                            "Pending"
+
+                    })
+                    .select()
+                    .single();
+
+
+
+            /* ==========================
+               DATABASE ERROR
+            ========================== */
+
+            if (error) {
+
+                console.error(
+                    "Supabase error:",
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "23505"
+                ) {
+
+                    showMessage(
+                        "This email has already been registered."
+                    );
+
+                } else if (
+                    error.code ===
+                    "42501"
+                ) {
+
+                    showMessage(
+                        "Registration is currently unavailable. Database permissions need to be configured."
+                    );
+
+                } else {
+
+                    showMessage(
+                        "Registration failed. Please try again."
                     );
 
                 }
+
+
+                submitBtn.disabled =
+                    false;
+
+                submitBtn.textContent =
+                    "Submit Registration →";
+
+                return;
+
+            }
+
+
+
+            /* ==========================
+               SUCCESS
+            ========================== */
+
+            registrationForm.style.display =
+                "none";
+
+
+            registrationHeader.style.display =
+                "none";
+
+
+            hideMessage();
+
+
+            successMessage.style.display =
+                "block";
+
+
+            if (data && data.id) {
+
+                memberId.textContent =
+                    "Application ID: " +
+                    data.id;
+
+            } else {
+
+                memberId.style.display =
+                    "none";
+
+            }
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Unexpected error:",
+                error
             );
 
 
-        if (emailExists) {
-
-            alert(
-                "This email has already been registered."
+            showMessage(
+                "Something went wrong. Please check your internet connection and try again."
             );
 
-            return;
+
+            submitBtn.disabled =
+                false;
+
+
+            submitBtn.textContent =
+                "Submit Registration →";
 
         }
-
-
-
-        /* ==========================
-           SAVE MEMBER
-        ========================== */
-
-        members.push(member);
-
-
-        localStorage.setItem(
-            "techsavvyMembers",
-            JSON.stringify(members)
-        );
-
-
-
-        /* ==========================
-           SUCCESS
-        ========================== */
-
-        registrationForm.style.display =
-            "none";
-
-
-        document.getElementById(
-            "registrationHeader"
-        ).style.display =
-            "none";
-
-
-        successMessage.style.display =
-            "block";
-
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
 
     }
 );
 
 
 
-/* ==================================
+/* ==================================================
    MOBILE MENU
-================================== */
+================================================== */
 
 const menuBtn =
     document.getElementById(
@@ -1215,6 +1549,7 @@ document
 
         }
     );
+
 
 </script>
 
