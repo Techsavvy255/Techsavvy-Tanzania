@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,18 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Join Techsavvy Tanzania and become part of a youth-driven technology community.">
-
-    <meta name="keywords"
-        content="Techsavvy Tanzania, Join Techsavvy, technology community, Tanzania">
+        content="Join Techsavvy Tanzania and become part of a community empowering youth through technology.">
 
     <meta name="author" content="Techsavvy Tanzania">
 
     <title>Join Techsavvy | Techsavvy Tanzania</title>
 
-
     <!-- GOOGLE FONTS -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -28,516 +22,514 @@
         rel="stylesheet">
 
 
-    <!-- MAIN CSS -->
-
-    <link rel="stylesheet" href="style.css">
-
-
     <style>
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
 
         body {
-            margin: 0;
-        }
-
-
-        .join-page {
+            font-family: "Inter", sans-serif;
+            background: #050505;
+            color: #ffffff;
             min-height: 100vh;
-            background: #f7f8fa;
         }
 
 
-        /* =========================
-           NAVBAR
-        ========================= */
+        /* ================= NAVBAR ================= */
 
-        .nav-menu a.active {
-            color: #4f8cff;
+        .navbar {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #202020;
+            background: #050505;
         }
 
 
-        /* =========================
-           HERO
-        ========================= */
-
-        .join-hero {
-
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(79,140,255,.18),
-                    transparent 35%
-                ),
-                #05070b;
-
-            color: white;
-
-            padding: 120px 20px 90px;
-
-            text-align: center;
-
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
 
-        .join-hero .section-label {
+        .logo-box {
+            width: 42px;
+            height: 42px;
+            background: #155eef;
+            border-radius: 8px;
 
-            color: #4f8cff;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .join-hero h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             font-family: "Space Grotesk", sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+        }
 
-            font-size: clamp(48px, 8vw, 90px);
 
-            line-height: 1;
-
-            margin: 0 0 25px;
-
+        .logo-text {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 20px;
             font-weight: 700;
-
         }
 
 
-        .join-hero h1 span {
-
-            color: #4f8cff;
-
+        .logo-text span {
+            color: #155eef;
         }
 
 
-        .join-hero p {
-
-            max-width: 720px;
-
-            margin: auto;
-
-            color: #b9c0cc;
-
-            font-size: 18px;
-
-            line-height: 1.8;
-
+        .back-home {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
         }
 
 
-        /* =========================
-           REGISTRATION
-        ========================= */
-
-        .registration-section {
-
-            padding: 80px 20px;
-
+        .back-home:hover {
+            color: #ffffff;
         }
 
 
-        .registration-container {
+        /* ================= MAIN ================= */
 
+        .page {
+            min-height: calc(100vh - 83px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        .join-wrapper {
             width: 100%;
+            max-width: 1050px;
 
-            max-width: 850px;
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
 
-            margin: auto;
+            background: #0d0d0d;
 
-            background: white;
-
-            padding: 50px;
+            border: 1px solid #252525;
 
             border-radius: 20px;
 
-            box-shadow:
-                0 20px 60px rgba(0,0,0,.08);
+            overflow: hidden;
 
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
         }
 
 
-        .registration-header {
+        /* ================= LEFT ================= */
 
-            margin-bottom: 40px;
+        .join-info {
+            padding: 55px 45px;
 
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(21, 94, 239, 0.25),
+                    transparent 45%
+                ),
+                #090909;
+
+            border-right: 1px solid #252525;
         }
 
 
-        .registration-header .section-label {
+        .small-label {
+            color: #4d8aff;
 
-            color: #4f8cff;
-
-        }
-
-
-        .registration-header h2 {
-
-            font-family: "Space Grotesk", sans-serif;
-
-            font-size: 38px;
-
-            line-height: 1.15;
-
-            margin: 12px 0;
-
-        }
-
-
-        .registration-header p {
-
-            color: #666;
-
-            line-height: 1.7;
-
-        }
-
-
-        /* =========================
-           FORM
-        ========================= */
-
-        .form-row {
-
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 20px;
-
-        }
-
-
-        .form-group {
-
-            margin-bottom: 22px;
-
-        }
-
-
-        .form-group label {
-
-            display: block;
-
-            margin-bottom: 8px;
-
-            font-size: 14px;
-
+            font-size: 12px;
             font-weight: 700;
 
-            color: #16181d;
+            letter-spacing: 2px;
 
+            margin-bottom: 20px;
         }
 
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .join-info h1 {
+            font-family: "Space Grotesk", sans-serif;
 
-            width: 100%;
+            font-size: clamp(38px, 5vw, 58px);
 
-            padding: 15px;
+            line-height: 1.05;
 
-            border: 1px solid #d9dce2;
+            margin-bottom: 20px;
+        }
 
-            border-radius: 10px;
 
-            background: #fff;
+        .join-info h1 span {
+            color: #155eef;
+        }
 
-            font-family: "Inter", sans-serif;
+
+        .join-info > p {
+            color: #999;
+
+            line-height: 1.8;
 
             font-size: 15px;
 
-            color: #17191f;
-
-            outline: none;
-
-            transition: .2s;
-
+            margin-bottom: 35px;
         }
 
 
-        .form-group textarea {
-
-            resize: vertical;
-
-            min-height: 140px;
-
-        }
-
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-
-            border-color: #4f8cff;
-
-            box-shadow:
-                0 0 0 3px rgba(79,140,255,.12);
-
-        }
-
-
-        /* =========================
-           CHECKBOX
-        ========================= */
-
-        .form-check {
-
+        .benefit {
             display: flex;
-
-            align-items: flex-start;
-
-            gap: 10px;
-
-            margin: 8px 0 25px;
-
-            color: #555;
-
-            font-size: 14px;
-
-            line-height: 1.6;
-
-        }
-
-
-        .form-check input {
-
-            width: 17px;
-
-            height: 17px;
-
-            margin-top: 3px;
-
-            flex-shrink: 0;
-
-        }
-
-
-        .form-check label {
-
-            cursor: pointer;
-
-        }
-
-
-        /* =========================
-           SUBMIT BUTTON
-        ========================= */
-
-        .submit-btn {
-
-            width: 100%;
-
-            border: none;
-
-            cursor: pointer;
-
-            font-family: "Inter", sans-serif;
-
-            font-weight: 700;
-
-        }
-
-
-        .submit-btn:disabled {
-
-            opacity: .65;
-
-            cursor: not-allowed;
-
-        }
-
-
-        /* =========================
-           FORM MESSAGE
-        ========================= */
-
-        .form-message {
-
-            display: none;
-
-            padding: 15px 18px;
+            gap: 15px;
 
             margin-bottom: 22px;
-
-            border-radius: 10px;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-
         }
 
 
-        .form-message.error {
+        .benefit-number {
+            min-width: 38px;
+            height: 38px;
 
-            background: #fff1f2;
+            border: 1px solid #155eef;
 
-            color: #be123c;
-
-            border: 1px solid #fecdd3;
-
-        }
-
-
-        .form-message.success {
-
-            background: #f0fdf4;
-
-            color: #15803d;
-
-            border: 1px solid #bbf7d0;
-
-        }
-
-
-        /* =========================
-           SUCCESS SCREEN
-        ========================= */
-
-        .registration-success {
-
-            display: none;
-
-            text-align: center;
-
-            padding: 25px 10px;
-
-        }
-
-
-        .success-icon {
-
-            width: 78px;
-
-            height: 78px;
-
-            margin: 0 auto 25px;
+            color: #4d8aff;
 
             border-radius: 50%;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            background: #dcfce7;
-
-            color: #16a34a;
-
-            font-size: 40px;
-
-            font-weight: 800;
-
+            font-size: 12px;
+            font-weight: 700;
         }
 
 
-        .registration-success h2 {
+        .benefit h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
 
+
+        .benefit p {
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .join-form-area {
+            padding: 45px;
+        }
+
+
+        .join-form-area h2 {
             font-family: "Space Grotesk", sans-serif;
 
-            font-size: 38px;
+            font-size: 30px;
 
-            margin: 0 0 15px;
-
+            margin-bottom: 8px;
         }
 
 
-        .registration-success p {
+        .form-description {
+            color: #888;
 
-            max-width: 600px;
+            font-size: 14px;
 
-            margin: 10px auto;
-
-            color: #666;
-
-            line-height: 1.7;
-
+            margin-bottom: 30px;
         }
 
 
-        .member-id {
+        .message {
+            display: none;
 
-            display: inline-block;
-
-            margin-top: 12px;
-
-            padding: 10px 16px;
-
-            background: #f1f5f9;
+            padding: 13px 15px;
 
             border-radius: 8px;
 
-            font-family: monospace;
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .error {
+            background: #351414;
+
+            border: 1px solid #642222;
+
+            color: #ff9a9a;
+        }
+
+
+        .success {
+            background: #12351d;
+
+            border: 1px solid #245c31;
+
+            color: #8df0a2;
+        }
+
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 3px;
+        }
+
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+
+        label {
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 8px;
+
+            color: #ddd;
+        }
+
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            background: #070707;
+
+            border: 1px solid #333;
+
+            border-radius: 9px;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #155eef;
+
+            box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.10);
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #555;
+        }
+
+
+        select {
+            cursor: pointer;
+        }
+
+
+        select option {
+            background: #111111;
+
+            color: #ffffff;
+        }
+
+
+        textarea {
+            resize: vertical;
+
+            min-height: 110px;
+        }
+
+
+        .password-note {
+            color: #666;
+
+            font-size: 11px;
+
+            margin-top: 6px;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .submit-btn {
+            width: 100%;
+
+            margin-top: 24px;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #155eef;
+
+            color: #ffffff;
+
+            font-size: 15px;
 
             font-weight: 700;
 
+            cursor: pointer;
+
+            transition: 0.2s;
         }
 
 
-        .registration-success .btn {
+        .submit-btn:hover {
+            background: #0d4fd8;
 
-            display: inline-block;
-
-            margin-top: 20px;
-
+            transform: translateY(-1px);
         }
 
 
-        /* =========================
-           MOBILE
-        ========================= */
+        .submit-btn:disabled {
+            opacity: 0.6;
 
-        @media (max-width: 700px) {
+            cursor: not-allowed;
 
-            .join-hero {
-
-                padding: 90px 20px 70px;
-
-            }
+            transform: none;
+        }
 
 
-            .join-hero h1 {
+        .login-link {
+            text-align: center;
 
-                font-size: 52px;
+            margin-top: 22px;
 
-            }
+            color: #777;
 
-
-            .registration-section {
-
-                padding: 45px 15px;
-
-            }
+            font-size: 13px;
+        }
 
 
-            .registration-container {
+        .login-link a {
+            color: #4d8aff;
 
-                padding: 30px 20px;
+            text-decoration: none;
 
-                border-radius: 15px;
-
-            }
-
-
-            .registration-header h2 {
-
-                font-size: 30px;
-
-            }
+            font-weight: 600;
+        }
 
 
-            .form-row {
+        .login-link a:hover {
+            text-decoration: underline;
+        }
 
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            border-top: 1px solid #202020;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 850px) {
+
+            .join-wrapper {
                 grid-template-columns: 1fr;
+            }
 
-                gap: 0;
 
+            .join-info {
+                border-right: none;
+
+                border-bottom: 1px solid #252525;
+
+                padding: 40px 30px;
+            }
+
+
+            .join-form-area {
+                padding: 35px 30px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+
+            .logo-text {
+                font-size: 17px;
+            }
+
+
+            .back-home {
+                font-size: 12px;
+            }
+
+
+            .page {
+                padding: 25px 15px;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .full {
+                grid-column: auto;
+            }
+
+
+            .join-info,
+            .join-form-area {
+                padding: 30px 22px;
             }
 
         }
@@ -550,9 +542,7 @@
 <body>
 
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
@@ -569,375 +559,371 @@
     </div>
 
 
-    <nav class="nav-menu" id="navMenu">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="index.html#about">
-            About
-        </a>
-
-        <a href="index.html#programs">
-            Programs
-        </a>
-
-        <a href="index.html#courses">
-            Courses
-        </a>
-
-        <a href="index.html#projects">
-            Projects
-        </a>
-
-        <a href="articles.html">
-            Articles
-        </a>
-
-        <a href="join.html" class="active">
-            Join Us
-        </a>
-
-        <a href="index.html#contact">
-            Contact
-        </a>
-
-    </nav>
-
-
-    <button
-        class="menu-btn"
-        id="menuBtn"
-        type="button"
-        aria-label="Open menu">
-
-        ☰
-
-    </button>
+    <a href="index.html" class="back-home">
+        ← Back to Website
+    </a>
 
 </header>
 
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- ================= MAIN ================= -->
 
-<main class="join-page">
+<main class="page">
 
-
-    <!-- HERO -->
-
-    <section class="join-hero">
-
-        <div class="section-label">
-
-            TECHSAVVY TANZANIA • COMMUNITY
-
-        </div>
+    <div class="join-wrapper">
 
 
-        <h1>
+        <!-- ================= LEFT INFO ================= -->
 
-            Join
-            <span>Techsavvy.</span>
+        <section class="join-info">
 
-        </h1>
-
-
-        <p>
-
-            Become part of a community of young people
-            learning, creating and using technology
-            to build the future.
-
-        </p>
-
-    </section>
+            <div class="small-label">
+                TECHSAVVY TANZANIA
+            </div>
 
 
-
-    <!-- REGISTRATION -->
-
-    <section class="registration-section">
-
-
-        <div class="registration-container">
+            <h1>
+                Build your
+                <span>future.</span>
+            </h1>
 
 
-            <!-- FORM HEADER -->
+            <p>
+                Join Techsavvy Tanzania and become part of
+                a community of young people learning,
+                building and creating with technology.
+            </p>
 
-            <div
-                class="registration-header"
-                id="registrationHeader">
 
-                <div class="section-label">
+            <div class="benefit">
 
-                    MEMBER REGISTRATION
+                <div class="benefit-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h3>
+                        Learn Technology
+                    </h3>
+
+                    <p>
+                        Access practical technology and
+                        digital skills learning.
+                    </p>
 
                 </div>
 
-
-                <h2>
-
-                    Create your Techsavvy profile.
-
-                </h2>
+            </div>
 
 
-                <p>
+            <div class="benefit">
 
-                    Complete the form below to apply
-                    to join Techsavvy Tanzania.
+                <div class="benefit-number">
+                    02
+                </div>
 
-                </p>
+                <div>
+
+                    <h3>
+                        Build Projects
+                    </h3>
+
+                    <p>
+                        Turn your ideas into real-world
+                        technology projects.
+                    </p>
+
+                </div>
 
             </div>
 
 
-            <!-- ERROR MESSAGE -->
+            <div class="benefit">
+
+                <div class="benefit-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h3>
+                        Connect & Grow
+                    </h3>
+
+                    <p>
+                        Connect with other young people
+                        interested in technology.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <section class="join-form-area">
+
+            <h2>
+                Create your account
+            </h2>
+
+
+            <p class="form-description">
+                Fill in your information to join Techsavvy Tanzania.
+            </p>
+
 
             <div
-                id="formMessage"
-                class="form-message">
+                id="errorMessage"
+                class="message error">
+            </div>
+
+
+            <div
+                id="successMessage"
+                class="message success">
             </div>
 
 
 
-            <!-- =========================
-                 REGISTRATION FORM
-            ========================= -->
-
-            <form
-                id="registrationForm"
-                novalidate>
+            <form id="joinForm">
 
 
-                <!-- FIRST + LAST NAME -->
+                <div class="form-grid">
 
-                <div class="form-row">
 
+                    <!-- FIRST NAME -->
 
                     <div class="form-group">
 
-                        <label for="firstName">
+                        <label for="first_name">
                             First Name *
                         </label>
 
                         <input
                             type="text"
-                            id="firstName"
-                            name="firstName"
-                            placeholder="Enter your first name"
-                            autocomplete="given-name"
-                            required>
+                            id="first_name"
+                            placeholder="John"
+                            required
+                        >
 
                     </div>
 
 
+
+                    <!-- LAST NAME -->
+
                     <div class="form-group">
 
-                        <label for="lastName">
+                        <label for="last_name">
                             Last Name *
                         </label>
 
                         <input
                             type="text"
-                            id="lastName"
-                            name="lastName"
-                            placeholder="Enter your last name"
-                            autocomplete="family-name"
-                            required>
+                            id="last_name"
+                            placeholder="Doe"
+                            required
+                        >
 
                     </div>
 
-                </div>
 
 
+                    <!-- EMAIL -->
 
-                <!-- EMAIL -->
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <label for="email">
+                            Email Address *
+                        </label>
 
-                    <label for="email">
-                        Email Address *
-                    </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        >
 
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="example@email.com"
-                        autocomplete="email"
-                        required>
+                    </div>
 
-                </div>
 
 
+                    <!-- PHONE -->
 
-                <!-- PHONE -->
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <label for="phone">
+                            Phone Number *
+                        </label>
 
-                    <label for="phone">
-                        Phone Number *
-                    </label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+255 7XX XXX XXX"
+                            required
+                        >
 
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="+255 7XX XXX XXX"
-                        autocomplete="tel"
-                        required>
+                    </div>
 
-                </div>
 
 
+                    <!-- AGE -->
 
-                <!-- AGE -->
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <label for="age">
+                            Age *
+                        </label>
 
-                    <label for="age">
-                        Age *
-                    </label>
+                        <input
+                            type="number"
+                            id="age"
+                            placeholder="20"
+                            min="10"
+                            max="100"
+                            required
+                        >
 
-                    <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        min="13"
-                        max="100"
-                        placeholder="Enter your age"
-                        required>
+                    </div>
 
-                </div>
 
 
+                    <!-- INTEREST -->
 
-                <!-- INTEREST -->
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <label for="interest">
+                            Main Interest *
+                        </label>
 
-                    <label for="interest">
-                        Area of Interest *
-                    </label>
+                        <select
+                            id="interest"
+                            required
+                        >
 
-                    <select
-                        id="interest"
-                        name="interest"
-                        required>
+                            <option value="">
+                                Select your interest
+                            </option>
 
-                        <option value="">
-                            Select your area of interest
-                        </option>
+                            <option value="AI & ChatGPT">
+                                AI & ChatGPT
+                            </option>
 
-                        <option value="AI & ChatGPT">
-                            AI & ChatGPT
-                        </option>
+                            <option value="Graphic Design">
+                                Graphic Design
+                            </option>
 
-                        <option value="Graphic Design">
-                            Graphic Design
-                        </option>
+                            <option value="Web Development">
+                                Web Development
+                            </option>
 
-                        <option value="Web Development">
-                            Web Development
-                        </option>
+                            <option value="Networking">
+                                Networking
+                            </option>
 
-                        <option value="Networking">
-                            Networking
-                        </option>
+                            <option value="Cybersecurity">
+                                Cybersecurity
+                            </option>
 
-                        <option value="Cybersecurity">
-                            Cybersecurity
-                        </option>
+                            <option value="Digital Marketing">
+                                Digital Marketing
+                            </option>
 
-                        <option value="Digital Marketing">
-                            Digital Marketing
-                        </option>
+                            <option value="Other">
+                                Other
+                            </option>
 
-                        <option value="General Technology">
-                            General Technology
-                        </option>
+                        </select>
 
-                    </select>
+                    </div>
 
-                </div>
 
 
+                    <!-- EXPERIENCE -->
 
-                <!-- EXPERIENCE -->
+                    <div class="form-group full">
 
-                <div class="form-group">
+                        <label for="experience">
+                            Previous Experience
+                        </label>
 
-                    <label for="experience">
-                        Technology Experience
-                    </label>
+                        <input
+                            type="text"
+                            id="experience"
+                            placeholder="Tell us briefly about your technology experience"
+                        >
 
-                    <select
-                        id="experience"
-                        name="experience">
+                    </div>
 
-                        <option value="">
-                            Select your level
-                        </option>
 
-                        <option value="Beginner">
-                            Beginner
-                        </option>
 
-                        <option value="Intermediate">
-                            Intermediate
-                        </option>
+                    <!-- MOTIVATION -->
 
-                        <option value="Advanced">
-                            Advanced
-                        </option>
+                    <div class="form-group full">
 
-                    </select>
+                        <label for="motivation">
+                            Why do you want to join Techsavvy? *
+                        </label>
 
-                </div>
+                        <textarea
+                            id="motivation"
+                            placeholder="Tell us why you want to join..."
+                            required
+                        ></textarea>
 
+                    </div>
 
 
-                <!-- MOTIVATION -->
 
-                <div class="form-group">
+                    <!-- PASSWORD -->
 
-                    <label for="motivation">
-                        Why do you want to join Techsavvy? *
-                    </label>
+                    <div class="form-group">
 
-                    <textarea
-                        id="motivation"
-                        name="motivation"
-                        rows="6"
-                        placeholder="Tell us briefly about yourself and why you want to join Techsavvy..."
-                        required></textarea>
+                        <label for="password">
+                            Password *
+                        </label>
 
-                </div>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create password"
+                            minlength="6"
+                            required
+                        >
 
+                        <div class="password-note">
+                            Minimum 6 characters.
+                        </div>
 
+                    </div>
 
-                <!-- AGREEMENT -->
 
-                <div class="form-check">
 
-                    <input
-                        type="checkbox"
-                        id="agreement"
-                        required>
+                    <!-- CONFIRM PASSWORD -->
 
-                    <label for="agreement">
+                    <div class="form-group">
 
-                        I confirm that the information
-                        provided is correct and I agree
-                        to participate responsibly in
-                        Techsavvy activities.
+                        <label for="confirm_password">
+                            Confirm Password *
+                        </label>
 
-                    </label>
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            placeholder="Confirm password"
+                            minlength="6"
+                            required
+                        >
+
+                    </div>
+
 
                 </div>
 
@@ -947,609 +933,412 @@
 
                 <button
                     type="submit"
-                    class="btn primary submit-btn"
-                    id="submitBtn">
-
-                    Submit Registration →
-
+                    class="submit-btn"
+                    id="submitButton"
+                >
+                    Join Techsavvy
                 </button>
+
 
             </form>
 
 
 
-            <!-- =========================
-                 SUCCESS
-            ========================= -->
+            <div class="login-link">
 
-            <div
-                id="successMessage"
-                class="registration-success">
+                Already have an account?
 
-
-                <div class="success-icon">
-                    ✓
-                </div>
-
-
-                <h2>
-                    Registration Submitted!
-                </h2>
-
-
-                <p>
-
-                    Thank you for your interest
-                    in joining Techsavvy Tanzania.
-
-                </p>
-
-
-                <p>
-
-                    Your application has been received
-                    and is currently under review.
-
-                </p>
-
-
-                <div
-                    id="memberId"
-                    class="member-id">
-                </div>
-
-
-                <br>
-
-
-                <a
-                    href="index.html"
-                    class="btn primary">
-
-                    Back to Techsavvy →
-
+                <a href="login.html">
+                    Login here
                 </a>
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
+    </div>
 
 </main>
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-    <div class="footer-brand">
-
-        <div class="logo-box">
-            T
-        </div>
-
-        <div class="logo-text">
-            TECH<span>SAVVY</span>
-        </div>
-
-    </div>
-
-
-    <p>
-
-        © 2026 Techsavvy Tanzania.
-        Empowering Youth Through Technology.
-
-    </p>
-
-
-    <a href="index.html">
-        Back to Home ↑
-    </a>
+    © 2026 Techsavvy Tanzania.
+    Empowering Youth Through Technology.
 
 </footer>
 
 
 
-<!-- SUPABASE -->
+<!-- ================= SUPABASE ================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <script>
 
+    /*
+    =====================================================
+    SUPABASE CONFIGURATION
+    =====================================================
+    */
 
-/* ==================================================
-   SUPABASE CONFIGURATION
-================================================== */
-
-
-/*
-    WEKA TAARIFA ZAKO HAPA
-
-    SUPABASE_URL:
-    Supabase → Project Settings → API → Project URL
-
-    SUPABASE_KEY:
-    Supabase → Project Settings → API
-    → Publishable key / anon key
-
-    USIWEKE service_role KEY KWENYE HTML.
-*/
+    const SUPABASE_URL =
+        "WEKA_SUPABASE_URL_HAPA";
 
 
-const SUPABASE_URL =
-    "WEKA_PROJECT_URL_HAPA";
+    const SUPABASE_KEY =
+        "WEKA_SUPABASE_PUBLISHABLE_KEY_HAPA";
 
 
-const SUPABASE_KEY =
-    "WEKA_PUBLISHABLE_KEY_HAPA";
-
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
 
 
-/* ==================================================
-   ELEMENTS
-================================================== */
+    /*
+    =====================================================
+    FORM
+    =====================================================
+    */
 
-const registrationForm =
-    document.getElementById(
-        "registrationForm"
-    );
-
-
-const registrationHeader =
-    document.getElementById(
-        "registrationHeader"
-    );
+    const form =
+        document.getElementById("joinForm");
 
 
-const successMessage =
-    document.getElementById(
-        "successMessage"
-    );
+    const submitButton =
+        document.getElementById("submitButton");
 
 
-const memberId =
-    document.getElementById(
-        "memberId"
-    );
+    const errorMessage =
+        document.getElementById("errorMessage");
 
 
-const submitBtn =
-    document.getElementById(
-        "submitBtn"
-    );
-
-
-const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
+    const successMessage =
+        document.getElementById("successMessage");
 
 
 
-/* ==================================================
-   SHOW MESSAGE
-================================================== */
+    /*
+    =====================================================
+    SHOW ERROR
+    =====================================================
+    */
 
-function showMessage(
-    message,
-    type = "error"
-) {
+    function showError(message) {
 
-    formMessage.textContent =
-        message;
+        errorMessage.textContent = message;
 
-    formMessage.className =
-        "form-message " + type;
+        errorMessage.style.display = "block";
 
-    formMessage.style.display =
-        "block";
+        successMessage.style.display = "none";
 
-
-
-    formMessage.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "center"
-
-    });
-
-}
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
 
 
 
-/* ==================================================
-   HIDE MESSAGE
-================================================== */
+    /*
+    =====================================================
+    SHOW SUCCESS
+    =====================================================
+    */
 
-function hideMessage() {
+    function showSuccess(message) {
 
-    formMessage.style.display =
-        "none";
+        successMessage.textContent = message;
 
-}
+        successMessage.style.display = "block";
 
-
-
-/* ==================================================
-   SUBMIT REGISTRATION
-================================================== */
-
-registrationForm.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
+        errorMessage.style.display = "none";
+    }
 
 
-        hideMessage();
+
+    /*
+    =====================================================
+    REGISTRATION
+    =====================================================
+    */
+
+    form.addEventListener(
+        "submit",
+        async function (e) {
+
+            e.preventDefault();
 
 
-        /* ==========================
-           GET VALUES
-        ========================== */
+            errorMessage.style.display = "none";
 
-        const firstName =
-            document
-                .getElementById("firstName")
+            successMessage.style.display = "none";
+
+
+            /*
+            GET FORM DATA
+            */
+
+            const firstName =
+                document
+                .getElementById("first_name")
                 .value
                 .trim();
 
 
-        const lastName =
-            document
-                .getElementById("lastName")
+            const lastName =
+                document
+                .getElementById("last_name")
                 .value
                 .trim();
 
 
-        const email =
-            document
+            const email =
+                document
                 .getElementById("email")
                 .value
                 .trim()
                 .toLowerCase();
 
 
-        const phone =
-            document
+            const phone =
+                document
                 .getElementById("phone")
                 .value
                 .trim();
 
 
-        const age =
-            Number(
-                document
+            const age =
+                parseInt(
+                    document
                     .getElementById("age")
                     .value
-            );
+                );
 
 
-        const interest =
-            document
+            const interest =
+                document
                 .getElementById("interest")
                 .value;
 
 
-        const experience =
-            document
+            const experience =
+                document
                 .getElementById("experience")
-                .value;
+                .value
+                .trim();
 
 
-        const motivation =
-            document
+            const motivation =
+                document
                 .getElementById("motivation")
                 .value
                 .trim();
 
 
-        const agreement =
-            document
-                .getElementById("agreement")
-                .checked;
+            const password =
+                document
+                .getElementById("password")
+                .value;
+
+
+            const confirmPassword =
+                document
+                .getElementById("confirm_password")
+                .value;
 
 
 
-        /* ==========================
-           VALIDATION
-        ========================== */
+            /*
+            PASSWORD CHECK
+            */
 
-        if (
-            !firstName ||
-            !lastName ||
-            !email ||
-            !phone ||
-            !age ||
-            !interest ||
-            !motivation ||
-            !agreement
-        ) {
+            if (password !== confirmPassword) {
 
-            showMessage(
-                "Please complete all required fields."
-            );
+                showError(
+                    "Passwords hazifanani."
+                );
 
-            return;
-
-        }
+                return;
+            }
 
 
-        if (
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                .test(email)
-        ) {
+            if (password.length < 6) {
 
-            showMessage(
-                "Please enter a valid email address."
-            );
+                showError(
+                    "Password lazima iwe na angalau characters 6."
+                );
 
-            return;
-
-        }
-
-
-        if (
-            age < 13 ||
-            age > 100
-        ) {
-
-            showMessage(
-                "Age must be between 13 and 100."
-            );
-
-            return;
-
-        }
+                return;
+            }
 
 
 
-        /* ==========================
-           LOADING
-        ========================== */
+            /*
+            BUTTON LOADING
+            */
 
-        submitBtn.disabled =
-            true;
+            submitButton.disabled = true;
 
-        submitBtn.textContent =
-            "Submitting...";
-
+            submitButton.textContent =
+                "Creating account...";
 
 
-        try {
+
+            try {
 
 
-            /* ==========================
-               INSERT INTO DATABASE
-            ========================== */
+                /*
+                =================================================
+                STEP 1
+                CREATE SUPABASE AUTH ACCOUNT
+                =================================================
+                */
 
-            const { data, error } =
-                await supabaseClient
+                const {
+                    data: authData,
+                    error: authError
+                } =
+                    await supabaseClient.auth.signUp({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+
+                if (authError) {
+
+                    throw authError;
+
+                }
+
+
+
+                /*
+                =================================================
+                CHECK USER
+                =================================================
+                */
+
+                if (!authData.user) {
+
+                    throw new Error(
+                        "Account haikuundwa. Tafadhali jaribu tena."
+                    );
+
+                }
+
+
+
+                /*
+                =================================================
+                STEP 2
+                SAVE MEMBER PROFILE
+                =================================================
+                */
+
+                const {
+                    error: profileError
+                } =
+                    await supabaseClient
                     .from("techsavvy_members")
-                    .insert({
+                    .insert([{
 
-                        first_name:
-                            firstName,
+                        id: authData.user.id,
 
-                        last_name:
-                            lastName,
+                        first_name: firstName,
 
-                        email:
-                            email,
+                        last_name: lastName,
 
-                        phone:
-                            phone,
+                        email: email,
 
-                        age:
-                            age,
+                        phone: phone,
 
-                        interest:
-                            interest,
+                        age: age,
 
-                        experience:
-                            experience || null,
+                        interest: interest,
 
-                        motivation:
-                            motivation,
+                        experience: experience,
 
-                        status:
-                            "Pending"
+                        motivation: motivation,
 
-                    })
-                    .select()
-                    .single();
+                        status: "Pending"
+
+                    }]);
 
 
 
-            /* ==========================
-               DATABASE ERROR
-            ========================== */
+                if (profileError) {
 
-            if (error) {
+                    throw profileError;
+
+                }
+
+
+
+                /*
+                =================================================
+                SUCCESS
+                =================================================
+                */
+
+                showSuccess(
+                    "🎉 Account created successfully! Redirecting to login..."
+                );
+
+
+                form.reset();
+
+
+                /*
+                REDIRECT TO LOGIN
+                */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "login.html";
+
+                    },
+                    1800
+                );
+
+
+            } catch (error) {
+
 
                 console.error(
-                    "Supabase error:",
+                    "Registration Error:",
                     error
                 );
 
 
-                if (
-                    error.code ===
-                    "23505"
-                ) {
-
-                    showMessage(
-                        "This email has already been registered."
-                    );
-
-                } else if (
-                    error.code ===
-                    "42501"
-                ) {
-
-                    showMessage(
-                        "Registration is currently unavailable. Database permissions need to be configured."
-                    );
-
-                } else {
-
-                    showMessage(
-                        "Registration failed. Please try again."
-                    );
-
-                }
+                showError(
+                    error.message ||
+                    "Registration failed. Please try again."
+                );
 
 
-                submitBtn.disabled =
-                    false;
+                submitButton.disabled = false;
 
-                submitBtn.textContent =
-                    "Submit Registration →";
-
-                return;
+                submitButton.textContent =
+                    "Join Techsavvy";
 
             }
 
-
-
-            /* ==========================
-               SUCCESS
-            ========================== */
-
-            registrationForm.style.display =
-                "none";
-
-
-            registrationHeader.style.display =
-                "none";
-
-
-            hideMessage();
-
-
-            successMessage.style.display =
-                "block";
-
-
-            if (data && data.id) {
-
-                memberId.textContent =
-                    "Application ID: " +
-                    data.id;
-
-            } else {
-
-                memberId.style.display =
-                    "none";
-
-            }
-
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Unexpected error:",
-                error
-            );
-
-
-            showMessage(
-                "Something went wrong. Please check your internet connection and try again."
-            );
-
-
-            submitBtn.disabled =
-                false;
-
-
-            submitBtn.textContent =
-                "Submit Registration →";
-
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   MOBILE MENU
-================================================== */
-
-const menuBtn =
-    document.getElementById(
-        "menuBtn"
-    );
-
-
-const navMenu =
-    document.getElementById(
-        "navMenu"
-    );
-
-
-if (menuBtn) {
-
-    menuBtn.addEventListener(
-        "click",
-        function() {
-
-            navMenu.classList.toggle(
-                "active"
-            );
-
         }
     );
-
-}
-
-
-document
-    .querySelectorAll(
-        ".nav-menu a"
-    )
-    .forEach(
-        function(link) {
-
-            link.addEventListener(
-                "click",
-                function() {
-
-                    navMenu.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-        }
-    );
-
 
 </script>
 
@@ -1557,4 +1346,3 @@ document
 </body>
 
 </html>
-```
