@@ -9,7 +9,7 @@
     <meta name="description"
         content="Techsavvy Tanzania Member Dashboard">
 
-    <title>Dashboard | Techsavvy Tanzania</title>
+    <title>Member Dashboard | Techsavvy Tanzania</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,795 +18,1039 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Inter, sans-serif;
-            background: #f5f7fb;
-            color: #111827;
-        }
-
-        .dashboard {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* SIDEBAR */
-
-        .sidebar {
-            width: 260px;
-            background: #050505;
-            color: white;
-            padding: 25px 18px;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 45px;
-            padding: 0 10px;
-        }
-
-        .logo-box {
-            width: 42px;
-            height: 42px;
-            background: #155eef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Space Grotesk";
-            font-size: 22px;
-            font-weight: 800;
-            border-radius: 10px;
-        }
-
-        .brand-name {
-            font-family: "Space Grotesk";
-            font-size: 19px;
-            font-weight: 800;
-        }
-
-        .brand-name span {
-            color: #3977ff;
-        }
-
-        .menu-title {
-            color: #777;
-            font-size: 11px;
-            font-weight: 700;
-            margin: 20px 12px 10px;
-            letter-spacing: 1px;
-        }
-
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 13px 14px;
-            margin-bottom: 5px;
-            color: #aaa;
-            text-decoration: none;
-            border-radius: 9px;
-            font-size: 14px;
-            transition: .2s;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #155eef;
-            color: white;
-        }
-
-        .logout {
-            position: absolute;
-            bottom: 25px;
-            left: 18px;
-            right: 18px;
-        }
-
-        /* MAIN */
-
-        .main {
-            margin-left: 260px;
-            width: calc(100% - 260px);
-        }
-
-        .topbar {
-            height: 75px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
-        }
-
-        .welcome h1 {
-            font-family: "Space Grotesk";
-            font-size: 23px;
-        }
-
-        .welcome p {
-            color: #6b7280;
-            font-size: 13px;
-            margin-top: 4px;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            background: #155eef;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        .profile-info strong {
-            font-size: 14px;
-        }
-
-        .profile-info small {
-            display: block;
-            color: #777;
-            margin-top: 2px;
-        }
-
-        /* CONTENT */
-
-        .content {
-            padding: 35px;
-        }
-
-        .hero-card {
-            background: linear-gradient(
-                120deg,
-                #0a0a0a,
-                #10295f
-            );
-            color: white;
-            padding: 35px;
-            border-radius: 18px;
-            margin-bottom: 28px;
-        }
-
-        .hero-card span {
-            color: #6ea0ff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .hero-card h2 {
-            font-family: "Space Grotesk";
-            font-size: 32px;
-            margin: 10px 0;
-        }
-
-        .hero-card p {
-            max-width: 650px;
-            color: #cbd5e1;
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 30px;
-        }
-
-        .stat {
-            background: white;
-            border: 1px solid #e5e7eb;
-            padding: 22px;
-            border-radius: 14px;
-        }
-
-        .stat small {
-            color: #6b7280;
-        }
-
-        .stat h3 {
-            font-size: 28px;
-            margin-top: 8px;
-        }
-
-        .section-title {
-            font-family: "Space Grotesk";
-            font-size: 20px;
-            margin-bottom: 17px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 22px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 22px;
-        }
-
-        .course {
-            padding: 17px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .course:last-child {
-            border-bottom: none;
-        }
-
-        .course-top {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 9px;
-        }
-
-        .course strong {
-            font-size: 14px;
-        }
-
-        .progress {
-            height: 7px;
-            background: #e5e7eb;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: #155eef;
-        }
-
-        .announcement {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .announcement:last-child {
-            border-bottom: none;
-        }
-
-        .announcement strong {
-            font-size: 14px;
-        }
-
-        .announcement p {
-            font-size: 12px;
-            color: #6b7280;
-            margin-top: 5px;
-            line-height: 1.5;
-        }
-
-        /* MOBILE */
-
-        .mobile-menu {
-            display: none;
-            border: none;
-            background: none;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        @media(max-width: 900px) {
-
-            .sidebar {
-                transform: translateX(-100%);
-                transition: .3s;
-                z-index: 1000;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-        @media(max-width: 600px) {
-
-            .content {
-                padding: 20px;
-            }
-
-            .topbar {
-                padding: 0 20px;
-            }
-
-            .profile-info {
-                display: none;
-            }
-
-            .hero-card {
-                padding: 25px;
-            }
-
-            .hero-card h2 {
-                font-size: 25px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 
-<body>
+<body class="dashboard-body">
 
 
-<div class="dashboard">
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="dashboard-sidebar" id="dashboardSidebar">
+
+    <a href="index.html" class="dashboard-brand">
+
+        <div class="logo-box">
+            T
+        </div>
+
+        <div class="logo-text">
+            TECH<span>SAVVY</span>
+        </div>
+
+    </a>
 
 
-    <!-- SIDEBAR -->
+    <div class="member-mini-profile">
 
-    <aside class="sidebar" id="sidebar">
+        <div class="member-avatar">
+            TS
+        </div>
 
-        <div class="brand">
+        <div>
 
-            <div class="logo-box">
-                T
+            <strong id="sidebarMemberName">
+                Techsavvy Member
+            </strong>
+
+            <small>
+                Member
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <nav class="dashboard-nav">
+
+        <a href="#dashboard" class="dashboard-nav-link active">
+
+            <span>⌂</span>
+
+            Dashboard
+
+        </a>
+
+
+        <a href="#profile" class="dashboard-nav-link">
+
+            <span>◉</span>
+
+            My Profile
+
+        </a>
+
+
+        <a href="#courses" class="dashboard-nav-link">
+
+            <span>▣</span>
+
+            My Courses
+
+        </a>
+
+
+        <a href="#resources" class="dashboard-nav-link">
+
+            <span>◇</span>
+
+            Resources
+
+        </a>
+
+
+        <a href="#projects" class="dashboard-nav-link">
+
+            <span>✦</span>
+
+            Projects
+
+        </a>
+
+
+        <a href="#announcements" class="dashboard-nav-link">
+
+            <span>!</span>
+
+            Announcements
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a href="index.html">
+            ← Back to Website
+        </a>
+
+        <button id="logoutBtn">
+            ↪ Logout
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
+
+<main class="dashboard-main" id="dashboard">
+
+
+    <!-- TOPBAR -->
+
+    <header class="dashboard-topbar">
+
+        <button
+            class="dashboard-menu-btn"
+            id="dashboardMenuBtn"
+            aria-label="Open dashboard menu"
+        >
+            ☰
+        </button>
+
+
+        <div>
+
+            <span class="dashboard-overline">
+                TECHSAVVY TANZANIA
+            </span>
+
+            <h1>
+                Member Dashboard
+            </h1>
+
+        </div>
+
+
+        <div class="topbar-profile">
+
+            <div class="member-avatar small">
+                TS
             </div>
 
-            <div class="brand-name">
-                TECH<span>SAVVY</span>
+            <div>
+
+                <strong id="topMemberName">
+                    Techsavvy Member
+                </strong>
+
+                <small>
+                    Member
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- WELCOME -->
+
+    <section class="dashboard-welcome">
+
+        <div>
+
+            <span class="section-label">
+                MEMBER AREA
+            </span>
+
+            <h2>
+                Welcome back,
+                <span id="welcomeMemberName">
+                    Member.
+                </span>
+            </h2>
+
+            <p>
+                Continue learning, explore projects,
+                and grow with the Techsavvy community.
+            </p>
+
+        </div>
+
+
+        <div class="member-status">
+
+            <small>
+                MEMBERSHIP STATUS
+            </small>
+
+            <strong id="memberStatus">
+                Pending
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QUICK STATS
+    ================================================= -->
+
+    <section class="dashboard-stats">
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                ◈
+            </div>
+
+            <div>
+
+                <span>
+                    COURSES
+                </span>
+
+                <strong>
+                    6
+                </strong>
+
             </div>
 
         </div>
 
 
-        <div class="menu-title">
-            MAIN
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    COMPLETED
+                </span>
+
+                <strong>
+                    0
+                </strong>
+
+            </div>
+
         </div>
 
-        <a href="#" class="active">
-            🏠 Dashboard
-        </a>
-
-        <a href="#">
-            📚 My Courses
-        </a>
-
-        <a href="#">
-            📝 My Tasks
-        </a>
-
-        <a href="#">
-            🚀 Projects
-        </a>
 
 
-        <div class="menu-title">
-            COMMUNITY
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <span>
+                    PROJECTS
+                </span>
+
+                <strong>
+                    3
+                </strong>
+
+            </div>
+
         </div>
 
-        <a href="#">
-            📢 Announcements
-        </a>
-
-        <a href="#">
-            💬 Community
-        </a>
 
 
-        <div class="menu-title">
-            ACCOUNT
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                %
+            </div>
+
+            <div>
+
+                <span>
+                    PROGRESS
+                </span>
+
+                <strong>
+                    0%
+                </strong>
+
+            </div>
+
         </div>
 
-        <a href="#">
-            👤 My Profile
-        </a>
-
-        <a href="#">
-            ⚙️ Settings
-        </a>
+    </section>
 
 
-        <div class="logout">
 
-            <a href="index.html">
-                ↪ Logout
+    <!-- =================================================
+         COURSES
+    ================================================= -->
+
+    <section
+        class="dashboard-section"
+        id="courses"
+    >
+
+        <div class="dashboard-section-header">
+
+            <div>
+
+                <span class="section-label">
+                    LEARNING
+                </span>
+
+                <h2>
+                    My Courses
+                </h2>
+
+            </div>
+
+            <a href="join.html">
+                Explore all →
             </a>
 
         </div>
 
-    </aside>
+
+        <div class="dashboard-course-grid">
 
 
+            <article class="dashboard-course-card">
 
-    <!-- MAIN -->
-
-    <main class="main">
-
-
-        <!-- TOPBAR -->
-
-        <header class="topbar">
-
-            <button
-                class="mobile-menu"
-                id="mobileMenu">
-                ☰
-            </button>
-
-
-            <div class="welcome">
-
-                <h1>
-                    Welcome back 👋
-                </h1>
-
-                <p>
-                    Here's what's happening with your learning.
-                </p>
-
-            </div>
-
-
-            <div class="profile">
-
-                <div class="avatar">
-                    T
+                <div class="dashboard-course-icon">
+                    AI
                 </div>
 
-                <div class="profile-info">
+                <div>
 
-                    <strong>
-                        Techsavvy Member
-                    </strong>
+                    <span>
+                        TECHNOLOGY
+                    </span>
+
+                    <h3>
+                        AI & ChatGPT
+                    </h3>
+
+                    <p>
+                        Practical AI concepts and workflows.
+                    </p>
+
+                </div>
+
+                <div class="course-progress">
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             style="width:0%">
+                        </div>
+                    </div>
 
                     <small>
-                        Member
+                        0% complete
                     </small>
 
                 </div>
 
-            </div>
-
-        </header>
+            </article>
 
 
 
-        <!-- CONTENT -->
+            <article class="dashboard-course-card">
 
-        <div class="content">
+                <div class="dashboard-course-icon">
+                    WD
+                </div>
+
+                <div>
+
+                    <span>
+                        DEVELOPMENT
+                    </span>
+
+                    <h3>
+                        Web Development
+                    </h3>
+
+                    <p>
+                        Build websites from idea to deployment.
+                    </p>
+
+                </div>
+
+                <div class="course-progress">
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             style="width:0%">
+                        </div>
+                    </div>
+
+                    <small>
+                        0% complete
+                    </small>
+
+                </div>
+
+            </article>
 
 
-            <!-- HERO -->
 
-            <section class="hero-card">
+            <article class="dashboard-course-card">
 
-                <span>
-                    TECHSAVVY MEMBER AREA
+                <div class="dashboard-course-icon">
+                    CY
+                </div>
+
+                <div>
+
+                    <span>
+                        SECURITY
+                    </span>
+
+                    <h3>
+                        Cybersecurity
+                    </h3>
+
+                    <p>
+                        Learn digital safety fundamentals.
+                    </p>
+
+                </div>
+
+                <div class="course-progress">
+
+                    <div class="progress-track">
+                        <div class="progress-fill"
+                             style="width:0%">
+                        </div>
+                    </div>
+
+                    <small>
+                        0% complete
+                    </small>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PROFILE
+    ================================================= -->
+
+    <section
+        class="dashboard-section"
+        id="profile"
+    >
+
+        <div class="dashboard-section-header">
+
+            <div>
+
+                <span class="section-label">
+                    ACCOUNT
                 </span>
 
                 <h2>
-                    Learn. Build. Grow.
+                    My Profile
                 </h2>
 
-                <p>
-                    Welcome to the Techsavvy Tanzania
-                    member dashboard. Track your courses,
-                    projects, tasks and community activities
-                    from one place.
-                </p>
+            </div>
 
-            </section>
+        </div>
 
 
-
-            <!-- STATS -->
-
-            <div class="stats">
+        <div class="profile-card">
 
 
-                <div class="stat">
+            <div class="profile-card-header">
 
-                    <small>
-                        Courses
-                    </small>
-
-                    <h3>
-                        6
-                    </h3>
-
+                <div class="large-member-avatar">
+                    TS
                 </div>
 
+                <div>
 
-                <div class="stat">
-
-                    <small>
-                        Completed
-                    </small>
-
-                    <h3>
-                        2
+                    <h3 id="profileName">
+                        Techsavvy Member
                     </h3>
 
-                </div>
-
-
-                <div class="stat">
-
-                    <small>
-                        Projects
-                    </small>
-
-                    <h3>
-                        1
-                    </h3>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <small>
-                        Certificates
-                    </small>
-
-                    <h3>
-                        0
-                    </h3>
+                    <p id="profileEmail">
+                        member@example.com
+                    </p>
 
                 </div>
 
             </div>
 
 
+            <div class="profile-details">
 
-            <!-- LOWER GRID -->
 
-            <div class="grid">
+                <div>
 
+                    <small>
+                        FIRST NAME
+                    </small>
 
-                <!-- COURSES -->
+                    <strong id="profileFirstName">
+                        —
+                    </strong>
 
-                <section>
+                </div>
 
-                    <h2 class="section-title">
-                        My Learning
-                    </h2>
 
-                    <div class="card">
+                <div>
 
+                    <small>
+                        LAST NAME
+                    </small>
 
-                        <div class="course">
+                    <strong id="profileLastName">
+                        —
+                    </strong>
 
-                            <div class="course-top">
+                </div>
 
-                                <strong>
-                                    AI & ChatGPT
-                                </strong>
 
-                                <small>
-                                    75%
-                                </small>
+                <div>
 
-                            </div>
+                    <small>
+                        EMAIL
+                    </small>
 
-                            <div class="progress">
+                    <strong id="profileEmailDetails">
+                        —
+                    </strong>
 
-                                <div
-                                    class="progress-bar"
-                                    style="width:75%">
-                                </div>
+                </div>
 
-                            </div>
 
-                        </div>
+                <div>
 
+                    <small>
+                        INTEREST
+                    </small>
 
-                        <div class="course">
+                    <strong id="profileInterest">
+                        —
+                    </strong>
 
-                            <div class="course-top">
-
-                                <strong>
-                                    Web Development
-                                </strong>
-
-                                <small>
-                                    50%
-                                </small>
-
-                            </div>
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:50%">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="course">
-
-                            <div class="course-top">
-
-                                <strong>
-                                    Cybersecurity
-                                </strong>
-
-                                <small>
-                                    30%
-                                </small>
-
-                            </div>
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:30%">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="course">
-
-                            <div class="course-top">
-
-                                <strong>
-                                    Digital Marketing
-                                </strong>
-
-                                <small>
-                                    20%
-                                </small>
-
-                            </div>
-
-                            <div class="progress">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width:20%">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </section>
-
-
-
-                <!-- ANNOUNCEMENTS -->
-
-                <section>
-
-                    <h2 class="section-title">
-                        Announcements
-                    </h2>
-
-                    <div class="card">
-
-
-                        <div class="announcement">
-
-                            <strong>
-                                🚀 New Training
-                            </strong>
-
-                            <p>
-                                AI & ChatGPT training is now
-                                available.
-                            </p>
-
-                        </div>
-
-
-                        <div class="announcement">
-
-                            <strong>
-                                📢 Community Update
-                            </strong>
-
-                            <p>
-                                New Techsavvy community
-                                activities are coming soon.
-                            </p>
-
-                        </div>
-
-
-                        <div class="announcement">
-
-                            <strong>
-                                💡 Project Challenge
-                            </strong>
-
-                            <p>
-                                Build something useful
-                                with technology.
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-                </section>
+                </div>
 
 
             </div>
 
         </div>
 
-    </main>
-
-</div>
+    </section>
 
 
+
+    <!-- =================================================
+         RESOURCES
+    ================================================= -->
+
+    <section
+        class="dashboard-section"
+        id="resources"
+    >
+
+        <div class="dashboard-section-header">
+
+            <div>
+
+                <span class="section-label">
+                    KNOWLEDGE
+                </span>
+
+                <h2>
+                    Learning Resources
+                </h2>
+
+            </div>
+
+            <a href="articles.html">
+                Articles →
+            </a>
+
+        </div>
+
+
+        <div class="resource-grid">
+
+
+            <a
+                href="articles.html"
+                class="resource-card"
+            >
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Tech Articles
+                    </h3>
+
+                    <p>
+                        Explore technology insights,
+                        tutorials and ideas.
+                    </p>
+
+                </div>
+
+                <strong>
+                    →
+                </strong>
+
+            </a>
+
+
+
+            <a
+                href="ai-learning.html"
+                class="resource-card"
+            >
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        AI Learning
+                    </h3>
+
+                    <p>
+                        Start learning practical
+                        artificial intelligence.
+                    </p>
+
+                </div>
+
+                <strong>
+                    →
+                </strong>
+
+            </a>
+
+
+
+            <a
+                href="index.html#courses"
+                class="resource-card"
+            >
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Technology Courses
+                    </h3>
+
+                    <p>
+                        Discover skills for the
+                        digital era.
+                    </p>
+
+                </div>
+
+                <strong>
+                    →
+                </strong>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PROJECTS
+    ================================================= -->
+
+    <section
+        class="dashboard-section"
+        id="projects"
+    >
+
+        <div class="dashboard-section-header">
+
+            <div>
+
+                <span class="section-label">
+                    INNOVATION
+                </span>
+
+                <h2>
+                    Techsavvy Projects
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-project-grid">
+
+
+            <article class="dashboard-project-card">
+
+                <span>
+                    DIGITAL PLATFORM
+                </span>
+
+                <h3>
+                    DaLink
+                </h3>
+
+                <p>
+                    A digital marketplace concept
+                    connecting sellers and buyers
+                    in Tanzania.
+                </p>
+
+                <a href="index.html#projects">
+                    View Project →
+                </a>
+
+            </article>
+
+
+
+            <article class="dashboard-project-card">
+
+                <span>
+                    AI • MOBILE
+                </span>
+
+                <h3>
+                    SimuPulse
+                </h3>
+
+                <p>
+                    An AI-powered concept for
+                    identifying smartphone issues.
+                </p>
+
+                <a href="index.html#projects">
+                    View Project →
+                </a>
+
+            </article>
+
+
+
+            <article class="dashboard-project-card">
+
+                <span>
+                    COMMUNITY
+                </span>
+
+                <h3>
+                    Techsavvy Learning
+                </h3>
+
+                <p>
+                    Practical digital learning
+                    experiences for young people.
+                </p>
+
+                <a href="index.html#projects">
+                    View Project →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ANNOUNCEMENTS
+    ================================================= -->
+
+    <section
+        class="dashboard-section"
+        id="announcements"
+    >
+
+        <div class="dashboard-section-header">
+
+            <div>
+
+                <span class="section-label">
+                    COMMUNITY
+                </span>
+
+                <h2>
+                    Announcements
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="announcement-card">
+
+            <div class="announcement-icon">
+                !
+            </div>
+
+            <div>
+
+                <span>
+                    TECHSAVVY TANZANIA
+                </span>
+
+                <h3>
+                    Welcome to the Techsavvy Member Portal
+                </h3>
+
+                <p>
+                    Your dashboard will become the central
+                    place for courses, projects, resources,
+                    community updates and your Techsavvy
+                    membership.
+                </p>
+
+                <small>
+                    Latest announcement
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+===================================================== -->
 
 <script>
 
-    const mobileMenu =
-        document.getElementById("mobileMenu");
+const dashboardMenuBtn =
+    document.getElementById("dashboardMenuBtn");
 
-    const sidebar =
-        document.getElementById("sidebar");
+const dashboardSidebar =
+    document.getElementById("dashboardSidebar");
 
 
-    mobileMenu.addEventListener(
+dashboardMenuBtn.addEventListener(
+    "click",
+    function () {
+
+        dashboardSidebar.classList.toggle("open");
+
+    }
+);
+
+
+document
+    .querySelectorAll(".dashboard-nav-link")
+    .forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .querySelectorAll(".dashboard-nav-link")
+                    .forEach(function(item) {
+
+                        item.classList.remove("active");
+
+                    });
+
+                link.classList.add("active");
+
+                dashboardSidebar.classList.remove("open");
+
+            }
+        );
+
+    });
+
+
+
+/*
+==========================================================
+TEMPORARY MEMBER DATA
+
+This will later be replaced with Supabase authentication
+and the real Techsavvy members database.
+==========================================================
+*/
+
+const member = {
+
+    firstName: "Techsavvy",
+
+    lastName: "Member",
+
+    email: "member@example.com",
+
+    interest: "Technology",
+
+    status: "Pending"
+
+};
+
+
+const fullName =
+    member.firstName + " " + member.lastName;
+
+
+document.getElementById(
+    "sidebarMemberName"
+).textContent = fullName;
+
+
+document.getElementById(
+    "topMemberName"
+).textContent = fullName;
+
+
+document.getElementById(
+    "welcomeMemberName"
+).textContent =
+    member.firstName + ".";
+
+
+document.getElementById(
+    "memberStatus"
+).textContent =
+    member.status;
+
+
+document.getElementById(
+    "profileName"
+).textContent =
+    fullName;
+
+
+document.getElementById(
+    "profileEmail"
+).textContent =
+    member.email;
+
+
+document.getElementById(
+    "profileFirstName"
+).textContent =
+    member.firstName;
+
+
+document.getElementById(
+    "profileLastName"
+).textContent =
+    member.lastName;
+
+
+document.getElementById(
+    "profileEmailDetails"
+).textContent =
+    member.email;
+
+
+document.getElementById(
+    "profileInterest"
+).textContent =
+    member.interest;
+
+
+
+/*
+==========================================================
+LOGOUT
+==========================================================
+*/
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
         "click",
-        function () {
+        function() {
 
-            sidebar.classList.toggle("open");
+            window.location.href =
+                "index.html";
 
         }
     );
@@ -815,5 +1059,4 @@
 
 
 </body>
-
 </html>
