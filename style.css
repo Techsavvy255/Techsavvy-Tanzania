@@ -311,6 +311,7 @@ a {
   transform: translateY(-6px);
   border-color: var(--primary);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .value-card span, .card-number {
@@ -380,6 +381,115 @@ a {
   display: block;
 }
 
+/* ================= MODAL ================= */
+.card-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 28px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+.modal-body {
+  padding: 40px;
+}
+
+.modal-image {
+  background: #1e293b;
+  border-radius: 12px;
+  height: 200px;
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+  color: var(--primary);
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.modal-icon, .modal-tag {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.modal-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.modal-info p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.modal-link {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 10px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.modal-link:hover {
+  border-bottom-color: var(--primary);
+}
+
 /* ================= JOIN SECTION ================= */
 .join-section {
   text-align: center;
@@ -416,10 +526,12 @@ a {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
 }
 
 .contact-list a:hover {
   border-color: var(--primary);
+  transform: translateY(-4px);
 }
 
 .contact-list small {
@@ -476,5 +588,13 @@ footer {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-body {
+    padding: 30px 20px;
   }
 }
