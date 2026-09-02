@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Courses | Techsavvy Tanzania</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            background: #050505;
+            color: #fff;
+        }
+
+        .navbar {
+            height: 75px;
+            padding: 0 6%;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #080808;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            background: #155eef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Space Grotesk";
+            font-weight: 800;
+        }
+
+        .logo-text {
+            font-family: "Space Grotesk";
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #155eef;
+        }
+
+        .back {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 55px 0;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .label {
+            color: #4d8aff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: "Space Grotesk";
+            font-size: clamp(38px, 6vw, 60px);
+        }
+
+        h1 span {
+            color: #155eef;
+        }
+
+        .header p {
+            color: #777;
+            margin-top: 12px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .course-card {
+            background: #0d0d0d;
+            border: 1px solid #252525;
+            border-radius: 15px;
+            padding: 25px;
+            transition: .25s;
+        }
+
+        .course-card:hover {
+            border-color: #155eef;
+            transform: translateY(-4px);
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: #155eef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Space Grotesk";
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .course-card h2 {
+            font-family: "Space Grotesk";
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #777;
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 65px;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #155eef;
+            background: transparent;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .start-btn:hover {
+            background: #155eef;
+        }
+
+        #loading {
+            position: fixed;
+            inset: 0;
+            background: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #loading p {
+            color: #777;
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            background: #155eef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-weight: 800;
+        }
+
+        @media (max-width: 900px) {
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .container {
+                width: 92%;
+                padding: 40px 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div id="loading">
+
+    <div>
+
+        <div class="loader">
+            T
+        </div>
+
+        <p>
+            Checking account...
+        </p>
+
+    </div>
+
+</div>
+
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            T
+        </div>
+
+        <div class="logo-text">
+            TECH<span>SAVVY</span>
+        </div>
+
+    </div>
+
+    <a href="dashboard.html" class="back">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="header">
+
+        <div class="label">
+            TECHSAVVY LEARNING
+        </div>
+
+        <h1>
+            Learn. Build.
+            <span>Grow.</span>
+        </h1>
+
+        <p>
+            Explore practical technology courses designed
+            to help you build real digital skills.
+        </p>
+
+    </div>
+
+
+    <div class="course-grid">
+
+
+        <!-- AI -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                AI
+            </div>
+
+            <h2>
+                AI & ChatGPT
+            </h2>
+
+            <p>
+                Learn practical Artificial Intelligence,
+                ChatGPT and modern AI workflows.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    8 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('AI & ChatGPT')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+        <!-- WEB -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                WD
+            </div>
+
+            <h2>
+                Web Development
+            </h2>
+
+            <p>
+                Learn HTML, CSS and JavaScript and
+                build responsive websites.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    10 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('Web Development')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+        <!-- CYBER -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                CY
+            </div>
+
+            <h2>
+                Cybersecurity
+            </h2>
+
+            <p>
+                Understand cybersecurity fundamentals,
+                online safety and digital protection.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    8 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('Cybersecurity')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+        <!-- NETWORKING -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                NW
+            </div>
+
+            <h2>
+                Networking
+            </h2>
+
+            <p>
+                Learn IP addresses, devices, protocols,
+                networks and connectivity.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    10 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('Networking')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+        <!-- GRAPHIC DESIGN -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                GD
+            </div>
+
+            <h2>
+                Graphic Design
+            </h2>
+
+            <p>
+                Learn design principles and create
+                professional digital graphics.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    8 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('Graphic Design')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+        <!-- DIGITAL MARKETING -->
+
+        <article class="course-card">
+
+            <div class="icon">
+                DM
+            </div>
+
+            <h2>
+                Digital Marketing
+            </h2>
+
+            <p>
+                Learn content strategy, social media,
+                branding and audience growth.
+            </p>
+
+            <div class="course-info">
+
+                <span>
+                    Beginner
+                </span>
+
+                <span>
+                    8 Lessons
+                </span>
+
+            </div>
+
+            <button
+                class="start-btn"
+                onclick="startCourse('Digital Marketing')"
+            >
+                Start Course →
+            </button>
+
+        </article>
+
+
+    </div>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "WEKA_SUPABASE_URL_HAPA";
+
+const SUPABASE_KEY =
+    "WEKA_SUPABASE_PUBLISHABLE_KEY_HAPA";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function checkUser() {
+
+    const {
+        data: {
+            user
+        }
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+}
+
+
+async function startCourse(courseName) {
+
+    const {
+        data: {
+            user
+        }
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /*
+    Kwa sasa tunahifadhi course ambayo
+    member ameichagua kwenye browser.
+    Tutaiunganisha na Supabase progress
+    kwenye hatua inayofuata.
+    */
+
+    localStorage.setItem(
+        "selectedCourse",
+        courseName
+    );
+
+
+    alert(
+        "🚀 " +
+        courseName +
+        "\n\nCourse imechaguliwa. Tutaanza lessons kwenye hatua inayofuata."
+    );
+
+}
+
+
+checkUser();
+
+</script>
+
+
+</body>
+
+</html>
