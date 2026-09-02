@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Reset Password | Techsavvy Tanzania</title>
+  <title>My Profile | Techsavvy Tanzania</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -25,395 +24,841 @@
     }
 
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(
-          circle at top left,
-          rgba(35, 91, 255, 0.25),
-          transparent 35%
-        ),
-        #050505;
-
+      background: #050505;
       color: #fff;
-
       font-family: "Inter", sans-serif;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
+      min-height: 100vh;
     }
 
-    .container {
-      width: 100%;
-      max-width: 480px;
+    .layout {
+      min-height: 100vh;
+      display: flex;
+    }
 
-      background: #0d0d0d;
+    /* SIDEBAR */
 
-      border: 1px solid rgba(255,255,255,0.08);
-
-      border-radius: 22px;
-
-      padding: 45px;
-
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.55);
+    .sidebar {
+      width: 250px;
+      background: #0b0b0b;
+      border-right: 1px solid #1d1d1d;
+      padding: 25px 15px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 20;
     }
 
     .logo {
-      text-align: center;
-
       font-family: "Space Grotesk", sans-serif;
-
-      font-size: 24px;
-
+      font-size: 21px;
       font-weight: 700;
-
-      letter-spacing: 1px;
-
-      margin-bottom: 40px;
+      padding: 0 12px 30px;
     }
 
     .logo span {
       color: #3974ff;
     }
 
-    .icon {
-      width: 70px;
-      height: 70px;
+    .menu {
+      display: grid;
+      gap: 7px;
+    }
 
-      margin: 0 auto 25px;
+    .menu a {
+      text-decoration: none;
+      color: #888;
+      padding: 13px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    .menu a:hover,
+    .menu a.active {
+      color: #fff;
+      background: #151515;
+    }
+
+    .menu a.active {
+      border-left: 3px solid #3974ff;
+    }
+
+    .logout {
+      position: absolute;
+      bottom: 25px;
+      left: 15px;
+      right: 15px;
+      border: 1px solid #242424;
+      background: #101010;
+      color: #aaa;
+      padding: 12px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .logout:hover {
+      color: #fff;
+      border-color: #3974ff;
+    }
+
+    /* MAIN */
+
+    .main {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+      min-height: 100vh;
+      padding: 35px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
+
+    .topbar h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 32px;
+    }
+
+    .topbar p {
+      color: #777;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .member-badge {
+      padding: 9px 15px;
+      border-radius: 50px;
+      background: rgba(49,105,255,0.1);
+      border: 1px solid rgba(49,105,255,0.2);
+      color: #6790ff;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* PROFILE */
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 25px;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: #0c0c0c;
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .profile-card {
+      text-align: center;
+    }
+
+    .avatar {
+      width: 105px;
+      height: 105px;
       border-radius: 50%;
-
-      background: rgba(50,105,255,0.12);
-
-      border: 1px solid rgba(50,105,255,0.25);
-
+      background: linear-gradient(
+        135deg,
+        #2864e8,
+        #132b67
+      );
       display: flex;
       align-items: center;
       justify-content: center;
-
-      font-size: 30px;
-    }
-
-    h1 {
-      text-align: center;
-
+      margin: 0 auto 18px;
       font-family: "Space Grotesk", sans-serif;
-
-      font-size: 32px;
-
-      margin-bottom: 12px;
+      font-size: 38px;
+      font-weight: 700;
     }
 
-    .subtitle {
-      text-align: center;
-
-      color: #888;
-
-      font-size: 14px;
-
-      line-height: 1.7;
-
-      margin-bottom: 30px;
+    .profile-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 21px;
+      margin-bottom: 7px;
     }
 
-    .message {
-      display: none;
-
-      padding: 13px;
-
-      border-radius: 9px;
-
-      margin-bottom: 20px;
-
+    .profile-email {
+      color: #777;
       font-size: 13px;
-
-      line-height: 1.5;
+      word-break: break-word;
     }
 
-    .message.error {
-      display: block;
-
-      background: rgba(220,50,50,0.1);
-
-      border: 1px solid rgba(220,50,50,0.25);
-
-      color: #ff8585;
+    .status {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 7px 13px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255,190,50,0.1);
+      color: #e4b94f;
+      border: 1px solid rgba(255,190,50,0.2);
     }
 
-    .message.success {
-      display: block;
+    .member-info {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #1e1e1e;
+      text-align: left;
+    }
 
-      background: rgba(40,190,110,0.1);
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 0;
+      font-size: 12px;
+    }
 
-      border: 1px solid rgba(40,190,110,0.25);
+    .info-row span:first-child {
+      color: #666;
+    }
 
-      color: #68dda0;
+    .info-row span:last-child {
+      color: #ddd;
+      text-align: right;
+    }
+
+    /* FORM */
+
+    .form-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .form-description {
+      color: #777;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
     }
 
     label {
       display: block;
-
-      margin-bottom: 8px;
-
-      color: #ddd;
-
-      font-size: 13px;
-
-      font-weight: 600;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    input {
-      width: 100%;
-
-      height: 52px;
-
-      padding: 0 50px 0 16px;
-
-      border-radius: 10px;
-
-      border: 1px solid #292929;
-
-      outline: none;
-
-      background: #121212;
-
-      color: white;
-
-      font-family: inherit;
-
-      transition: 0.3s;
-    }
-
-    input:focus {
-      border-color: #3670ff;
-
-      box-shadow:
-        0 0 0 3px rgba(54,112,255,0.1);
-    }
-
-    .toggle {
-      position: absolute;
-
-      right: 15px;
-
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      color: #777;
-
       font-size: 12px;
+      font-weight: 600;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
 
-      cursor: pointer;
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: #121212;
+      border: 1px solid #262626;
+      color: #fff;
+      border-radius: 9px;
+      outline: none;
+      font-family: inherit;
+      font-size: 13px;
+      transition: 0.25s;
+    }
 
-      user-select: none;
+    input,
+    select {
+      height: 48px;
+      padding: 0 14px;
+    }
+
+    textarea {
+      min-height: 110px;
+      padding: 13px 14px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #3974ff;
+      box-shadow: 0 0 0 3px rgba(57,116,255,0.08);
+    }
+
+    input:disabled {
+      color: #666;
+      cursor: not-allowed;
+      background: #0e0e0e;
+    }
+
+    .field-note {
+      color: #555;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .actions {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #1e1e1e;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
     }
 
     button {
-      width: 100%;
-
-      height: 52px;
-
       border: none;
-
-      border-radius: 10px;
-
-      background: #2864e8;
-
-      color: white;
-
       font-family: inherit;
-
-      font-size: 15px;
-
-      font-weight: 700;
-
       cursor: pointer;
-
-      transition: 0.3s;
     }
 
-    button:hover {
-      background: #1d53c8;
-
-      transform: translateY(-1px);
-    }
-
-    button:disabled {
-      opacity: 0.6;
-
-      cursor: not-allowed;
-
-      transform: none;
-    }
-
-    .back {
-      display: block;
-
-      text-align: center;
-
-      margin-top: 25px;
-
-      color: #777;
-
-      text-decoration: none;
-
+    .save-btn {
+      background: #2864e8;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 9px;
       font-size: 13px;
+      font-weight: 700;
     }
 
-    .back:hover {
-      color: #aaa;
+    .save-btn:hover {
+      background: #1e54c9;
     }
 
-    .requirements {
-      margin-top: 10px;
+    .save-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-      color: #666;
-
+    .message {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 9px;
+      margin-bottom: 20px;
       font-size: 12px;
-
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    @media (max-width: 500px) {
+    .message.success {
+      display: block;
+      color: #66dda0;
+      background: rgba(40,190,110,0.08);
+      border: 1px solid rgba(40,190,110,0.2);
+    }
 
-      .container {
-        padding: 35px 22px;
+    .message.error {
+      display: block;
+      color: #ff7f7f;
+      background: rgba(220,50,50,0.08);
+      border: 1px solid rgba(220,50,50,0.2);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: #777;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+      border: 3px solid #222;
+      border-top-color: #3974ff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* MOBILE */
+
+    .mobile-header {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+
+      .sidebar {
+        width: 215px;
       }
 
-      h1 {
-        font-size: 28px;
+      .main {
+        margin-left: 215px;
+        width: calc(100% - 215px);
+        padding: 25px;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
       }
 
     }
 
+    @media (max-width: 700px) {
+
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+      }
+
+      .mobile-header a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .mobile-logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+      }
+
+      .mobile-logo span {
+        color: #3974ff;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .topbar h1 {
+        font-size: 26px;
+      }
+
+      .member-badge {
+        display: none;
+      }
+
+    }
+
+    @media (max-width: 450px) {
+
+      .main {
+        padding: 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .actions {
+        display: block;
+      }
+
+      .save-btn {
+        width: 100%;
+      }
+
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="layout">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
 
     <div class="logo">
       TECH<span>SAVVY</span>
     </div>
 
-    <div class="icon">
-      🔐
+    <nav class="menu">
+
+      <a href="dashboard.html">
+        🏠 Dashboard
+      </a>
+
+      <a href="courses.html">
+        📚 My Courses
+      </a>
+
+      <a href="dashboard.html#projects">
+        🚀 Projects
+      </a>
+
+      <a href="profile.html" class="active">
+        👤 My Profile
+      </a>
+
+      <a href="dashboard.html#announcements">
+        📢 Announcements
+      </a>
+
+    </nav>
+
+    <button
+      class="logout"
+      id="logoutBtn"
+    >
+      ↪ Logout
+    </button>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <div class="mobile-header">
+
+      <div class="mobile-logo">
+        TECH<span>SAVVY</span>
+      </div>
+
+      <a href="dashboard.html">
+        ← Dashboard
+      </a>
+
     </div>
 
-    <h1>
-      Reset Password
-    </h1>
 
-    <p class="subtitle">
-      Weka password mpya ya akaunti yako ya
-      Techsavvy Tanzania.
-    </p>
+    <div class="topbar">
 
-    <div id="message" class="message"></div>
+      <div>
+        <h1>My Profile</h1>
 
-
-    <form id="resetForm">
-
-      <div class="form-group">
-
-        <label for="password">
-          New Password
-        </label>
-
-        <div class="input-wrapper">
-
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter new password"
-            minlength="6"
-            required
-            autocomplete="new-password"
-          >
-
-          <span
-            class="toggle"
-            id="togglePassword"
-          >
-            Show
-          </span>
-
-        </div>
-
-        <div class="requirements">
-          Password iwe na angalau characters 6.
-        </div>
-
+        <p>
+          Manage your Techsavvy Tanzania member information.
+        </p>
       </div>
 
-
-      <div class="form-group">
-
-        <label for="confirmPassword">
-          Confirm New Password
-        </label>
-
-        <div class="input-wrapper">
-
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm new password"
-            minlength="6"
-            required
-            autocomplete="new-password"
-          >
-
-          <span
-            class="toggle"
-            id="toggleConfirm"
-          >
-            Show
-          </span>
-
-        </div>
-
+      <div class="member-badge">
+        TECHSAVVY MEMBER
       </div>
 
-
-      <button
-        type="submit"
-        id="resetButton"
-      >
-        Update Password
-      </button>
-
-    </form>
+    </div>
 
 
-    <a
-      href="login.html"
-      class="back"
+    <!-- LOADING -->
+
+    <div
+      id="loading"
+      class="loading"
     >
-      ← Back to Login
-    </a>
 
-  </div>
+      <div class="spinner"></div>
+
+      <p>
+        Loading your profile...
+      </p>
+
+    </div>
+
+
+    <!-- PROFILE CONTENT -->
+
+    <div
+      id="profileContent"
+      class="profile-grid"
+      style="display:none;"
+    >
+
+      <!-- PROFILE CARD -->
+
+      <div class="card profile-card">
+
+        <div
+          id="avatar"
+          class="avatar"
+        >
+          TS
+        </div>
+
+        <h2 id="displayName">
+          Member
+        </h2>
+
+        <div
+          id="displayEmail"
+          class="profile-email"
+        >
+          --
+        </div>
+
+        <div
+          id="status"
+          class="status"
+        >
+          Pending
+        </div>
+
+
+        <div class="member-info">
+
+          <div class="info-row">
+            <span>Member Since</span>
+            <span id="memberSince">--</span>
+          </div>
+
+          <div class="info-row">
+            <span>Age</span>
+            <span id="displayAge">--</span>
+          </div>
+
+          <div class="info-row">
+            <span>Interest</span>
+            <span id="displayInterest">--</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FORM -->
+
+      <div class="card form-card">
+
+        <h2>
+          Personal Information
+        </h2>
+
+        <p class="form-description">
+          Update taarifa zako hapa. Email yako haiwezi
+          kubadilishwa kutoka kwenye profile hii.
+        </p>
+
+
+        <div
+          id="message"
+          class="message"
+        ></div>
+
+
+        <form id="profileForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label for="firstName">
+                First Name
+              </label>
+
+              <input
+                type="text"
+                id="firstName"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="lastName">
+                Last Name
+              </label>
+
+              <input
+                type="text"
+                id="lastName"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="email">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                disabled
+              >
+
+              <div class="field-note">
+                Email haiwezi kubadilishwa hapa.
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="phone">
+                Phone Number
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="age">
+                Age
+              </label>
+
+              <input
+                type="number"
+                id="age"
+                min="13"
+                max="100"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="interest">
+                Main Interest
+              </label>
+
+              <select
+                id="interest"
+                required
+              >
+
+                <option value="">
+                  Select your interest
+                </option>
+
+                <option value="AI & ChatGPT">
+                  AI & ChatGPT
+                </option>
+
+                <option value="Graphic Design">
+                  Graphic Design
+                </option>
+
+                <option value="Web Development">
+                  Web Development
+                </option>
+
+                <option value="Networking">
+                  Networking
+                </option>
+
+                <option value="Cybersecurity">
+                  Cybersecurity
+                </option>
+
+                <option value="Digital Marketing">
+                  Digital Marketing
+                </option>
+
+                <option value="Other">
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label for="experience">
+                Experience
+              </label>
+
+              <input
+                type="text"
+                id="experience"
+                placeholder="e.g. Beginner, Intermediate, Advanced..."
+              >
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label for="motivation">
+                Why do you want to join Techsavvy?
+              </label>
+
+              <textarea
+                id="motivation"
+                required
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <div class="actions">
+
+            <button
+              type="submit"
+              class="save-btn"
+              id="saveBtn"
+            >
+              Save Changes
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
 
 
 <script>
 
   /* ==========================================
-     SUPABASE
+     SUPABASE CONFIG
      ========================================== */
 
   const SUPABASE_URL =
@@ -434,20 +879,23 @@
      ELEMENTS
      ========================================== */
 
-  const form =
-    document.getElementById("resetForm");
+  const loading =
+    document.getElementById("loading");
 
-  const password =
-    document.getElementById("password");
+  const profileContent =
+    document.getElementById("profileContent");
 
-  const confirmPassword =
-    document.getElementById("confirmPassword");
-
-  const button =
-    document.getElementById("resetButton");
+  const profileForm =
+    document.getElementById("profileForm");
 
   const message =
     document.getElementById("message");
+
+  const saveBtn =
+    document.getElementById("saveBtn");
+
+
+  let currentUser = null;
 
 
   /* ==========================================
@@ -456,7 +904,7 @@
 
   function showMessage(
     text,
-    type = "error"
+    type = "success"
   ) {
 
     message.textContent = text;
@@ -464,100 +912,247 @@
     message.className =
       "message " + type;
 
-  }
-
-
-  function clearMessage() {
-
-    message.textContent = "";
-
-    message.className = "message";
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
 
   }
 
 
   /* ==========================================
-     SHOW / HIDE PASSWORD
+     LOAD PROFILE
      ========================================== */
 
-  document
-    .getElementById("togglePassword")
-    .addEventListener(
-      "click",
-      function () {
+  async function loadProfile() {
 
-        if (
-          password.type === "password"
-        ) {
+    try {
 
-          password.type = "text";
-
-          this.textContent = "Hide";
-
-        } else {
-
-          password.type = "password";
-
-          this.textContent = "Show";
-
-        }
-
-      }
-    );
+      const {
+        data: authData,
+        error: authError
+      } =
+      await supabaseClient.auth.getUser();
 
 
-  document
-    .getElementById("toggleConfirm")
-    .addEventListener(
-      "click",
-      function () {
+      if (
+        authError ||
+        !authData.user
+      ) {
 
-        if (
-          confirmPassword.type === "password"
-        ) {
+        window.location.href =
+          "login.html";
 
-          confirmPassword.type = "text";
-
-          this.textContent = "Hide";
-
-        } else {
-
-          confirmPassword.type = "password";
-
-          this.textContent = "Show";
-
-        }
+        return;
 
       }
-    );
+
+
+      currentUser =
+        authData.user;
+
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+        .from("techsavvy_members")
+        .select("*")
+        .eq("id", currentUser.id)
+        .single();
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      /* FORM DATA */
+
+      document.getElementById("firstName").value =
+        data.first_name || "";
+
+      document.getElementById("lastName").value =
+        data.last_name || "";
+
+      document.getElementById("email").value =
+        data.email || currentUser.email || "";
+
+      document.getElementById("phone").value =
+        data.phone || "";
+
+      document.getElementById("age").value =
+        data.age || "";
+
+      document.getElementById("interest").value =
+        data.interest || "";
+
+      document.getElementById("experience").value =
+        data.experience || "";
+
+      document.getElementById("motivation").value =
+        data.motivation || "";
+
+
+      /* PROFILE CARD */
+
+      const first =
+        data.first_name || "";
+
+      const last =
+        data.last_name || "";
+
+      const fullName =
+        `${first} ${last}`.trim();
+
+
+      document.getElementById("displayName")
+        .textContent =
+        fullName || "Techsavvy Member";
+
+
+      document.getElementById("displayEmail")
+        .textContent =
+        data.email || currentUser.email || "--";
+
+
+      const initials =
+        (
+          first.charAt(0) +
+          last.charAt(0)
+        ).toUpperCase() || "TS";
+
+
+      document.getElementById("avatar")
+        .textContent =
+        initials;
+
+
+      document.getElementById("displayAge")
+        .textContent =
+        data.age || "--";
+
+
+      document.getElementById("displayInterest")
+        .textContent =
+        data.interest || "--";
+
+
+      document.getElementById("status")
+        .textContent =
+        data.status || "Pending";
+
+
+      if (data.created_at) {
+
+        document.getElementById("memberSince")
+          .textContent =
+          new Date(
+            data.created_at
+          ).toLocaleDateString(
+            "en-GB",
+            {
+              day: "2-digit",
+              month: "short",
+              year: "numeric"
+            }
+          );
+
+      }
+
+
+      loading.style.display =
+        "none";
+
+      profileContent.style.display =
+        "grid";
+
+
+    } catch (error) {
+
+      console.error(
+        "Profile loading error:",
+        error
+      );
+
+      loading.innerHTML = `
+        <p style="color:#ff7777;">
+          Imeshindikana kupakia profile.
+        </p>
+      `;
+
+    }
+
+  }
 
 
   /* ==========================================
-     UPDATE PASSWORD
+     SAVE PROFILE
      ========================================== */
 
-  form.addEventListener(
+  profileForm.addEventListener(
     "submit",
-    async function (event) {
+    async function(event) {
 
       event.preventDefault();
 
-      clearMessage();
+
+      if (!currentUser) {
+
+        window.location.href =
+          "login.html";
+
+        return;
+
+      }
 
 
-      const newPassword =
-        password.value;
+      const firstName =
+        document.getElementById("firstName")
+          .value.trim();
 
-      const confirm =
-        confirmPassword.value;
+      const lastName =
+        document.getElementById("lastName")
+          .value.trim();
+
+      const phone =
+        document.getElementById("phone")
+          .value.trim();
+
+      const age =
+        Number(
+          document.getElementById("age")
+            .value
+        );
+
+      const interest =
+        document.getElementById("interest")
+          .value;
+
+      const experience =
+        document.getElementById("experience")
+          .value.trim();
+
+      const motivation =
+        document.getElementById("motivation")
+          .value.trim();
 
 
-      /* PASSWORD LENGTH */
-
-      if (newPassword.length < 6) {
+      if (
+        !firstName ||
+        !lastName ||
+        !phone ||
+        !age ||
+        !interest ||
+        !motivation
+      ) {
 
         showMessage(
-          "Password lazima iwe na angalau characters 6."
+          "Tafadhali jaza taarifa zote muhimu.",
+          "error"
         );
 
         return;
@@ -565,23 +1160,10 @@
       }
 
 
-      /* PASSWORD MATCH */
+      saveBtn.disabled = true;
 
-      if (newPassword !== confirm) {
-
-        showMessage(
-          "Passwords hazifanani."
-        );
-
-        return;
-
-      }
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "Updating...";
+      saveBtn.textContent =
+        "Saving...";
 
 
       try {
@@ -589,10 +1171,29 @@
         const {
           error
         } =
-        await supabaseClient.auth
-          .updateUser({
-            password: newPassword
-          });
+        await supabaseClient
+          .from("techsavvy_members")
+          .update({
+
+            first_name: firstName,
+
+            last_name: lastName,
+
+            phone: phone,
+
+            age: age,
+
+            interest: interest,
+
+            experience: experience,
+
+            motivation: motivation
+
+          })
+          .eq(
+            "id",
+            currentUser.id
+          );
 
 
         if (error) {
@@ -602,46 +1203,87 @@
         }
 
 
+        /* UPDATE DISPLAY */
+
+        document.getElementById("displayName")
+          .textContent =
+          `${firstName} ${lastName}`;
+
+
+        document.getElementById("displayAge")
+          .textContent =
+          age;
+
+
+        document.getElementById("displayInterest")
+          .textContent =
+          interest;
+
+
+        document.getElementById("avatar")
+          .textContent =
+          (
+            firstName.charAt(0) +
+            lastName.charAt(0)
+          ).toUpperCase();
+
+
         showMessage(
-          "Password imebadilishwa successfully! Utapelekwa Login...",
+          "Profile yako imehifadhiwa successfully!",
           "success"
-        );
-
-
-        setTimeout(
-          function () {
-
-            window.location.href =
-              "login.html";
-
-          },
-          1800
         );
 
 
       } catch (error) {
 
         console.error(
-          "Password update error:",
+          "Profile update error:",
           error
         );
 
 
         showMessage(
           error.message ||
-          "Imeshindikana kubadilisha password."
+          "Imeshindikana kuhifadhi profile.",
+          "error"
         );
-
-
-        button.disabled = false;
-
-        button.textContent =
-          "Update Password";
 
       }
 
+
+      saveBtn.disabled = false;
+
+      saveBtn.textContent =
+        "Save Changes";
+
     }
   );
+
+
+  /* ==========================================
+     LOGOUT
+     ========================================== */
+
+  document
+    .getElementById("logoutBtn")
+    .addEventListener(
+      "click",
+      async function() {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+          "login.html";
+
+      }
+    );
+
+
+  /* ==========================================
+     START
+     ========================================== */
+
+  loadProfile();
 
 </script>
 
