@@ -2,250 +2,532 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Courses | Techsavvy Tanzania</title>
+<title>Courses | Techsavvy Tanzania</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            font-family: Inter, sans-serif;
-            background: #050505;
-            color: #fff;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .navbar {
-            height: 75px;
-            padding: 0 6%;
-            border-bottom: 1px solid #222;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #080808;
-        }
+:root{
+    --blue:#155eef;
+    --blue2:#4d8aff;
+    --black:#050505;
+    --dark:#0b0b0b;
+    --card:#111;
+    --border:#252525;
+    --muted:#858585;
+    --green:#32d583;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+body{
+    font-family:Inter,sans-serif;
+    background:var(--black);
+    color:white;
+    min-height:100vh;
+}
 
-        .logo-box {
-            width: 40px;
-            height: 40px;
-            background: #155eef;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Space Grotesk";
-            font-weight: 800;
-        }
+button{
+    font-family:inherit;
+}
 
-        .logo-text {
-            font-family: "Space Grotesk";
-            font-weight: 700;
-        }
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-        .logo-text span {
-            color: #155eef;
-        }
 
-        .back {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 14px;
-        }
+/* LOADING */
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 55px 0;
-        }
+#loading{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
 
-        .header {
-            margin-bottom: 40px;
-        }
+.loader{
+    text-align:center;
+}
 
-        .label {
-            color: #4d8aff;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
+.loader-logo{
+    width:55px;
+    height:55px;
+    background:var(--blue);
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Space Grotesk";
+    font-size:25px;
+    font-weight:800;
+    margin:auto;
+}
 
-        h1 {
-            font-family: "Space Grotesk";
-            font-size: clamp(38px, 6vw, 60px);
-        }
+.loader p{
+    color:#777;
+    font-size:13px;
+    margin-top:14px;
+}
 
-        h1 span {
-            color: #155eef;
-        }
 
-        .header p {
-            color: #777;
-            margin-top: 12px;
-            max-width: 600px;
-            line-height: 1.7;
-        }
+/* NAVBAR */
 
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+.navbar{
+    height:75px;
+    border-bottom:1px solid var(--border);
+    background:#080808;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-        .course-card {
-            background: #0d0d0d;
-            border: 1px solid #252525;
-            border-radius: 15px;
-            padding: 25px;
-            transition: .25s;
-        }
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-        .course-card:hover {
-            border-color: #155eef;
-            transform: translateY(-4px);
-        }
+.logo-box{
+    width:40px;
+    height:40px;
+    background:var(--blue);
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Space Grotesk";
+    font-weight:800;
+}
 
-        .icon {
-            width: 50px;
-            height: 50px;
-            background: #155eef;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Space Grotesk";
-            font-weight: 700;
-            margin-bottom: 22px;
-        }
+.logo-text{
+    font-family:"Space Grotesk";
+    font-weight:700;
+}
 
-        .course-card h2 {
-            font-family: "Space Grotesk";
-            font-size: 21px;
-            margin-bottom: 10px;
-        }
+.logo-text span{
+    color:var(--blue);
+}
 
-        .course-card p {
-            color: #777;
-            line-height: 1.6;
-            font-size: 14px;
-            min-height: 65px;
-        }
+.back{
+    color:#999;
+    font-size:13px;
+}
 
-        .course-info {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            color: #666;
-            font-size: 12px;
-        }
+.back:hover{
+    color:white;
+}
 
-        .start-btn {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #155eef;
-            background: transparent;
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
 
-        .start-btn:hover {
-            background: #155eef;
-        }
+/* CONTAINER */
 
-        #loading {
-            position: fixed;
-            inset: 0;
-            background: #050505;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:45px 0 70px;
+}
 
-        #loading p {
-            color: #777;
-            margin-top: 12px;
-            font-size: 13px;
-        }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            background: #155eef;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-            font-weight: 800;
-        }
+/* HEADER */
 
-        @media (max-width: 900px) {
-            .course-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+.page-header{
+    margin-bottom:35px;
+}
 
-        @media (max-width: 600px) {
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
+.label{
+    color:var(--blue2);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
 
-            .navbar {
-                padding: 0 20px;
-            }
+.page-header h1{
+    font-family:"Space Grotesk";
+    font-size:clamp(35px,6vw,58px);
+}
 
-            .container {
-                width: 92%;
-                padding: 40px 0;
-            }
-        }
+.page-header h1 span{
+    color:var(--blue);
+}
 
-    </style>
+.page-header p{
+    color:#777;
+    max-width:650px;
+    line-height:1.7;
+    margin-top:10px;
+}
+
+
+/* COURSE SELECTOR */
+
+.course-selector{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:40px;
+}
+
+.course-select{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.course-select:hover{
+    border-color:var(--blue);
+}
+
+.course-select.active{
+    border-color:var(--blue);
+    background:#0d1830;
+}
+
+.course-code{
+    width:42px;
+    height:42px;
+    background:var(--blue);
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Space Grotesk";
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.course-select h3{
+    font-family:"Space Grotesk";
+    font-size:16px;
+}
+
+.course-select p{
+    color:#666;
+    font-size:11px;
+    margin-top:5px;
+}
+
+
+/* LESSON AREA */
+
+.learning{
+    display:grid;
+    grid-template-columns:270px 1fr;
+    gap:22px;
+}
+
+
+/* LESSON SIDEBAR */
+
+.lesson-sidebar{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:20px;
+    height:max-content;
+}
+
+.lesson-sidebar h3{
+    font-family:"Space Grotesk";
+    font-size:17px;
+    margin-bottom:18px;
+}
+
+.course-progress{
+    margin-bottom:20px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    color:#777;
+    font-size:10px;
+    margin-bottom:7px;
+}
+
+.progress-bar{
+    height:6px;
+    background:#222;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:var(--blue);
+    transition:.3s;
+}
+
+.lessons{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.lesson-item{
+    padding:11px;
+    border-radius:7px;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.lesson-item:hover{
+    background:#181818;
+    color:white;
+}
+
+.lesson-item.active{
+    background:#16284c;
+    color:white;
+}
+
+.lesson-item.completed{
+    color:var(--green);
+}
+
+.lesson-number{
+    width:22px;
+    height:22px;
+    border:1px solid #333;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:9px;
+}
+
+
+/* LESSON CONTENT */
+
+.lesson-content{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    overflow:hidden;
+}
+
+.lesson-top{
+    padding:28px;
+    border-bottom:1px solid var(--border);
+}
+
+.lesson-label{
+    color:var(--blue2);
+    font-size:10px;
+    letter-spacing:2px;
+    font-weight:700;
+}
+
+.lesson-top h2{
+    font-family:"Space Grotesk";
+    font-size:28px;
+    margin-top:10px;
+}
+
+.lesson-body{
+    padding:30px;
+}
+
+.lesson-body p{
+    color:#999;
+    line-height:1.8;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+.lesson-body h3{
+    font-family:"Space Grotesk";
+    font-size:19px;
+    margin:28px 0 12px;
+}
+
+.lesson-body ul{
+    padding-left:20px;
+    color:#999;
+    line-height:2;
+    font-size:14px;
+}
+
+.lesson-box{
+    background:#0a0f1c;
+    border:1px solid #18294b;
+    border-radius:10px;
+    padding:20px;
+    margin:25px 0;
+}
+
+.lesson-box strong{
+    display:block;
+    color:white;
+    margin-bottom:7px;
+}
+
+.lesson-box p{
+    margin:0;
+    font-size:13px;
+}
+
+
+/* CONTROLS */
+
+.lesson-controls{
+    border-top:1px solid var(--border);
+    padding:20px 28px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.btn{
+    padding:11px 17px;
+    border-radius:7px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+}
+
+.btn-secondary{
+    background:transparent;
+    border:1px solid #333;
+    color:#aaa;
+}
+
+.btn-primary{
+    background:var(--blue);
+    border:1px solid var(--blue);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#0f4bc5;
+}
+
+.btn-secondary:hover{
+    color:white;
+    border-color:#555;
+}
+
+.complete-btn{
+    margin-left:auto;
+}
+
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    color:#666;
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .course-selector{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .learning{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        padding:0 20px;
+    }
+
+    .container{
+        width:92%;
+        padding-top:30px;
+    }
+
+    .course-selector{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-body{
+        padding:22px;
+    }
+
+    .lesson-top{
+        padding:22px;
+    }
+
+    .lesson-controls{
+        padding:18px;
+        flex-wrap:wrap;
+    }
+
+    .complete-btn{
+        margin-left:0;
+        width:100%;
+    }
+
+}
+
+</style>
 
 </head>
+
 
 <body>
 
 
+<!-- LOADING -->
+
 <div id="loading">
 
-    <div>
+    <div class="loader">
 
-        <div class="loader">
+        <div class="loader-logo">
             T
         </div>
 
         <p>
-            Checking account...
+            Loading your courses...
         </p>
 
     </div>
 
 </div>
 
+
+<!-- NAVBAR -->
 
 <header class="navbar">
 
@@ -270,277 +552,284 @@
 
 <main class="container">
 
-    <div class="header">
+
+    <!-- HEADER -->
+
+    <section class="page-header">
 
         <div class="label">
             TECHSAVVY LEARNING
         </div>
 
         <h1>
-            Learn. Build.
-            <span>Grow.</span>
+            Learn.
+            <span>Build. Grow.</span>
         </h1>
 
         <p>
-            Explore practical technology courses designed
-            to help you build real digital skills.
+            Choose a course and start learning practical
+            technology skills. Your progress is automatically
+            saved to your member account.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="course-grid">
+    <!-- COURSE SELECTOR -->
+
+    <section class="course-selector" id="courseSelector">
 
 
-        <!-- AI -->
+        <div
+            class="course-select active"
+            onclick="selectCourse(0)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 AI
             </div>
 
-            <h2>
+            <h3>
                 AI & ChatGPT
-            </h2>
+            </h3>
 
             <p>
-                Learn practical Artificial Intelligence,
-                ChatGPT and modern AI workflows.
+                8 Lessons
             </p>
 
-            <div class="course-info">
-
-                <span>
-                    Beginner
-                </span>
-
-                <span>
-                    8 Lessons
-                </span>
-
-            </div>
-
-            <button
-                class="start-btn"
-                onclick="startCourse('AI & ChatGPT')"
-            >
-                Start Course →
-            </button>
-
-        </article>
+        </div>
 
 
-        <!-- WEB -->
+        <div
+            class="course-select"
+            onclick="selectCourse(1)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 WD
             </div>
 
-            <h2>
+            <h3>
                 Web Development
-            </h2>
+            </h3>
 
             <p>
-                Learn HTML, CSS and JavaScript and
-                build responsive websites.
+                8 Lessons
             </p>
 
-            <div class="course-info">
-
-                <span>
-                    Beginner
-                </span>
-
-                <span>
-                    10 Lessons
-                </span>
-
-            </div>
-
-            <button
-                class="start-btn"
-                onclick="startCourse('Web Development')"
-            >
-                Start Course →
-            </button>
-
-        </article>
+        </div>
 
 
-        <!-- CYBER -->
+        <div
+            class="course-select"
+            onclick="selectCourse(2)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 CY
             </div>
 
-            <h2>
+            <h3>
                 Cybersecurity
-            </h2>
+            </h3>
 
             <p>
-                Understand cybersecurity fundamentals,
-                online safety and digital protection.
+                8 Lessons
             </p>
 
-            <div class="course-info">
-
-                <span>
-                    Beginner
-                </span>
-
-                <span>
-                    8 Lessons
-                </span>
-
-            </div>
-
-            <button
-                class="start-btn"
-                onclick="startCourse('Cybersecurity')"
-            >
-                Start Course →
-            </button>
-
-        </article>
+        </div>
 
 
-        <!-- NETWORKING -->
+        <div
+            class="course-select"
+            onclick="selectCourse(3)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 NW
             </div>
 
-            <h2>
+            <h3>
                 Networking
-            </h2>
+            </h3>
 
             <p>
-                Learn IP addresses, devices, protocols,
-                networks and connectivity.
+                8 Lessons
             </p>
 
-            <div class="course-info">
-
-                <span>
-                    Beginner
-                </span>
-
-                <span>
-                    10 Lessons
-                </span>
-
-            </div>
-
-            <button
-                class="start-btn"
-                onclick="startCourse('Networking')"
-            >
-                Start Course →
-            </button>
-
-        </article>
+        </div>
 
 
-        <!-- GRAPHIC DESIGN -->
+        <div
+            class="course-select"
+            onclick="selectCourse(4)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 GD
             </div>
 
-            <h2>
+            <h3>
                 Graphic Design
-            </h2>
+            </h3>
 
             <p>
-                Learn design principles and create
-                professional digital graphics.
+                8 Lessons
             </p>
 
-            <div class="course-info">
-
-                <span>
-                    Beginner
-                </span>
-
-                <span>
-                    8 Lessons
-                </span>
-
-            </div>
-
-            <button
-                class="start-btn"
-                onclick="startCourse('Graphic Design')"
-            >
-                Start Course →
-            </button>
-
-        </article>
+        </div>
 
 
-        <!-- DIGITAL MARKETING -->
+        <div
+            class="course-select"
+            onclick="selectCourse(5)"
+        >
 
-        <article class="course-card">
-
-            <div class="icon">
+            <div class="course-code">
                 DM
             </div>
 
-            <h2>
+            <h3>
                 Digital Marketing
-            </h2>
+            </h3>
 
             <p>
-                Learn content strategy, social media,
-                branding and audience growth.
+                8 Lessons
             </p>
 
-            <div class="course-info">
+        </div>
 
-                <span>
-                    Beginner
-                </span>
 
-                <span>
-                    8 Lessons
-                </span>
+    </section>
+
+
+    <!-- LEARNING -->
+
+    <section class="learning">
+
+
+        <!-- LESSON SIDEBAR -->
+
+        <aside class="lesson-sidebar">
+
+            <h3 id="courseTitle">
+                AI & ChatGPT
+            </h3>
+
+
+            <div class="course-progress">
+
+                <div class="progress-info">
+
+                    <span>
+                        COURSE PROGRESS
+                    </span>
+
+                    <span id="progressText">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
 
             </div>
 
-            <button
-                class="start-btn"
-                onclick="startCourse('Digital Marketing')"
+
+            <div
+                class="lessons"
+                id="lessonList"
+            ></div>
+
+
+        </aside>
+
+
+        <!-- LESSON -->
+
+        <article class="lesson-content">
+
+
+            <div class="lesson-top">
+
+                <div class="lesson-label">
+                    LESSON <span id="lessonNumber">1</span>
+                </div>
+
+                <h2 id="lessonTitle">
+                    Introduction to Artificial Intelligence
+                </h2>
+
+            </div>
+
+
+            <div
+                class="lesson-body"
+                id="lessonBody"
             >
-                Start Course →
-            </button>
+
+            </div>
+
+
+            <div class="lesson-controls">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="previousLesson()"
+                    id="previousBtn"
+                >
+                    ← Previous
+                </button>
+
+
+                <button
+                    class="btn btn-primary complete-btn"
+                    onclick="completeLesson()"
+                    id="completeBtn"
+                >
+                    Mark Lesson Complete ✓
+                </button>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="nextLesson()"
+                    id="nextBtn"
+                >
+                    Next →
+                </button>
+
+            </div>
+
 
         </article>
 
 
-    </div>
+    </section>
+
 
 </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
+
+
+/* =========================================
+   SUPABASE
+========================================= */
 
 const SUPABASE_URL =
     "WEKA_SUPABASE_URL_HAPA";
 
 const SUPABASE_KEY =
     "WEKA_SUPABASE_PUBLISHABLE_KEY_HAPA";
-
 
 const supabaseClient =
     supabase.createClient(
@@ -549,17 +838,736 @@ const supabaseClient =
     );
 
 
-async function checkUser() {
+/* =========================================
+   COURSES
+========================================= */
+
+const courses = [
+
+    {
+        name:"AI & ChatGPT",
+
+        lessons:[
+            {
+                title:"Introduction to Artificial Intelligence",
+                body:`
+                    <p>
+                        Artificial Intelligence (AI) is technology
+                        that allows computers and software to perform
+                        tasks that normally require human intelligence.
+                    </p>
+
+                    <h3>What you will learn</h3>
+
+                    <ul>
+                        <li>What Artificial Intelligence means</li>
+                        <li>How AI systems work</li>
+                        <li>Examples of AI in everyday life</li>
+                        <li>How young people can use AI</li>
+                    </ul>
+
+                    <div class="lesson-box">
+                        <strong>Key Idea</strong>
+                        <p>
+                            AI is a tool. The value comes from how
+                            intelligently and responsibly you use it.
+                        </p>
+                    </div>
+                `
+            },
+
+            {
+                title:"Understanding Generative AI",
+                body:`
+                    <p>
+                        Generative AI refers to AI systems that can
+                        create new content such as text, images,
+                        audio and code.
+                    </p>
+
+                    <h3>Examples</h3>
+
+                    <ul>
+                        <li>Text generation</li>
+                        <li>Image generation</li>
+                        <li>Code generation</li>
+                        <li>AI assistants</li>
+                    </ul>
+
+                    <div class="lesson-box">
+                        <strong>Remember</strong>
+                        <p>
+                            Generative AI produces content based on
+                            patterns learned from large amounts of data.
+                        </p>
+                    </div>
+                `
+            },
+
+            {
+                title:"Getting Started with ChatGPT",
+                body:`
+                    <p>
+                        ChatGPT is an AI assistant that can help with
+                        learning, brainstorming, writing, coding and
+                        many other tasks.
+                    </p>
+
+                    <h3>Good Uses</h3>
+
+                    <ul>
+                        <li>Explaining difficult topics</li>
+                        <li>Creating study plans</li>
+                        <li>Brainstorming ideas</li>
+                        <li>Learning programming</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"Writing Better Prompts",
+                body:`
+                    <p>
+                        A prompt is the instruction you give an AI
+                        system. Better instructions generally produce
+                        more useful results.
+                    </p>
+
+                    <h3>A good prompt should include</h3>
+
+                    <ul>
+                        <li>Clear task</li>
+                        <li>Context</li>
+                        <li>Desired format</li>
+                        <li>Relevant limitations</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"AI for Productivity",
+                body:`
+                    <p>
+                        AI can help reduce repetitive work and make
+                        learning and productivity more efficient.
+                    </p>
+
+                    <ul>
+                        <li>Summarizing information</li>
+                        <li>Planning tasks</li>
+                        <li>Generating ideas</li>
+                        <li>Creating drafts</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"AI for Students and Young Creators",
+                body:`
+                    <p>
+                        Young people can use AI to accelerate learning,
+                        research ideas and create digital projects.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Challenge</strong>
+                        <p>
+                            Think of one problem in your community
+                            that AI could help solve.
+                        </p>
+                    </div>
+                `
+            },
+
+            {
+                title:"Responsible AI Use",
+                body:`
+                    <p>
+                        AI should be used responsibly. Always review
+                        important information generated by AI.
+                    </p>
+
+                    <ul>
+                        <li>Protect personal information</li>
+                        <li>Verify important facts</li>
+                        <li>Avoid harmful uses</li>
+                        <li>Respect intellectual property</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"AI Project Challenge",
+                body:`
+                    <p>
+                        You have reached the final lesson of the
+                        introductory AI course.
+                    </p>
+
+                    <h3>Your Challenge</h3>
+
+                    <p>
+                        Design a simple idea for an AI-powered solution
+                        that could help students, businesses or your
+                        local community.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to mark the course as
+                            100% complete.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    },
+
+
+    {
+        name:"Web Development",
+
+        lessons:[
+            {
+                title:"Introduction to Web Development",
+                body:`
+                    <p>
+                        Web development is the process of creating
+                        websites and web applications.
+                    </p>
+
+                    <h3>The three foundations</h3>
+
+                    <ul>
+                        <li>HTML — structure</li>
+                        <li>CSS — design</li>
+                        <li>JavaScript — behaviour</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"HTML Fundamentals",
+                body:`
+                    <p>
+                        HTML provides the structure of a webpage.
+                    </p>
+
+                    <ul>
+                        <li>Headings</li>
+                        <li>Paragraphs</li>
+                        <li>Links</li>
+                        <li>Images</li>
+                        <li>Forms</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"CSS Fundamentals",
+                body:`
+                    <p>
+                        CSS controls the visual appearance of a webpage.
+                    </p>
+
+                    <ul>
+                        <li>Colors</li>
+                        <li>Typography</li>
+                        <li>Spacing</li>
+                        <li>Layouts</li>
+                        <li>Responsive design</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"JavaScript Fundamentals",
+                body:`
+                    <p>
+                        JavaScript adds logic and interaction to websites.
+                    </p>
+
+                    <ul>
+                        <li>Variables</li>
+                        <li>Functions</li>
+                        <li>Events</li>
+                        <li>Conditions</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"Responsive Websites",
+                body:`
+                    <p>
+                        Responsive design allows websites to work
+                        properly on phones, tablets and computers.
+                    </p>
+                `
+            },
+
+            {
+                title:"Building Your First Website",
+                body:`
+                    <p>
+                        Combine HTML, CSS and JavaScript to create
+                        a simple website.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Project</strong>
+                        <p>
+                            Create a personal portfolio homepage.
+                        </p>
+                    </div>
+                `
+            },
+
+            {
+                title:"Website Deployment",
+                body:`
+                    <p>
+                        Deployment is the process of making a website
+                        available online.
+                    </p>
+
+                    <ul>
+                        <li>GitHub Pages</li>
+                        <li>Web hosting</li>
+                        <li>Custom domains</li>
+                    </ul>
+                `
+            },
+
+            {
+                title:"Web Development Challenge",
+                body:`
+                    <p>
+                        Build a simple responsive website containing
+                        a navigation bar, hero section, about section
+                        and contact section.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to complete the course.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    },
+
+
+    {
+        name:"Cybersecurity",
+
+        lessons:[
+            {
+                title:"Introduction to Cybersecurity",
+                body:`
+                    <p>
+                        Cybersecurity focuses on protecting systems,
+                        networks, applications and information from
+                        digital threats.
+                    </p>
+                `
+            },
+
+            {
+                title:"Common Cyber Threats",
+                body:`
+                    <p>
+                        Learn about common threats such as phishing,
+                        malware, password attacks and social engineering.
+                    </p>
+                `
+            },
+
+            {
+                title:"Strong Passwords",
+                body:`
+                    <p>
+                        Strong, unique passwords are an important part
+                        of protecting online accounts.
+                    </p>
+                `
+            },
+
+            {
+                title:"Phishing Awareness",
+                body:`
+                    <p>
+                        Phishing attempts to trick people into revealing
+                        information or performing unsafe actions.
+                    </p>
+                `
+            },
+
+            {
+                title:"Device Security",
+                body:`
+                    <p>
+                        Keep devices updated and use security controls
+                        such as screen locks and trusted applications.
+                    </p>
+                `
+            },
+
+            {
+                title:"Network Security Basics",
+                body:`
+                    <p>
+                        Learn basic concepts for protecting devices
+                        and networks from unauthorized access.
+                    </p>
+                `
+            },
+
+            {
+                title:"Data Protection",
+                body:`
+                    <p>
+                        Personal and business information should be
+                        handled carefully and protected appropriately.
+                    </p>
+                `
+            },
+
+            {
+                title:"Cybersecurity Challenge",
+                body:`
+                    <p>
+                        Create a personal cybersecurity checklist
+                        covering your passwords, devices, accounts
+                        and important data.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to complete the course.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    },
+
+
+    {
+        name:"Networking",
+
+        lessons:[
+            {
+                title:"Introduction to Networking",
+                body:`
+                    <p>
+                        Computer networking allows devices to
+                        communicate and share resources.
+                    </p>
+                `
+            },
+
+            {
+                title:"Network Devices",
+                body:`
+                    <p>
+                        Learn about switches, routers, access points,
+                        modems and other networking equipment.
+                    </p>
+                `
+            },
+
+            {
+                title:"IP Addresses",
+                body:`
+                    <p>
+                        IP addresses identify devices on a network.
+                    </p>
+                `
+            },
+
+            {
+                title:"MAC Addresses",
+                body:`
+                    <p>
+                        A MAC address is a hardware identifier
+                        associated with a network interface.
+                    </p>
+                `
+            },
+
+            {
+                title:"TCP/IP Basics",
+                body:`
+                    <p>
+                        TCP/IP is the foundation of communication
+                        across modern computer networks and the Internet.
+                    </p>
+                `
+            },
+
+            {
+                title:"DNS and DHCP",
+                body:`
+                    <p>
+                        DNS helps translate domain names to IP addresses,
+                        while DHCP can automatically provide network
+                        configuration to devices.
+                    </p>
+                `
+            },
+
+            {
+                title:"Wi-Fi Networking",
+                body:`
+                    <p>
+                        Learn the fundamentals of wireless networking,
+                        access points and Wi-Fi connectivity.
+                    </p>
+                `
+            },
+
+            {
+                title:"Networking Challenge",
+                body:`
+                    <p>
+                        Design a simple network for a small office.
+                        Identify the router, switch, access point and
+                        connected devices.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to complete the course.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    },
+
+
+    {
+        name:"Graphic Design",
+
+        lessons:[
+            {
+                title:"Introduction to Graphic Design",
+                body:`
+                    <p>
+                        Graphic design combines text, images, shapes
+                        and visual principles to communicate ideas.
+                    </p>
+                `
+            },
+
+            {
+                title:"Design Principles",
+                body:`
+                    <p>
+                        Learn contrast, alignment, repetition,
+                        proximity and balance.
+                    </p>
+                `
+            },
+
+            {
+                title:"Typography",
+                body:`
+                    <p>
+                        Typography is the art of arranging text so it
+                        is readable, clear and visually effective.
+                    </p>
+                `
+            },
+
+            {
+                title:"Color Theory",
+                body:`
+                    <p>
+                        Colors influence visual hierarchy, emotion
+                        and brand identity.
+                    </p>
+                `
+            },
+
+            {
+                title:"Layouts",
+                body:`
+                    <p>
+                        Good layouts organize information and guide
+                        the viewer through a design.
+                    </p>
+                `
+            },
+
+            {
+                title:"Branding Basics",
+                body:`
+                    <p>
+                        Branding creates a consistent visual identity
+                        for an organization or product.
+                    </p>
+                `
+            },
+
+            {
+                title:"Social Media Design",
+                body:`
+                    <p>
+                        Learn how to create clear and engaging
+                        graphics for digital platforms.
+                    </p>
+                `
+            },
+
+            {
+                title:"Design Challenge",
+                body:`
+                    <p>
+                        Create a promotional poster for a technology
+                        event using strong typography, hierarchy
+                        and consistent branding.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to complete the course.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    },
+
+
+    {
+        name:"Digital Marketing",
+
+        lessons:[
+            {
+                title:"Introduction to Digital Marketing",
+                body:`
+                    <p>
+                        Digital marketing uses online channels to
+                        reach audiences and promote products, services
+                        or ideas.
+                    </p>
+                `
+            },
+
+            {
+                title:"Understanding Your Audience",
+                body:`
+                    <p>
+                        Effective marketing begins with understanding
+                        who you are trying to reach.
+                    </p>
+                `
+            },
+
+            {
+                title:"Content Strategy",
+                body:`
+                    <p>
+                        Content strategy helps you plan what to publish,
+                        where to publish it and why.
+                    </p>
+                `
+            },
+
+            {
+                title:"Social Media Marketing",
+                body:`
+                    <p>
+                        Learn how social platforms can help organizations
+                        build awareness and community.
+                    </p>
+                `
+            },
+
+            {
+                title:"Hooks and Storytelling",
+                body:`
+                    <p>
+                        Strong hooks capture attention while storytelling
+                        helps audiences understand and remember ideas.
+                    </p>
+                `
+            },
+
+            {
+                title:"Personal Branding",
+                body:`
+                    <p>
+                        Personal branding communicates your skills,
+                        values and expertise consistently online.
+                    </p>
+                `
+            },
+
+            {
+                title:"Measuring Results",
+                body:`
+                    <p>
+                        Analytics can help you understand what content
+                        performs well and where improvements are needed.
+                    </p>
+                `
+            },
+
+            {
+                title:"Marketing Challenge",
+                body:`
+                    <p>
+                        Create a one-week content plan for a technology
+                        project or small business.
+                    </p>
+
+                    <div class="lesson-box">
+                        <strong>Course Complete</strong>
+                        <p>
+                            Finish this lesson to complete the course.
+                        </p>
+                    </div>
+                `
+            }
+        ]
+    }
+
+];
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let currentCourse = 0;
+let currentLesson = 0;
+
+let user = null;
+
+let completedLessons = {};
+
+
+/* =========================================
+   CHECK USER
+========================================= */
+
+async function checkUser(){
 
     const {
-        data: {
-            user
-        }
-    } =
-        await supabaseClient.auth.getUser();
+        data,
+        error
+    } = await supabaseClient.auth.getUser();
 
-
-    if (!user) {
+    if(error || !data.user){
 
         window.location.href =
             "login.html";
@@ -568,6 +1576,32 @@ async function checkUser() {
 
     }
 
+    user = data.user;
+
+    await loadCourseProgress();
+
+    const selected =
+        localStorage.getItem(
+            "selectedCourse"
+        );
+
+    if(selected){
+
+        const index =
+            courses.findIndex(
+                course =>
+                course.name === selected
+            );
+
+        if(index >= 0){
+
+            currentCourse = index;
+
+        }
+
+    }
+
+    renderCourse();
 
     document.getElementById(
         "loading"
@@ -576,52 +1610,604 @@ async function checkUser() {
 }
 
 
-async function startCourse(courseName) {
+/* =========================================
+   SELECT COURSE
+========================================= */
 
-    const {
-        data: {
-            user
+function selectCourse(index){
+
+    currentCourse = index;
+
+    currentLesson = 0;
+
+    renderCourse();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================
+   RENDER COURSE
+========================================= */
+
+function renderCourse(){
+
+    const course =
+        courses[currentCourse];
+
+    document.getElementById(
+        "courseTitle"
+    ).textContent =
+        course.name;
+
+
+    document
+        .querySelectorAll(".course-select")
+        .forEach((item,index)=>{
+
+            item.classList.toggle(
+                "active",
+                index === currentCourse
+            );
+
+        });
+
+
+    renderLessons();
+
+    renderLesson();
+
+    updateProgress();
+
+}
+
+
+/* =========================================
+   RENDER LESSON LIST
+========================================= */
+
+function renderLessons(){
+
+    const course =
+        courses[currentCourse];
+
+    const list =
+        document.getElementById(
+            "lessonList"
+        );
+
+    list.innerHTML = "";
+
+
+    course.lessons.forEach(
+        (lesson,index)=>{
+
+            const key =
+                currentCourse +
+                "_" +
+                index;
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "lesson-item";
+
+
+            if(index === currentLesson){
+
+                item.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            if(completedLessons[key]){
+
+                item.classList.add(
+                    "completed"
+                );
+
+            }
+
+
+            item.innerHTML = `
+
+                <span class="lesson-number">
+                    ${
+                        completedLessons[key]
+                        ? "✓"
+                        : index + 1
+                    }
+                </span>
+
+                <span>
+                    ${lesson.title}
+                </span>
+
+            `;
+
+
+            item.onclick =
+                function(){
+
+                    currentLesson =
+                        index;
+
+                    renderCourse();
+
+                };
+
+
+            list.appendChild(item);
+
         }
-    } =
-        await supabaseClient.auth.getUser();
+    );
+
+}
 
 
-    if (!user) {
+/* =========================================
+   RENDER CURRENT LESSON
+========================================= */
 
-        window.location.href =
-            "login.html";
+function renderLesson(){
+
+    const course =
+        courses[currentCourse];
+
+    const lesson =
+        course.lessons[currentLesson];
+
+
+    document.getElementById(
+        "lessonNumber"
+    ).textContent =
+        currentLesson + 1;
+
+
+    document.getElementById(
+        "lessonTitle"
+    ).textContent =
+        lesson.title;
+
+
+    document.getElementById(
+        "lessonBody"
+    ).innerHTML =
+        lesson.body;
+
+
+    document.getElementById(
+        "previousBtn"
+    ).disabled =
+        currentLesson === 0;
+
+
+    const complete =
+        completedLessons[
+            currentCourse +
+            "_" +
+            currentLesson
+        ];
+
+
+    const completeBtn =
+        document.getElementById(
+            "completeBtn"
+        );
+
+
+    if(complete){
+
+        completeBtn.textContent =
+            "✓ Lesson Completed";
+
+        completeBtn.style.background =
+            "#183b2b";
+
+        completeBtn.style.borderColor =
+            "#32d583";
+
+    }else{
+
+        completeBtn.textContent =
+            "Mark Lesson Complete ✓";
+
+        completeBtn.style.background =
+            "";
+
+        completeBtn.style.borderColor =
+            "";
+
+    }
+
+
+    document.getElementById(
+        "nextBtn"
+    ).textContent =
+        currentLesson ===
+        course.lessons.length - 1
+        ? "Finish Course ✓"
+        : "Next →";
+
+}
+
+
+/* =========================================
+   PREVIOUS
+========================================= */
+
+function previousLesson(){
+
+    if(currentLesson > 0){
+
+        currentLesson--;
+
+        renderCourse();
+
+    }
+
+}
+
+
+/* =========================================
+   NEXT
+========================================= */
+
+function nextLesson(){
+
+    const course =
+        courses[currentCourse];
+
+
+    if(
+        currentLesson <
+        course.lessons.length - 1
+    ){
+
+        currentLesson++;
+
+        renderCourse();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
         return;
 
     }
 
 
-    /*
-    Kwa sasa tunahifadhi course ambayo
-    member ameichagua kwenye browser.
-    Tutaiunganisha na Supabase progress
-    kwenye hatua inayofuata.
-    */
+    const key =
+        currentCourse +
+        "_" +
+        currentLesson;
 
-    localStorage.setItem(
-        "selectedCourse",
-        courseName
-    );
+
+    if(!completedLessons[key]){
+
+        completeLesson();
+
+        return;
+
+    }
 
 
     alert(
-        "🚀 " +
-        courseName +
-        "\n\nCourse imechaguliwa. Tutaanza lessons kwenye hatua inayofuata."
+        "🎉 Hongera! Umemaliza course ya " +
+        course.name + "."
     );
 
 }
 
 
+/* =========================================
+   COMPLETE LESSON
+========================================= */
+
+async function completeLesson(){
+
+    const key =
+        currentCourse +
+        "_" +
+        currentLesson;
+
+
+    if(completedLessons[key]){
+
+        nextLesson();
+
+        return;
+
+    }
+
+
+    completedLessons[key] = true;
+
+
+    renderCourse();
+
+
+    await saveCourseProgress();
+
+
+    const course =
+        courses[currentCourse];
+
+
+    const total =
+        course.lessons.length;
+
+
+    const completed =
+        getCompletedCount();
+
+
+    if(completed === total){
+
+        alert(
+            "🎉 Hongera!\n\n" +
+            course.name +
+            " imekamilika kwa 100%."
+        );
+
+    }else if(
+        currentLesson <
+        total - 1
+    ){
+
+        currentLesson++;
+
+        renderCourse();
+
+    }
+
+}
+
+
+/* =========================================
+   COMPLETED COUNT
+========================================= */
+
+function getCompletedCount(){
+
+    const course =
+        courses[currentCourse];
+
+    let count = 0;
+
+
+    course.lessons.forEach(
+        (lesson,index)=>{
+
+            const key =
+                currentCourse +
+                "_" +
+                index;
+
+
+            if(completedLessons[key]){
+
+                count++;
+
+            }
+
+        }
+    );
+
+
+    return count;
+
+}
+
+
+/* =========================================
+   UPDATE PROGRESS
+========================================= */
+
+function updateProgress(){
+
+    const course =
+        courses[currentCourse];
+
+
+    const completed =
+        getCompletedCount();
+
+
+    const total =
+        course.lessons.length;
+
+
+    const percent =
+        Math.round(
+            (completed / total) * 100
+        );
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        percent + "%";
+
+}
+
+
+/* =========================================
+   LOAD PROGRESS FROM SUPABASE
+========================================= */
+
+async function loadCourseProgress(){
+
+    if(!user) return;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "techsavvy_course_progress"
+            )
+            .select("*")
+            .eq(
+                "user_id",
+                user.id
+            );
+
+
+    if(error){
+
+        console.log(
+            "Course progress table haijapatikana bado."
+        );
+
+        return;
+
+    }
+
+
+    if(!data) return;
+
+
+    data.forEach(item=>{
+
+        const courseIndex =
+            courses.findIndex(
+                course =>
+                course.name ===
+                item.course_name
+            );
+
+
+        if(courseIndex < 0) return;
+
+
+        const progress =
+            Number(item.progress) || 0;
+
+
+        const total =
+            courses[
+                courseIndex
+            ].lessons.length;
+
+
+        const completedCount =
+            Math.round(
+                (progress / 100) *
+                total
+            );
+
+
+        for(
+            let i=0;
+            i<completedCount;
+            i++
+        ){
+
+            completedLessons[
+                courseIndex +
+                "_" +
+                i
+            ] = true;
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   SAVE PROGRESS
+========================================= */
+
+async function saveCourseProgress(){
+
+    if(!user) return;
+
+
+    const course =
+        courses[currentCourse];
+
+
+    const completed =
+        getCompletedCount();
+
+
+    const total =
+        course.lessons.length;
+
+
+    const progress =
+        Math.round(
+            (completed / total) * 100
+        );
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from(
+                "techsavvy_course_progress"
+            )
+            .upsert({
+
+                user_id:user.id,
+
+                course_name:
+                    course.name,
+
+                progress:progress,
+
+                updated_at:
+                    new Date().toISOString()
+
+            },{
+                onConflict:
+                    "user_id,course_name"
+            });
+
+
+    if(error){
+
+        console.log(
+            "Progress haikuhifadhiwa:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
 checkUser();
 
 </script>
-
 
 </body>
 
