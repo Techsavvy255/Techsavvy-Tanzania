@@ -1,33 +1,125 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Techsavvy Tanzania is a youth-driven technology platform empowering young people through technology, innovation and digital skills.">
-
-    <meta name="keywords"
-        content="Techsavvy Tanzania, technology, digital skills, innovation, AI, cybersecurity, web development">
-
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Techsavvy Tanzania - Youth-driven technology platform empowering young people through AI, cybersecurity, web development, graphic design, and digital skills training.">
+    <meta name="keywords" content="Techsavvy Tanzania, technology, digital skills, innovation, AI, cybersecurity, web development, graphic design, networking, digital marketing, youth empowerment, technology courses, Tanzania">
+    <meta name="author" content="Techsavvy Tanzania">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph Tags (Social Media) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Techsavvy Tanzania | Empowering Youth Through Technology">
+    <meta property="og:description" content="Join Techsavvy Tanzania - A youth-driven technology platform with courses in AI, Cybersecurity, Web Development, Graphic Design, and more.">
+    <meta property="og:url" content="https://techsavvy255.github.io/Techsavvy-Tanzania/">
+    <meta property="og:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/og-image.png">
+    <meta property="og:site_name" content="Techsavvy Tanzania">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Techsavvy Tanzania | Empowering Youth Through Technology">
+    <meta name="twitter:description" content="Youth-driven technology platform with courses in AI, Cybersecurity, Web Development, and Digital Skills.">
+    <meta name="twitter:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/og-image.png">
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://techsavvy255.github.io/Techsavvy-Tanzania/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <title>Techsavvy Tanzania | Empowering Youth Through Technology</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Techsavvy Tanzania",
+      "url": "https://techsavvy255.github.io/Techsavvy-Tanzania/",
+      "logo": "https://techsavvy255.github.io/Techsavvy-Tanzania/logo.png",
+      "description": "Youth-driven technology platform empowering young people through technology, innovation and digital skills",
+      "sameAs": [
+        "https://www.facebook.com/techsavvytanzania",
+        "https://twitter.com/techsavvytz",
+        "https://instagram.com/techsavvytanzania"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "TZ",
+        "addressRegion": "Tanzania"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "hello@techsavvy.tz"
+      }
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://techsavvy255.github.io/Techsavvy-Tanzania/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Programs",
+          "item": "https://techsavvy255.github.io/Techsavvy-Tanzania/#programs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Courses",
+          "item": "https://techsavvy255.github.io/Techsavvy-Tanzania/#courses"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Course Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Technology Training Programs",
+      "description": "Comprehensive technology courses including AI, Cybersecurity, Web Development, Graphic Design, Networking, and Digital Marketing",
+      "provider": {
+        "@type": "Organization",
+        "name": "Techsavvy Tanzania"
+      },
+      "coursePrerequisites": "Basic computer knowledge"
+    }
+    </script>
 </head>
 
 <body>
 
 <!-- ================= NAVBAR ================= -->
 
-<header class="navbar">
+<header class="navbar" role="banner">
 
     <div class="logo">
         <div class="logo-box">T</div>
@@ -36,7 +128,7 @@
         </div>
     </div>
 
-    <nav class="nav-menu" id="navMenu">
+    <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Main Navigation">
 
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -49,7 +141,7 @@
 
     </nav>
 
-    <button class="menu-btn" id="menuBtn">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu">
         ☰
     </button>
 
@@ -58,7 +150,7 @@
 
 <!-- ================= HOME ================= -->
 
-<section class="hero" id="home">
+<section class="hero" id="home" role="region" aria-label="Hero Section">
 
     <div class="hero-background"></div>
 
@@ -140,7 +232,7 @@
 
 <!-- ================= ABOUT ================= -->
 
-<section class="section" id="about">
+<section class="section" id="about" role="region" aria-label="About Section">
 
     <div class="section-label">
         01 — ABOUT US
@@ -230,7 +322,7 @@
 
 <!-- ================= PROGRAMS ================= -->
 
-<section class="section dark-section" id="programs">
+<section class="section dark-section" id="programs" role="region" aria-label="Programs Section">
 
     <div class="section-label">
         02 — PROGRAMS
@@ -255,10 +347,10 @@
     </div>
 
 
-    <div class="program-grid">
+    <div class="program-grid" role="list">
 
 
-        <article class="program-card">
+        <article class="program-card" role="listitem">
 
             <span class="card-number">01</span>
 
@@ -280,7 +372,7 @@
         </article>
 
 
-        <article class="program-card featured">
+        <article class="program-card featured" role="listitem">
 
             <span class="card-number">02</span>
 
@@ -302,7 +394,7 @@
         </article>
 
 
-        <article class="program-card">
+        <article class="program-card" role="listitem">
 
             <span class="card-number">03</span>
 
@@ -330,7 +422,7 @@
 
 <!-- ================= COURSES ================= -->
 
-<section class="section" id="courses">
+<section class="section" id="courses" role="region" aria-label="Courses Section">
 
     <div class="section-label">
         03 — COURSES
@@ -355,10 +447,10 @@
     </div>
 
 
-    <div class="course-grid">
+    <div class="course-grid" role="list">
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 AI
@@ -380,7 +472,7 @@
         </article>
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 GD
@@ -402,7 +494,7 @@
         </article>
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 WD
@@ -424,7 +516,7 @@
         </article>
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 NW
@@ -446,7 +538,7 @@
         </article>
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 CY
@@ -468,7 +560,7 @@
         </article>
 
 
-        <article class="course-card">
+        <article class="course-card" role="listitem">
 
             <div class="course-icon">
                 DM
@@ -496,7 +588,7 @@
 
 <!-- ================= PROJECTS ================= -->
 
-<section class="section projects-section" id="projects">
+<section class="section projects-section" id="projects" role="region" aria-label="Projects Section">
 
     <div class="section-label">
         04 — PROJECTS
@@ -521,10 +613,10 @@
     </div>
 
 
-    <div class="project-grid">
+    <div class="project-grid" role="list">
 
 
-        <article class="project-card project-main">
+        <article class="project-card project-main" role="listitem">
 
             <div>
 
@@ -550,7 +642,7 @@
         </article>
 
 
-        <article class="project-card">
+        <article class="project-card" role="listitem">
 
             <div>
 
@@ -576,7 +668,7 @@
         </article>
 
 
-        <article class="project-card">
+        <article class="project-card" role="listitem">
 
             <div>
 
@@ -608,7 +700,7 @@
 
 <!-- ================= ARTICLES ================= -->
 
-<section class="section" id="articles">
+<section class="section" id="articles" role="region" aria-label="Articles Section">
 
     <div class="section-label">
         05 — ARTICLES
@@ -633,10 +725,10 @@
     </div>
 
 
-    <div class="article-grid">
+    <div class="article-grid" role="list">
 
 
-        <article class="article-card">
+        <article class="article-card" role="listitem">
 
             <div class="article-image">
                 AI
@@ -667,7 +759,7 @@
         </article>
 
 
-        <article class="article-card">
+        <article class="article-card" role="listitem">
 
             <div class="article-image">
                 WEB
@@ -698,7 +790,7 @@
         </article>
 
 
-        <article class="article-card">
+        <article class="article-card" role="listitem">
 
             <div class="article-image">
                 CYBER
@@ -735,7 +827,7 @@
 
 <!-- ================= JOIN ================= -->
 
-<section class="join-section" id="join">
+<section class="join-section" id="join" role="region" aria-label="Join Section">
 
     <div class="join-content">
 
@@ -754,10 +846,7 @@
             creating and using technology to shape the future.
         </p>
 
-        <a
-            href="mailto:hello@techsavvy.tz?subject=Joining%20Techsavvy"
-            class="btn white-btn"
-        >
+        <a href="mailto:hello@techsavvy.tz?subject=Joining%20Techsavvy" class="btn white-btn">
             Join Techsavvy →
         </a>
 
@@ -768,7 +857,7 @@
 
 <!-- ================= CONTACT ================= -->
 
-<section class="section contact-section" id="contact">
+<section class="section contact-section" id="contact" role="region" aria-label="Contact Section">
 
     <div class="section-label">
         07 — CONTACT
@@ -793,7 +882,7 @@
 
         <div class="contact-list">
 
-            <a href="mailto:hello@techsavvy.tz">
+            <a href="mailto:hello@techsavvy.tz" aria-label="Email us at hello@techsavvy.tz">
 
                 <small>EMAIL</small>
 
@@ -804,7 +893,7 @@
             </a>
 
 
-            <a href="#">
+            <a href="#" aria-label="Our location in Tanzania">
 
                 <small>LOCATION</small>
 
@@ -815,7 +904,7 @@
             </a>
 
 
-            <a href="#">
+            <a href="#" aria-label="Follow us on social media">
 
                 <small>SOCIAL</small>
 
@@ -834,7 +923,7 @@
 
 <!-- ================= FOOTER ================= -->
 
-<footer>
+<footer role="contentinfo">
 
     <div class="footer-brand">
 
@@ -855,7 +944,7 @@
     </p>
 
 
-    <a href="#home">
+    <a href="#home" aria-label="Back to top">
         Back to top ↑
     </a>
 
@@ -866,4 +955,3 @@
 
 </body>
 </html>
-```
