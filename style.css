@@ -1,226 +1,795 @@
-/* =========================================
-   AUTH / MEMBER LOGIN
-========================================= */
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-.auth-page {
-    min-height: calc(100vh - 90px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 20px;
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(37, 99, 235, 0.15),
-            transparent 35%
-        ),
-        #050505;
-}
+<head>
 
-.auth-container {
-    width: 100%;
-    max-width: 470px;
-    padding: 45px;
-    background: #0d0d0d;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.auth-header {
-    text-align: center;
-    margin-bottom: 35px;
-}
+    <meta name="description"
+        content="Join Techsavvy Tanzania and become part of a community of young people learning, creating and innovating through technology.">
 
-.auth-logo {
-    width: 58px;
-    height: 58px;
-    margin: 0 auto 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #2563eb;
-    color: white;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 25px;
-    font-weight: 800;
-    border-radius: 14px;
-}
+    <title>Join Techsavvy Tanzania</title>
 
-.auth-header .section-label {
-    display: block;
-    margin-bottom: 12px;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.auth-header h1 {
-    margin: 0;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: clamp(35px, 7vw, 48px);
-    color: white;
-}
-
-.auth-header h1 span {
-    color: #2563eb;
-}
-
-.auth-header p {
-    margin-top: 15px;
-    color: #999;
-    line-height: 1.7;
-}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
 
-.auth-form {
-    width: 100%;
-}
+    <style>
 
-.form-group {
-    margin-bottom: 22px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 9px;
-    color: #ddd;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.form-group input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 15px 16px;
-    background: #151515;
-    color: white;
-    border: 1px solid #2b2b2b;
-    border-radius: 10px;
-    outline: none;
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-    transition: 0.25s ease;
-}
-
-.form-group input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
-}
-
-.password-wrapper {
-    position: relative;
-}
-
-.password-wrapper input {
-    padding-right: 75px;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    color: #4d8cff;
-    cursor: pointer;
-    font-weight: 600;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
 
-.auth-options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    margin: 5px 0 25px;
-    font-size: 13px;
-}
+        body {
 
-.remember {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #aaa;
-}
+            font-family: "Inter", sans-serif;
 
-.remember input {
-    accent-color: #2563eb;
-}
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(20, 85, 255, .15),
+                    transparent 35%
+                ),
+                #07090e;
 
-.auth-options a {
-    color: #4d8cff;
-    text-decoration: none;
-}
+            color: #ffffff;
 
-.auth-options a:hover {
-    text-decoration: underline;
-}
+            min-height: 100vh;
+
+        }
 
 
-.auth-submit {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-    justify-content: center;
-}
+        .container {
+
+            width: 92%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 45px 0 80px;
+
+        }
 
 
-.auth-message {
-    margin-top: 18px;
-    padding: 12px 15px;
-    border-radius: 8px;
-    font-size: 13px;
-    line-height: 1.5;
-    display: none;
-}
+        .back {
 
-.auth-message.success {
-    display: block;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.25);
-    color: #4ade80;
-}
+            display: inline-block;
 
-.auth-message.error {
-    display: block;
-    background: rgba(239,68,68,0.1);
-    border: 1px solid rgba(239,68,68,0.25);
-    color: #f87171;
-}
+            color: #8e98aa;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            margin-bottom: 45px;
+
+            transition: .2s;
+
+        }
 
 
-.auth-footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
+        .back:hover {
 
-.auth-footer p {
-    margin: 0 0 10px;
-    color: #888;
-    font-size: 14px;
-}
+            color: #3f75ff;
 
-.auth-footer a {
-    color: #4d8cff;
-    font-weight: 600;
-    text-decoration: none;
-}
+        }
 
 
-@media (max-width: 600px) {
+        .header {
 
-    .auth-page {
-        padding: 50px 15px;
-    }
+            text-align: center;
 
-    .auth-container {
-        padding: 30px 22px;
-        border-radius: 18px;
-    }
+            margin-bottom: 40px;
 
-    .auth-options {
-        align-items: flex-start;
-    }
+        }
 
-}
+
+        .badge {
+
+            display: inline-block;
+
+            color: #6f98ff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: .18em;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        h1 {
+
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(45px, 8vw, 75px);
+
+            line-height: .95;
+
+            letter-spacing: -.06em;
+
+        }
+
+
+        h1 span {
+
+            color: #1455ff;
+
+        }
+
+
+        .header p {
+
+            max-width: 620px;
+
+            margin: 22px auto 0;
+
+            color: #9da5b5;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+        }
+
+
+        .form-box {
+
+            background: rgba(15, 19, 28, .96);
+
+            border: 1px solid #252c3a;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            box-shadow:
+
+                0 30px 90px rgba(0, 0, 0, .35);
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 22px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        label span {
+
+            color: #5f88ff;
+
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            border: 1px solid #303847;
+
+            background: #080b11;
+
+            color: white;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition: .2s;
+
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #626b7b;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #1455ff;
+
+            box-shadow:
+                0 0 0 3px rgba(20, 85, 255, .12);
+
+        }
+
+
+        textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+        }
+
+
+        select {
+
+            cursor: pointer;
+
+        }
+
+
+        select option {
+
+            background: #0f131c;
+
+            color: white;
+
+        }
+
+
+        .submit-btn {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #1455ff;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .submit-btn:hover {
+
+            background: #0d43d5;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .submit-btn:disabled {
+
+            opacity: .65;
+
+            cursor: wait;
+
+            transform: none;
+
+        }
+
+
+        .note {
+
+            text-align: center;
+
+            color: #70798a;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            margin-top: 18px;
+
+        }
+
+
+        .success {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 40px 15px;
+
+        }
+
+
+        .success-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: #1455ff;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+        }
+
+
+        .success h2 {
+
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: 35px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .success p {
+
+            color: #9da5b5;
+
+            line-height: 1.7;
+
+        }
+
+
+        .home-btn {
+
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 13px 20px;
+
+            border: 1px solid #303847;
+
+            border-radius: 7px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .container {
+
+                padding-top: 30px;
+
+            }
+
+            .form-box {
+
+                padding: 22px;
+
+            }
+
+            h1 {
+
+                font-size: 50px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <a href="index.html" class="back">
+        ← Back to Techsavvy
+    </a>
+
+
+    <div class="header">
+
+        <div class="badge">
+            TECHSAVVY TANZANIA • JOIN US
+        </div>
+
+        <h1>
+            Build the
+            <span>future.</span>
+        </h1>
+
+        <p>
+            Join Techsavvy Tanzania and become part of a
+            community of young people learning, creating
+            and using technology to shape the future.
+        </p>
+
+    </div>
+
+
+    <div class="form-box">
+
+
+        <!-- =====================================
+             GOOGLE FORM CONNECTION
+        ====================================== -->
+
+        <form
+            id="joinForm"
+
+            action="https://docs.google.com/forms/d/e/1FAIpQLSd_AaIMPPDizGRXuoGgdXSo1he4sDUVHPD1MRG1eW5S8JpxKA/formResponse"
+
+            method="POST"
+
+            target="hidden_iframe"
+        >
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="entry.811165618"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address <span>*</span>
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="entry.47138216"
+                    placeholder="example@email.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone / WhatsApp <span>*</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="entry.932223343"
+                    placeholder="+255 7XX XXX XXX"
+                    required
+                >
+
+            </div>
+
+
+            <!-- AGE -->
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age <span>*</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="entry.391198364"
+                    min="13"
+                    max="100"
+                    placeholder="Your age"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+
+                <label for="location">
+                    Location <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="entry.551949083"
+                    placeholder="e.g. Dar es Salaam"
+                    required
+                >
+
+            </div>
+
+
+            <!-- AREA OF INTEREST -->
+
+            <div class="form-group">
+
+                <label for="interest">
+                    Area of Interest <span>*</span>
+                </label>
+
+                <select
+                    id="interest"
+                    name="entry.268278995"
+                    required
+                >
+
+                    <option value="">
+                        Select your area
+                    </option>
+
+                    <option value="Artificial Intelligence">
+                        Artificial Intelligence
+                    </option>
+
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+
+                    <option value="Graphic Design">
+                        Graphic Design
+                    </option>
+
+                    <option value="Networking">
+                        Networking
+                    </option>
+
+                    <option value="Cybersecurity">
+                        Cybersecurity
+                    </option>
+
+                    <option value="Digital Marketing">
+                        Digital Marketing
+                    </option>
+
+                    <option value="Technology & Innovation">
+                        Technology & Innovation
+                    </option>
+
+                    <option value="Media & Community">
+                        Media & Community
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CURRENT SKILLS -->
+
+            <div class="form-group">
+
+                <label for="skills">
+                    Current Skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    name="entry.1780372524"
+                    placeholder="Tell us about your current skills..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- WHY JOIN -->
+
+            <div class="form-group">
+
+                <label for="reason">
+                    Why do you want to join Techsavvy?
+                    <span>*</span>
+                </label>
+
+                <textarea
+                    id="reason"
+                    name="entry.469653974"
+                    placeholder="Tell us why you want to join Techsavvy..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- PORTFOLIO -->
+
+            <div class="form-group">
+
+                <label for="portfolio">
+                    Portfolio / LinkedIn / GitHub
+                </label>
+
+                <input
+                    type="url"
+                    id="portfolio"
+                    name="entry.1001545398"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+                id="submitBtn"
+            >
+                Submit Application →
+            </button>
+
+
+        </form>
+
+
+        <!-- =====================================
+             SUCCESS MESSAGE
+        ====================================== -->
+
+        <div
+            class="success"
+            id="successMessage"
+        >
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Application Received!
+            </h2>
+
+            <p>
+                Thank you for applying to Techsavvy Tanzania.
+                Your application has been submitted successfully.
+                Our team will review your application and contact
+                you when necessary.
+            </p>
+
+            <a
+                href="index.html"
+                class="home-btn"
+            >
+                ← Back to Website
+            </a>
+
+        </div>
+
+
+        <p class="note">
+            By submitting this application, you confirm that
+            the information provided is accurate.
+        </p>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     HIDDEN GOOGLE FORM FRAME
+====================================== -->
+
+<iframe
+    name="hidden_iframe"
+    id="hidden_iframe"
+    style="display:none;"
+></iframe>
+
+
+<script>
+
+    const form =
+        document.getElementById("joinForm");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+
+    form.addEventListener("submit", function () {
+
+        submitBtn.disabled = true;
+
+        submitBtn.innerHTML =
+            "Submitting Application...";
+
+
+        setTimeout(function () {
+
+            form.style.display = "none";
+
+            successMessage.style.display =
+                "block";
+
+        }, 1500);
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
+```
