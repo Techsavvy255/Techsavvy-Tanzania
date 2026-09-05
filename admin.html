@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Techsavvy Tanzania</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <button id="logout-btn" class="btn btn-outline" style="padding:8px 16px;">Log Out</button>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-top:40px;">
+    <div class="wrap">
+      <span class="pill">Admin Dashboard</span>
+      <h1>Applications Overview</h1>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num" id="stat-total">–</div><div class="stat-label">Total</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-pending">–</div><div class="stat-label">Pending</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-review">–</div><div class="stat-label">Under Review</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-interview">–</div><div class="stat-label">Interview</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-approved">–</div><div class="stat-label">Approved</div></div>
+        <div class="stat-card"><div class="stat-num" id="stat-rejected">–</div><div class="stat-label">Rejected</div></div>
+      </div>
+
+      <div class="filter-bar">
+        <select id="filter-category">
+          <option value="">All Categories</option>
+          <option value="learner">Learner</option>
+          <option value="team_member">Team Member</option>
+          <option value="volunteer">Volunteer</option>
+          <option value="mentor">Mentor</option>
+          <option value="partner">Partner</option>
+          <option value="sponsor">Sponsor</option>
+        </select>
+        <select id="filter-status">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="under_review">Under Review</option>
+          <option value="interview">Interview</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <input type="text" id="filter-search" placeholder="Search name or email...">
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="app-table">
+          <thead>
+            <tr>
+              <th>App #</th><th>Name</th><th>Category</th><th>Email</th><th>Status</th><th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="app-table-body">
+            <tr><td colspan="6">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Detail modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

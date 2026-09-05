@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Application — Techsavvy Tanzania</title>
+<meta name="description" content="Track the status of your Techsavvy Tanzania application using your Application Number.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+      <a href="join.html" class="nav-cta">Join Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="pill">Track Status</span>
+      <h1>Check Your <em>Application</em> Status</h1>
+      <p>Enter the Application Number you received after submitting your application.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap form-card">
+      <form id="track-form">
+        <div class="field">
+          <label for="app_number">Application Number</label>
+          <input type="text" id="app_number" placeholder="e.g. TS-2026-A1B2C3" required>
+        </div>
+        <button type="submit" class="form-submit">Check Status</button>
+        <p class="form-status" id="track-status"></p>
+      </form>
+
+      <div id="track-result" class="track-result" style="display:none;">
+        <div class="track-row"><span>Application Number</span><span id="r-number"></span></div>
+        <div class="track-row"><span>Category</span><span id="r-category"></span></div>
+        <div class="track-row"><span>Name</span><span id="r-name"></span></div>
+        <div class="track-row"><span>Status</span><span id="r-status"></span></div>
+        <div class="track-row"><span>Submitted</span><span id="r-date"></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
+</footer>
+
+<script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/track.js"></script>
+</body>
+</html>
