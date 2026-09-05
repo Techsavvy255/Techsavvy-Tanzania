@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techsavvy255.github.io/Techsavvy-Tanzania/sitemap.xml
