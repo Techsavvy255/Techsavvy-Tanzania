@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply — Techsavvy Tanzania</title>
+<meta name="description" content="Submit your application to join Techsavvy Tanzania as a Learner, Team Member, Volunteer, Mentor, Partner, or Sponsor.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+      <a href="join.html" class="nav-cta">Join Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="pill">Application</span>
+      <h1>Apply to <em>Techsavvy</em> Tanzania</h1>
+      <p>Choose your category below and fill in the details. You'll receive an Application Number to track your status.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <!-- STEP 1: category picker -->
+      <div id="category-step">
+        <div class="category-grid">
+          <div class="category-pick" data-category="learner">Learner</div>
+          <div class="category-pick" data-category="team_member">Team Member</div>
+          <div class="category-pick" data-category="volunteer">Volunteer</div>
+          <div class="category-pick" data-category="mentor">Mentor</div>
+          <div class="category-pick" data-category="partner">Partner</div>
+          <div class="category-pick" data-category="sponsor">Sponsor</div>
+        </div>
+      </div>
+
+      <!-- STEP 2: form -->
+      <form id="apply-form" class="form-card" style="display:none;">
+        <input type="hidden" id="category" name="category">
+
+        <div class="field">
+          <label for="full_name">Full Name *</label>
+          <input type="text" id="full_name" required>
+          <div class="field-error">Please enter your full name.</div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input type="email" id="email" required>
+          <div class="field-error">Please enter a valid email.</div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone">
+        </div>
+
+        <!-- LEARNER -->
+        <div class="category-fields" data-for="learner">
+          <div class="field"><label>What are you interested in learning?</label>
+            <input type="text" id="learner_interest" placeholder="e.g. Web Development, AI"></div>
+          <div class="field"><label>What are your learning goals?</label>
+            <textarea id="learner_goals"></textarea></div>
+          <div class="field"><label>Availability</label>
+            <input type="text" id="learner_availability" placeholder="e.g. Weekday evenings"></div>
+        </div>
+
+        <!-- TEAM MEMBER -->
+        <div class="category-fields" data-for="team_member">
+          <div class="field"><label>Skills</label>
+            <textarea id="team_skills"></textarea></div>
+          <div class="field"><label>Relevant Experience</label>
+            <textarea id="team_experience"></textarea></div>
+          <div class="field"><label>Portfolio / GitHub / LinkedIn</label>
+            <input type="text" id="team_portfolio"></div>
+          <div class="field"><label>Availability</label>
+            <input type="text" id="team_availability"></div>
+          <div class="field"><label>Why do you want to join the team?</label>
+            <textarea id="team_motivation"></textarea></div>
+        </div>
+
+        <!-- VOLUNTEER -->
+        <div class="category-fields" data-for="volunteer">
+          <div class="field"><label>Areas of Interest</label>
+            <input type="text" id="vol_interests"></div>
+          <div class="field"><label>Skills You Can Offer</label>
+            <textarea id="vol_skills"></textarea></div>
+          <div class="field"><label>Availability</label>
+            <input type="text" id="vol_availability"></div>
+          <div class="field"><label>Motivation</label>
+            <textarea id="vol_motivation"></textarea></div>
+        </div>
+
+        <!-- MENTOR -->
+        <div class="category-fields" data-for="mentor">
+          <div class="field"><label>Area of Expertise</label>
+            <input type="text" id="mentor_expertise"></div>
+          <div class="field"><label>Experience</label>
+            <textarea id="mentor_experience"></textarea></div>
+          <div class="field"><label>Areas You'd Like to Mentor In</label>
+            <input type="text" id="mentor_areas"></div>
+          <div class="field"><label>Availability</label>
+            <input type="text" id="mentor_availability"></div>
+          <div class="field"><label>Profile / Portfolio Link</label>
+            <input type="text" id="mentor_profile"></div>
+        </div>
+
+        <!-- PARTNER -->
+        <div class="category-fields" data-for="partner">
+          <div class="field"><label>Organization / Business Name</label>
+            <input type="text" id="partner_org"></div>
+          <div class="field"><label>Contact Person</label>
+            <input type="text" id="partner_contact"></div>
+          <div class="field"><label>Partnership Interest</label>
+            <textarea id="partner_interest"></textarea></div>
+          <div class="field"><label>Proposal / Details</label>
+            <textarea id="partner_details"></textarea></div>
+        </div>
+
+        <!-- SPONSOR -->
+        <div class="category-fields" data-for="sponsor">
+          <div class="field"><label>Organization / Business Name</label>
+            <input type="text" id="sponsor_org"></div>
+          <div class="field"><label>Sponsorship Interest</label>
+            <textarea id="sponsor_interest"></textarea></div>
+          <div class="field"><label>Budget Range (optional)</label>
+            <input type="text" id="sponsor_budget"></div>
+          <div class="field"><label>Contact Details</label>
+            <input type="text" id="sponsor_contact"></div>
+        </div>
+
+        <button type="submit" class="form-submit" id="submit-btn">Submit Application</button>
+        <p class="form-status" id="form-status"></p>
+      </form>
+
+      <!-- STEP 3: confirmation -->
+      <div id="confirm-step" class="confirm-box" style="display:none;">
+        <span class="pill">Application Received</span>
+        <h2>Thank You!</h2>
+        <p>Your application has been submitted. Save this Application Number to track your status:</p>
+        <div class="app-number" id="app-number-display"></div>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="track.html" class="btn btn-outline">Track My Application</a>
+          <a href="index.html" class="btn btn-solid">Back to Home</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
+</footer>
+
+<script src="assets/supabase-config.js"></script>
+<script src="assets/apply.js"></script>
+</body>
+</html>
