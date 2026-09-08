@@ -113,6 +113,18 @@ form.addEventListener("submit", async (e) => {
     document.getElementById("app-number-display").textContent = data.application_number;
     document.getElementById("confirm-step").style.display = "block";
     document.getElementById("confirm-step").scrollIntoView({ behavior: "smooth" });
+
+    // Fire-and-forget confirmation email (don't block the user if this fails)
+    supabaseClient.functions
+      .invoke("send-confirmation-email", {
+        body: {
+          email: email,
+          full_name: fullName,
+          application_number: data.application_number,
+          category: selectedCategory,
+        },
+      })
+      .catch((err) => console.warn("Confirmation email failed to send:", err));
   } catch (err) {
     console.error(err);
     statusEl.textContent = "Something went wrong submitting your application. Please try again, or email us directly at techsavvymanagment@gmail.com.";
