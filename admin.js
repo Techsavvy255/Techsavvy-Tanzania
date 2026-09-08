@@ -147,6 +147,8 @@ async function saveChanges(id) {
   modalStatus.textContent = "Saving...";
   modalStatus.className = "form-status";
 
+  const app = allApplications.find((a) => a.id === id);
+
   const { error } = await supabaseClient
     .from("applications")
     .update({ status, admin_notes: notes })
@@ -160,6 +162,21 @@ async function saveChanges(id) {
 
   modalStatus.textContent = "Saved.";
   modalStatus.className = "form-status success";
+
+  // Fire-and-forget status update email
+  if (app) {
+    supabaseClient.functions
+      .invoke("send-status-email", {
+        body: {
+          email: app.email,
+          full_name: app.full_name,
+          application_number: app.application_number,
+          status: status,
+        },
+      })
+      .catch((err) => console.warn("Status email failed to send:", err));
+  }
+
   await loadApplications();
   setTimeout(() => document.getElementById("modal-overlay").classList.remove("open"), 600);
 }
