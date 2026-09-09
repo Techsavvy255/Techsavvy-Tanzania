@@ -1,189 +1,135 @@
-let allApplications = [];
+// Techsavvy Tanzania — Application form logic
 
-const statusLabels = {
-  pending: "Pending",
-  under_review: "Under Review",
-  interview: "Interview",
-  approved: "Approved",
-  rejected: "Rejected",
+const categoryFieldMap = {
+  learner: [
+    ["learner_interest", "interest"],
+    ["learner_goals", "goals"],
+    ["learner_availability", "availability"],
+  ],
+  team_member: [
+    ["team_skills", "skills"],
+    ["team_experience", "experience"],
+    ["team_portfolio", "portfolio"],
+    ["team_availability", "availability"],
+    ["team_motivation", "motivation"],
+  ],
+  volunteer: [
+    ["vol_interests", "interests"],
+    ["vol_skills", "skills"],
+    ["vol_availability", "availability"],
+    ["vol_motivation", "motivation"],
+  ],
+  mentor: [
+    ["mentor_expertise", "expertise"],
+    ["mentor_experience", "experience"],
+    ["mentor_areas", "mentorship_areas"],
+    ["mentor_availability", "availability"],
+    ["mentor_profile", "profile_link"],
+  ],
+  partner: [
+    ["partner_org", "organization"],
+    ["partner_contact", "contact_person"],
+    ["partner_interest", "interest"],
+    ["partner_details", "proposal"],
+  ],
+  sponsor: [
+    ["sponsor_org", "organization"],
+    ["sponsor_interest", "interest"],
+    ["sponsor_budget", "budget_range"],
+    ["sponsor_contact", "contact_details"],
+  ],
 };
 
-// --- Auth guard ---
-(async function guard() {
-  const { data } = await supabaseClient.auth.getSession();
-  if (!data.session) {
-    window.location.href = "admin-login.html";
-    return;
-  }
-  loadApplications();
-})();
+let selectedCategory = null;
 
-document.getElementById("logout-btn").addEventListener("click", async () => {
-  await supabaseClient.auth.signOut();
-  window.location.href = "admin-login.html";
+document.querySelectorAll(".category-pick").forEach((el) => {
+  el.addEventListener("click", () => {
+    document.querySelectorAll(".category-pick").forEach((c) => c.classList.remove("active"));
+    el.classList.add("active");
+    selectedCategory = el.dataset.category;
+    document.getElementById("category").value = selectedCategory;
+
+    document.querySelectorAll(".category-fields").forEach((f) => f.classList.remove("active"));
+    document.querySelector(`.category-fields[data-for="${selectedCategory}"]`).classList.add("active");
+
+    document.getElementById("apply-form").style.display = "block";
+    document.getElementById("apply-form").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 });
 
-async function loadApplications() {
-  const { data, error } = await supabaseClient
-    .from("applications")
-    .select("*")
-    .order("created_at", { ascending: false });
+const form = document.getElementById("apply-form");
+const statusEl = document.getElementById("form-status");
+const submitBtn = document.getElementById("submit-btn");
 
-  if (error) {
-    document.getElementById("app-table-body").innerHTML =
-      `<tr><td colspan="6">Error loading applications: ${error.message}</td></tr>`;
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.textContent = "";
+  statusEl.className = "form-status";
+
+  if (!selectedCategory) {
+    statusEl.textContent = "Please choose a category above.";
+    statusEl.className = "form-status error";
     return;
   }
 
-  allApplications = data || [];
-  updateStats();
-  renderTable();
-}
+  const fullName = document.getElementById("full_name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
 
-function updateStats() {
-  const count = (s) => allApplications.filter((a) => a.status === s).length;
-  document.getElementById("stat-total").textContent = allApplications.length;
-  document.getElementById("stat-pending").textContent = count("pending");
-  document.getElementById("stat-review").textContent = count("under_review");
-  document.getElementById("stat-interview").textContent = count("interview");
-  document.getElementById("stat-approved").textContent = count("approved");
-  document.getElementById("stat-rejected").textContent = count("rejected");
-}
+  if (!fullName || !email) {
+    statusEl.textContent = "Please fill in your name and email.";
+    statusEl.className = "form-status error";
+    return;
+  }
 
-function renderTable() {
-  const category = document.getElementById("filter-category").value;
-  const status = document.getElementById("filter-status").value;
-  const search = document.getElementById("filter-search").value.toLowerCase();
-
-  let rows = allApplications.filter((a) => {
-    if (category && a.category !== category) return false;
-    if (status && a.status !== status) return false;
-    if (search && !(a.full_name.toLowerCase().includes(search) || a.email.toLowerCase().includes(search))) return false;
-    return true;
+  const details = {};
+  (categoryFieldMap[selectedCategory] || []).forEach(([fieldId, key]) => {
+    const el = document.getElementById(fieldId);
+    if (el) details[key] = el.value.trim();
   });
 
-  const tbody = document.getElementById("app-table-body");
-  if (rows.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6">No applications match your filters.</td></tr>`;
-    return;
-  }
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
 
-  tbody.innerHTML = rows
-    .map(
-      (a) => `
-      <tr data-id="${a.id}">
-        <td>${a.application_number || "—"}</td>
-        <td>${escapeHtml(a.full_name)}</td>
-        <td>${a.category.replace("_", " ")}</td>
-        <td>${escapeHtml(a.email)}</td>
-        <td><span class="status-badge status-${a.status}">${statusLabels[a.status]}</span></td>
-        <td>${new Date(a.created_at).toLocaleDateString()}</td>
-      </tr>`
-    )
-    .join("");
+  try {
+    const { data, error } = await supabaseClient
+      .from("applications")
+      .insert([
+        {
+          category: selectedCategory,
+          full_name: fullName,
+          email: email,
+          phone: phone || null,
+          details: details,
+        },
+      ])
+      .select("application_number")
+      .single();
 
-  document.querySelectorAll("#app-table-body tr[data-id]").forEach((tr) => {
-    tr.addEventListener("click", () => openDetail(tr.dataset.id));
-  });
-}
+    if (error) throw error;
 
-function escapeHtml(str) {
-  const div = document.createElement("div");
-  div.textContent = str || "";
-  return div.innerHTML;
-}
+    document.getElementById("category-step").style.display = "none";
+    form.style.display = "none";
+    document.getElementById("app-number-display").textContent = data.application_number;
+    document.getElementById("confirm-step").style.display = "block";
+    document.getElementById("confirm-step").scrollIntoView({ behavior: "smooth" });
 
-["filter-category", "filter-status", "filter-search"].forEach((id) => {
-  document.getElementById(id).addEventListener("input", renderTable);
-});
-
-function openDetail(id) {
-  const app = allApplications.find((a) => a.id === id);
-  if (!app) return;
-
-  const detailsHtml = Object.entries(app.details || {})
-    .filter(([, v]) => v)
-    .map(([k, v]) => `<div class="track-row"><span>${k.replace(/_/g, " ")}</span><span>${escapeHtml(v)}</span></div>`)
-    .join("");
-
-  document.getElementById("modal-content").innerHTML = `
-    <h2>${escapeHtml(app.full_name)}</h2>
-    <p style="color:var(--grey);">${app.application_number} &middot; ${app.category.replace("_", " ")}</p>
-
-    <div class="track-result" style="margin-top:16px;">
-      <div class="track-row"><span>Email</span><span>${escapeHtml(app.email)}</span></div>
-      <div class="track-row"><span>Phone</span><span>${escapeHtml(app.phone || "—")}</span></div>
-      ${detailsHtml}
-    </div>
-
-    <div class="field" style="margin-top:20px;">
-      <label>Status</label>
-      <select id="status-select">
-        <option value="pending" ${app.status === "pending" ? "selected" : ""}>Pending</option>
-        <option value="under_review" ${app.status === "under_review" ? "selected" : ""}>Under Review</option>
-        <option value="interview" ${app.status === "interview" ? "selected" : ""}>Interview</option>
-        <option value="approved" ${app.status === "approved" ? "selected" : ""}>Approved</option>
-        <option value="rejected" ${app.status === "rejected" ? "selected" : ""}>Rejected</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Internal Notes</label>
-      <textarea id="notes-input">${escapeHtml(app.admin_notes || "")}</textarea>
-    </div>
-
-    <button class="form-submit" id="save-btn">Save Changes</button>
-    <p class="form-status" id="modal-status"></p>
-  `;
-
-  document.getElementById("save-btn").addEventListener("click", () => saveChanges(app.id));
-  document.getElementById("modal-overlay").classList.add("open");
-}
-
-async function saveChanges(id) {
-  const status = document.getElementById("status-select").value;
-  const notes = document.getElementById("notes-input").value;
-  const modalStatus = document.getElementById("modal-status");
-  modalStatus.textContent = "Saving...";
-  modalStatus.className = "form-status";
-
-  const app = allApplications.find((a) => a.id === id);
-
-  const { error } = await supabaseClient
-    .from("applications")
-    .update({ status, admin_notes: notes })
-    .eq("id", id);
-
-  if (error) {
-    modalStatus.textContent = "Error: " + error.message;
-    modalStatus.className = "form-status error";
-    return;
-  }
-
-  modalStatus.textContent = "Saved.";
-  modalStatus.className = "form-status success";
-
-  // Fire-and-forget status update email
-  if (app) {
+    // Fire-and-forget confirmation email (don't block the user if this fails)
     supabaseClient.functions
-      .invoke("send-status-email", {
+      .invoke("send-confirmation-email", {
         body: {
-          email: app.email,
-          full_name: app.full_name,
-          application_number: app.application_number,
-          status: status,
+          email: email,
+          full_name: fullName,
+          application_number: data.application_number,
+          category: selectedCategory,
         },
       })
-      .catch((err) => console.warn("Status email failed to send:", err));
+      .catch((err) => console.warn("Confirmation email failed to send:", err));
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = "Something went wrong submitting your application. Please try again, or email us directly at techsavvymanagment@gmail.com.";
+    statusEl.className = "form-status error";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit Application";
   }
-
-  await loadApplications();
-  setTimeout(() => document.getElementById("modal-overlay").classList.remove("open"), 600);
-}
-
-document.getElementById("modal-close").addEventListener("click", () => {
-  document.getElementById("modal-overlay").classList.remove("open");
-});
-document.getElementById("modal-overlay").addEventListener("click", (e) => {
-  if (e.target.id === "modal-overlay") e.target.classList.remove("open");
 });
