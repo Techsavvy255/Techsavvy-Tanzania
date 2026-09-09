@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard — Techsavvy Tanzania</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <button id="logout-btn" class="btn btn-outline" style="padding:8px 16px;">Log Out</button>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-top:50px;">
+    <div class="wrap">
+      <span class="pill">My Dashboard</span>
+      <h1 id="welcome-heading">Welcome</h1>
+      <p id="welcome-email" style="color:var(--grey);"></p>
+
+      <div class="section-head" style="margin-top:40px;">
+        <h2>My Applications</h2>
+        <p class="section-lead">Applications submitted using this account's email address.</p>
+      </div>
+
+      <div id="my-applications">
+        <p style="color:var(--grey);">Loading...</p>
+      </div>
+
+      <div class="btn-row" style="margin-top:30px;">
+        <a href="apply.html" class="btn btn-solid">Submit New Application</a>
+        <a href="courses.html" class="btn btn-outline">Browse Courses</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
+</footer>
+
+<script src="assets/supabase-config.js"></script>
+<script src="assets/dashboard.js"></script>
+</body>
+</html>
