@@ -175,6 +175,19 @@ async function saveChanges(id) {
         },
       })
       .catch((err) => console.warn("Status email failed to send:", err));
+
+    if (app.phone) {
+      supabaseClient.functions
+        .invoke("send-whatsapp-status", {
+          body: {
+            phone: app.phone,
+            full_name: app.full_name,
+            application_number: app.application_number,
+            status: status,
+          },
+        })
+        .catch((err) => console.warn("WhatsApp status failed to send:", err));
+    }
   }
 
   await loadApplications();
