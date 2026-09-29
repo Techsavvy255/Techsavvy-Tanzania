@@ -125,6 +125,20 @@ form.addEventListener("submit", async (e) => {
         },
       })
       .catch((err) => console.warn("Confirmation email failed to send:", err));
+
+    // Fire-and-forget WhatsApp confirmation (only if a phone number was given)
+    if (phone) {
+      supabaseClient.functions
+        .invoke("send-whatsapp-confirmation", {
+          body: {
+            phone: phone,
+            full_name: fullName,
+            application_number: data.application_number,
+            category: selectedCategory,
+          },
+        })
+        .catch((err) => console.warn("WhatsApp confirmation failed to send:", err));
+    }
   } catch (err) {
     console.error(err);
     statusEl.textContent = "Something went wrong submitting your application. Please try again, or email us directly at techsavvymanagment@gmail.com.";
