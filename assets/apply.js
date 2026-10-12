@@ -92,30 +92,40 @@ form.addEventListener("submit", async (e) => {
   submitBtn.textContent = "Submitting...";
 
   try {
-    const { data, error } = await supabaseClient
-      .from("applications")
-      .insert([
-        {
-          category: selectedCategory,
-          full_name: fullName,
-          email: email,
-          phone: phone || null,
-          details: details,
-        },
-      ])
-      .select("application_number")
-      .single();
+    // Submit through the secure database function (returns the Application Number)
+    const { data: applicationNumber, error } = await supabaseClient.rpc("submit_application", {
+      p_category: selectedCategory,
+      p_full_name: fullName,
+      p_email: email,
+      p_phone: phone || null,
+      p_details: details,
+    });
 
     if (error) throw error;
 
     document.getElementById("category-step").style.display = "none";
     form.style.display = "none";
-    document.getElementById("app-number-display").textContent = data.application_number;
+    document.getElementById("app-number-display").textContent = applicationNumber;
     document.getElementById("confirm-step").style.display = "block";
     document.getElementById("confirm-step").scrollIntoView({ behavior: "smooth" });
+
+    // Fire-and-forget confirmation email (don't block the user if this fails)
+    supabaseClient.functions
+      .invoke("send-confirmation-email", {
+        body: {
+          email: email,
+          full_name: fullName,
+          application_number: applicationNumber,
+          category: selectedCategory,
+        },
+      })
+      .catch((err) => console.warn("Confirmation email failed to send:", err));
   } catch (err) {
     console.error(err);
-    statusEl.textContent = "Something went wrong submitting your application. Please try again, or email us directly at techsavvymanagment@gmail.com.";
+    const reason = err && err.message ? " (Technical details: " + err.message + ")" : "";
+    statusEl.textContent =
+      "Something went wrong submitting your application. Please try again, or email us directly at techsavvymanagment@gmail.com." +
+      reason;
     statusEl.className = "form-status error";
     submitBtn.disabled = false;
     submitBtn.textContent = "Submit Application";
