@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Track Application — Techsavvy Tanzania</title>
 <meta name="description" content="Track the status of your Techsavvy Tanzania application using your Application Number.">
+<link rel="canonical" href="https://techsavvy255.github.io/Techsavvy-Tanzania/track.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Track Application — Techsavvy Tanzania">
+<meta property="og:description" content="Track the status of your Techsavvy Tanzania application using your Application Number.">
+<meta property="og:url" content="https://techsavvy255.github.io/Techsavvy-Tanzania/track.html">
+<meta property="og:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/assets/logo.png">
+<meta property="og:site_name" content="Techsavvy Tanzania">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Track Application — Techsavvy Tanzania">
+<meta name="twitter:description" content="Track the status of your Techsavvy Tanzania application using your Application Number.">
+<meta name="twitter:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/assets/logo.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -62,6 +74,63 @@
 </footer>
 
 <script src="assets/supabase-config.js"></script>
-<script src="assets/js/track.js"></script>
+<script>
+// Tracking logic is inside this page, so there is no separate track.js to go missing.
+const statusLabels = {
+  pending: "Pending",
+  under_review: "Under Review",
+  interview: "Interview",
+  approved: "Approved",
+  rejected: "Rejected",
+};
+
+document.getElementById("track-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const statusEl = document.getElementById("track-status");
+  const resultEl = document.getElementById("track-result");
+  const number = document.getElementById("app_number").value.trim().toUpperCase();
+
+  statusEl.textContent = "";
+  statusEl.className = "form-status";
+  resultEl.style.display = "none";
+
+  if (!number) return;
+
+  statusEl.textContent = "Checking...";
+
+  try {
+    const { data, error } = await supabaseClient.rpc("track_application", { p_number: number });
+    if (error) throw error;
+
+    const rows = Array.isArray(data) ? data : data ? [data] : [];
+    if (rows.length === 0) {
+      statusEl.textContent = "No application found with that number. Please check and try again.";
+      statusEl.className = "form-status error";
+      return;
+    }
+
+    const app = rows[0];
+    statusEl.textContent = "";
+    document.getElementById("r-number").textContent = app.application_number;
+    document.getElementById("r-category").textContent = app.category.replace("_", " ");
+    document.getElementById("r-name").textContent = app.full_name;
+    document.getElementById("r-date").textContent = new Date(app.created_at).toLocaleDateString();
+
+    const badge = document.createElement("span");
+    badge.className = "status-badge status-" + app.status;
+    badge.textContent = statusLabels[app.status] || app.status;
+    const statusCell = document.getElementById("r-status");
+    statusCell.innerHTML = "";
+    statusCell.appendChild(badge);
+
+    resultEl.style.display = "block";
+  } catch (err) {
+    console.error(err);
+    const reason = err && err.message ? " (Technical details: " + err.message + ")" : "";
+    statusEl.textContent = "Something went wrong. Please try again later." + reason;
+    statusEl.className = "form-status error";
+  }
+});
+</script>
 </body>
 </html>
