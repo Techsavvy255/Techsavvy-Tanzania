@@ -38,7 +38,52 @@
   </section>
 </main>
 
-<script src="assets/js/supabase-config.js"></script>
-<script src="assets/js/admin-auth.js"></script>
+<script src="assets/supabase-config.js"></script>
+<script>
+const loginStatus = document.getElementById("login-status");
+
+async function isAdminUser() {
+  const { data, error } = await supabaseClient.rpc("is_admin");
+  if (error) throw error;
+  return data === true;
+}
+
+// If already logged in as an admin, go straight to the dashboard
+(async function checkSession() {
+  try {
+    const { data } = await supabaseClient.auth.getSession();
+    if (data.session && (await isAdminUser())) window.location.href = "admin.html";
+  } catch (err) {
+    console.error(err);
+  }
+})();
+
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  loginStatus.textContent = "Logging in...";
+  loginStatus.className = "form-status";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+
+    if (!(await isAdminUser())) {
+      await supabaseClient.auth.signOut();
+      loginStatus.textContent = "This account does not have admin access.";
+      loginStatus.className = "form-status error";
+      return;
+    }
+
+    window.location.href = "admin.html";
+  } catch (err) {
+    console.error(err);
+    loginStatus.textContent = "Login failed: " + (err && err.message ? err.message : err);
+    loginStatus.className = "form-status error";
+  }
+});
+</script>
 </body>
 </html>
