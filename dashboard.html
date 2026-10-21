@@ -11,10 +11,19 @@
 </head>
 <body>
 
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
-    <button id="logout-btn" class="btn btn-outline" style="padding:8px 16px;">Log Out</button>
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="about.html" data-nav="about">About</a>
+      <a href="programs.html" data-nav="programs">Programs</a>
+      <a href="courses.html" data-nav="courses">Courses</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="login.html" data-nav="account" data-auth="login">Log In</a>
+      <a href="join.html" class="nav-cta">Join Us</a>
+    </nav>
   </div>
 </header>
 
@@ -37,16 +46,103 @@
       <div class="btn-row" style="margin-top:30px;">
         <a href="apply.html" class="btn btn-solid">Submit New Application</a>
         <a href="courses.html" class="btn btn-outline">Browse Courses</a>
+        <a href="login.html?logout=1" class="btn btn-outline">Log Out</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo footer-logo">
+      <p>Empowering Youth Through Technology.</p>
+      <div class="footer-social" id="footer-social"></div>
+    </div>
+    <div class="footer-col">
+      <h4>Techsavvy</h4>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="join.html">Join Us</a>
+      <a href="apply.html">Apply</a>
+      <a href="track.html">Track Application</a>
+      <a href="login.html" data-auth="login">Log In</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="join.html#contact">Contact Us</a>
+      <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
+    </div>
+  </div>
   <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
 </footer>
 
 <script src="assets/supabase-config.js"></script>
-<script src="dashboard.js"></script>
+<script>
+const statusLabels = {
+  pending: "Pending",
+  under_review: "Under Review",
+  interview: "Interview",
+  approved: "Approved",
+  rejected: "Rejected",
+};
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str == null ? "" : String(str);
+  return div.innerHTML;
+}
+
+(async function init() {
+  const container = document.getElementById("my-applications");
+  try {
+    const { data: sessionData } = await supabaseClient.auth.getSession();
+    if (!sessionData.session) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const user = sessionData.session.user;
+    const meta = user.user_metadata || {};
+    document.getElementById("welcome-heading").textContent = "Welcome, " + (meta.full_name || meta.name || user.email);
+    document.getElementById("welcome-email").textContent = user.email;
+
+    // Only this member's own applications (matched by email) come back from the database
+    const { data, error } = await supabaseClient.rpc("my_applications");
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      container.innerHTML = '<p style="color:var(--grey);">You haven\'t submitted any applications yet.</p>';
+      return;
+    }
+
+    container.innerHTML =
+      '<div class="track-result">' +
+      data
+        .map(
+          (a) => `
+        <div class="track-row">
+          <span>${escapeHtml(a.application_number)} &middot; ${escapeHtml(a.category.replace("_", " "))}</span>
+          <span>
+            <span class="status-badge status-${escapeHtml(a.status)}">${escapeHtml(statusLabels[a.status] || a.status)}</span>
+            <a href="track.html?number=${encodeURIComponent(a.application_number)}" style="margin-left:12px; color:var(--blue); font-weight:600;">Track</a>
+          </span>
+        </div>`
+        )
+        .join("") +
+      "</div>";
+  } catch (err) {
+    console.error(err);
+    container.innerHTML =
+      '<p style="color:#C4291C;">Could not load your applications: ' + escapeHtml(err && err.message ? err.message : err) + "</p>";
+  }
+})();
+</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

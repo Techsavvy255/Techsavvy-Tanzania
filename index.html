@@ -5,30 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Techsavvy Tanzania — Empowering Youth Through Technology</title>
 <meta name="description" content="Techsavvy Tanzania is a technology platform helping young people learn, build, and create economic opportunity through technology.">
+<link rel="canonical" href="https://techsavvy255.github.io/Techsavvy-Tanzania/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Techsavvy Tanzania — Empowering Youth Through Technology">
+<meta property="og:description" content="Techsavvy Tanzania is a technology platform helping young people learn, build, and create economic opportunity through technology.">
+<meta property="og:url" content="https://techsavvy255.github.io/Techsavvy-Tanzania/index.html">
+<meta property="og:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/assets/logo.png">
+<meta property="og:site_name" content="Techsavvy Tanzania">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Techsavvy Tanzania — Empowering Youth Through Technology">
+<meta name="twitter:description" content="Techsavvy Tanzania is a technology platform helping young people learn, build, and create economic opportunity through technology.">
+<meta name="twitter:image" content="https://techsavvy255.github.io/Techsavvy-Tanzania/assets/logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Techsavvy Tanzania",
+  "url": "https://techsavvy255.github.io/Techsavvy-Tanzania/",
+  "logo": "https://techsavvy255.github.io/Techsavvy-Tanzania/assets/logo.png",
+  "description": "Techsavvy Tanzania is a technology platform helping young people learn, build, and create economic opportunity through technology.",
+  "sameAs": []
+}
+</script>
 </head>
 <body>
 
 <input type="checkbox" id="nav-toggle" class="nav-toggle">
-
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="#top" class="brand">
-      <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo">
-    </a>
-
-    <label for="nav-toggle" class="nav-burger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </label>
-
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
     <nav class="main-nav">
-      <a href="about.html">About</a>
-      <a href="programs.html">Programs</a>
-      <a href="courses.html">Courses</a>
-      <a href="projects.html">Projects</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="programs.html" data-nav="programs">Programs</a>
+      <a href="courses.html" data-nav="courses">Courses</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="login.html" data-nav="account" data-auth="login">Log In</a>
       <a href="join.html" class="nav-cta">Join Us</a>
     </nav>
   </div>
@@ -166,12 +183,14 @@
           <h3>DaLink</h3>
           <p>An e-commerce application connecting buyers and sellers through a simple, accessible digital marketplace.</p>
           <p class="project-status">Status: In Development</p>
+          <a href="project-dalink.html" class="course-cta" style="margin-top:16px;">View Case Study</a>
         </div>
         <div class="project-card">
           <span class="project-tag">Mobile Security</span>
           <h3>SimuPulse</h3>
           <p>An antivirus application for Android phones, built to help protect mobile devices from security threats.</p>
           <p class="project-status">Status: In Development</p>
+          <a href="project-simupulse.html" class="course-cta" style="margin-top:16px;">View Case Study</a>
         </div>
       </div>
 
@@ -227,8 +246,8 @@
     <div class="footer-brand">
       <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo footer-logo">
       <p>Empowering Youth Through Technology.</p>
+      <div class="footer-social" id="footer-social"></div>
     </div>
-
     <div class="footer-col">
       <h4>Techsavvy</h4>
       <a href="about.html">About</a>
@@ -236,23 +255,22 @@
       <a href="courses.html">Courses</a>
       <a href="projects.html">Projects</a>
     </div>
-
     <div class="footer-col">
       <h4>Community</h4>
       <a href="join.html">Join Us</a>
-      <a href="index.html">Instagram</a>
-      <a href="index.html">LinkedIn</a>
+      <a href="apply.html">Apply</a>
+      <a href="track.html">Track Application</a>
+      <a href="login.html" data-auth="login">Log In</a>
     </div>
-
     <div class="footer-col">
       <h4>Support</h4>
       <a href="join.html#contact">Contact Us</a>
+      <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
     </div>
   </div>
-  <div class="wrap footer-bottom">
-    <p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p>
-  </div>
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
 </footer>
 
+<script src="assets/site.js" defer></script>
 </body>
 </html>

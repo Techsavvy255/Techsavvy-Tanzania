@@ -16,10 +16,11 @@
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
     <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
     <nav class="main-nav">
-      <a href="about.html">About</a>
-      <a href="programs.html">Programs</a>
-      <a href="courses.html">Courses</a>
-      <a href="projects.html">Projects</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="programs.html" data-nav="programs">Programs</a>
+      <a href="courses.html" data-nav="courses">Courses</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="login.html" data-nav="account" data-auth="login">Log In</a>
       <a href="join.html" class="nav-cta">Join Us</a>
     </nav>
   </div>
@@ -87,7 +88,34 @@
 </main>
 
 <footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo footer-logo">
+      <p>Empowering Youth Through Technology.</p>
+      <div class="footer-social" id="footer-social"></div>
+    </div>
+    <div class="footer-col">
+      <h4>Techsavvy</h4>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="join.html">Join Us</a>
+      <a href="apply.html">Apply</a>
+      <a href="track.html">Track Application</a>
+      <a href="login.html" data-auth="login">Log In</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="join.html#contact">Contact Us</a>
+      <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
+    </div>
+  </div>
   <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
 </footer>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

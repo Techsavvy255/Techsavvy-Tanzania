@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Create Account — Techsavvy Tanzania</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -16,9 +17,11 @@
     <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
     <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
     <nav class="main-nav">
-      <a href="about.html">About</a>
-      <a href="courses.html">Courses</a>
-      <a href="login.html">Log In</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="programs.html" data-nav="programs">Programs</a>
+      <a href="courses.html" data-nav="courses">Courses</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="login.html" data-nav="account" data-auth="login">Log In</a>
       <a href="join.html" class="nav-cta">Join Us</a>
     </nav>
   </div>
@@ -65,10 +68,82 @@
 </main>
 
 <footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo footer-logo">
+      <p>Empowering Youth Through Technology.</p>
+      <div class="footer-social" id="footer-social"></div>
+    </div>
+    <div class="footer-col">
+      <h4>Techsavvy</h4>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="join.html">Join Us</a>
+      <a href="apply.html">Apply</a>
+      <a href="track.html">Track Application</a>
+      <a href="login.html" data-auth="login">Log In</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="join.html#contact">Contact Us</a>
+      <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
+    </div>
+  </div>
   <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
 </footer>
 
 <script src="assets/supabase-config.js"></script>
-<script src="register.js"></script>
+<script>
+document.getElementById("google-btn").addEventListener("click", async () => {
+  await supabaseClient.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: window.location.origin + window.location.pathname.replace("register.html", "dashboard.html") },
+  });
+});
+
+document.getElementById("register-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const statusEl = document.getElementById("register-status");
+  statusEl.textContent = "Creating your account...";
+  statusEl.className = "form-status";
+
+  const full_name = document.getElementById("full_name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name } },
+    });
+    if (error) throw error;
+
+    // An already-registered email comes back with no identities
+    if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      statusEl.innerHTML = 'This email already has an account. <a href="login.html" style="color:var(--blue); font-weight:600;">Log in instead</a>.';
+      statusEl.className = "form-status error";
+      return;
+    }
+
+    if (data.session) {
+      window.location.href = "dashboard.html";
+    } else {
+      statusEl.textContent = "Account created! Please check your email to confirm your account before logging in.";
+      statusEl.className = "form-status success";
+    }
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = "Error: " + (err && err.message ? err.message : err);
+    statusEl.className = "form-status error";
+  }
+});
+</script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
