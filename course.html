@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Course — Techsavvy Tanzania</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo"></a>
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
+    <nav class="main-nav">
+      <a href="about.html" data-nav="about">About</a>
+      <a href="programs.html" data-nav="programs">Programs</a>
+      <a href="courses.html" data-nav="courses">Courses</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="login.html" data-nav="account" data-auth="login">Log In</a>
+      <a href="join.html" class="nav-cta">Join Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="pill">Course</span>
+      <h1 id="course-title">Loading...</h1>
+      <p id="course-summary"></p>
+      <div class="btn-row" id="course-actions"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="story-block">
+        <h2>What you'll <em>learn</em></h2>
+        <ul class="course-outcomes" id="course-outcomes"></ul>
+      </div>
+      <div id="lessons-area" style="margin-top:50px;"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Techsavvy Tanzania" class="brand-logo footer-logo">
+      <p>Empowering Youth Through Technology.</p>
+      <div class="footer-social" id="footer-social"></div>
+    </div>
+    <div class="footer-col">
+      <h4>Techsavvy</h4>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="courses.html">Courses</a>
+      <a href="projects.html">Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="join.html">Join Us</a>
+      <a href="apply.html">Apply</a>
+      <a href="track.html">Track Application</a>
+      <a href="login.html" data-auth="login">Log In</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="join.html#contact">Contact Us</a>
+      <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
+</footer>
+
+<script src="assets/supabase-config.js"></script>
+<script src="assets/courses-data.js"></script>
+<script>
+(async function () {
+  const slug = new URLSearchParams(window.location.search).get("c");
+  const known = typeof COURSES !== "undefined" && slug && Object.prototype.hasOwnProperty.call(COURSES, slug);
+  const course = known ? COURSES[slug] : null;
+
+  const titleEl = document.getElementById("course-title");
+  const summaryEl = document.getElementById("course-summary");
+  const actions = document.getElementById("course-actions");
+  const outcomesEl = document.getElementById("course-outcomes");
+  const lessonsArea = document.getElementById("lessons-area");
+
+  function make(tag, attrs, text) {
+    const e = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  if (!course) {
+    titleEl.textContent = "Course not found";
+    summaryEl.textContent = "We couldn't find that course.";
+    actions.appendChild(make("a", { href: "courses.html", class: "btn btn-solid" }, "Browse courses"));
+    document.querySelector(".story-block").style.display = "none";
+    return;
+  }
+
+  document.title = course.title + " — Techsavvy Tanzania";
+  titleEl.textContent = course.title;
+  summaryEl.textContent = course.summary;
+  course.outcomes.forEach(function (o) { outcomesEl.appendChild(make("li", {}, o)); });
+
+  let signedIn = false;
+  let enrolled = false;
+  let problem = "";
+  try {
+    const { data } = await supabaseClient.auth.getSession();
+    if (data.session) {
+      signedIn = true;
+      const { data: mine, error } = await supabaseClient.rpc("my_courses");
+      if (error) throw error;
+      enrolled = (mine || []).some(function (m) { return m.course_slug === slug; });
+    }
+  } catch (err) {
+    console.error(err);
+    problem = "Could not check your enrollment: " + (err && err.message ? err.message : err);
+  }
+
+  function render() {
+    actions.innerHTML = "";
+    lessonsArea.innerHTML = "";
+    if (problem) {
+      lessonsArea.appendChild(make("p", { class: "form-status error" }, problem));
+    }
+
+    if (!signedIn) {
+      actions.appendChild(make("a", { href: "login.html?next=" + encodeURIComponent("course.html?c=" + slug), class: "btn btn-solid" }, "Log in to enroll"));
+      lessonsArea.appendChild(make("div", { class: "notice-box" }, "Log in and enroll to start this course."));
+      return;
+    }
+
+    if (!enrolled) {
+      const btn = make("button", { type: "button", class: "btn btn-solid", id: "enroll-btn" }, "Enroll in this course");
+      btn.addEventListener("click", async function () {
+        btn.disabled = true;
+        try {
+          const { error } = await supabaseClient.rpc("enroll_in_course", { p_course: slug });
+          if (error) throw error;
+          enrolled = true;
+          problem = "";
+          render();
+        } catch (err) {
+          console.error(err);
+          btn.disabled = false;
+          problem = "Could not enroll: " + (err && err.message ? err.message : err);
+          render();
+        }
+      });
+      actions.appendChild(btn);
+      lessonsArea.appendChild(make("div", { class: "notice-box" }, "Enroll to see this course's lessons."));
+      return;
+    }
+
+    actions.appendChild(make("span", { class: "status-badge status-approved" }, "You're enrolled"));
+    actions.appendChild(make("a", { href: "dashboard.html", class: "btn btn-outline" }, "Back to my dashboard"));
+
+    lessonsArea.appendChild(make("h2", {}, "Lessons"));
+    if (!course.lessons || course.lessons.length === 0) {
+      lessonsArea.appendChild(make("div", { class: "notice-box" }, "Lessons for this course will appear here. We'll announce your start date soon."));
+      return;
+    }
+    const list = make("ol", { class: "lesson-list" });
+    course.lessons.forEach(function (l) {
+      const li = make("li");
+      if (l.url && /^https?:\/\//i.test(l.url)) {
+        li.appendChild(make("a", { href: l.url, target: "_blank", rel: "noopener" }, l.title));
+      } else {
+        li.textContent = l.title;
+      }
+      list.appendChild(li);
+    });
+    lessonsArea.appendChild(list);
+  }
+
+  render();
+})();
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

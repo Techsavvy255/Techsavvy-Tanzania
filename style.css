@@ -435,3 +435,11 @@ a:focus-visible, label:focus-visible { outline: 2px solid var(--blue); outline-o
 .footer-social { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
 .footer-social a { color: var(--grey); font-size: 0.9rem; font-weight: 600; }
 .footer-social a:hover { color: var(--blue); }
+
+/* ===== Courses: enroll / continue ===== */
+.course-cta.is-primary { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.course-cta.is-primary:hover { background: var(--blue-deep); border-color: var(--blue-deep); color: var(--white); }
+.lesson-list { margin: 16px 0 0; padding-left: 22px; }
+.lesson-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.lesson-list a { font-weight: 600; color: var(--blue); }
+.notice-box { border: 1px dashed var(--line); border-radius: 6px; padding: 24px; color: var(--grey); }

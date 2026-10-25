@@ -46,13 +46,14 @@
     <div class="wrap">
       <span class="pill">Our Courses</span>
       <h1>Learn <em>Real</em> Tech Skills</h1>
-      <p>Each course below is designed to be practical and hands-on. Contact
-        us to ask about start dates, levels, and enrollment.</p>
+      <p>Each course below is designed to be practical and hands-on. Log in with
+        your email or Google, enroll in a course, and continue it any time from your dashboard.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
+      <p class="form-status" id="courses-status" style="text-align:center;"></p>
       <div class="course-grid">
 
         <div class="course-card">
@@ -63,7 +64,7 @@
             <li>Practical prompting and AI-assisted workflows</li>
             <li>Ethical and responsible use of AI</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="ai-chatgpt">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -74,7 +75,7 @@
             <li>Building responsive, real websites</li>
             <li>Introduction to front-end and back-end concepts</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="web-development">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -85,7 +86,7 @@
             <li>Working with modern design tools</li>
             <li>Building a personal design portfolio</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="graphic-design">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -96,7 +97,7 @@
             <li>Setting up and troubleshooting networks</li>
             <li>Introduction to network security basics</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="networking">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -107,7 +108,7 @@
             <li>Practical security best practices</li>
             <li>Fundamentals of protecting systems and data</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="cybersecurity">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -118,7 +119,7 @@
             <li>Understanding audiences and analytics</li>
             <li>Building a simple marketing plan</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="digital-marketing">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -129,7 +130,7 @@
             <li>Basic editing and production tools</li>
             <li>Building a consistent content style</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="content-creation">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -140,7 +141,7 @@
             <li>Problem-solving through code</li>
             <li>A foundation for further specialization</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="programming">Log in to enroll</a>
         </div>
 
         <div class="course-card">
@@ -151,7 +152,7 @@
             <li>Core software and internet skills</li>
             <li>A foundation for any tech career path</li>
           </ul>
-          <a href="join.html" class="course-cta">Ask About Enrollment</a>
+          <a href="login.html?next=courses.html" class="course-cta" data-enroll="computer-fundamentals">Log in to enroll</a>
         </div>
 
       </div>
@@ -198,6 +199,58 @@
   <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script>
+// Signed-in members get "Enroll" / "Continue" on each course; everyone else keeps "Log in to enroll".
+(async function () {
+  const statusEl = document.getElementById("courses-status");
+  const buttons = document.querySelectorAll("[data-enroll]");
+
+  function setState(btn, enrolled) {
+    const slug = btn.getAttribute("data-enroll");
+    if (enrolled) {
+      btn.textContent = "Continue";
+      btn.setAttribute("href", "course.html?c=" + encodeURIComponent(slug));
+      btn.classList.add("is-primary");
+      btn.onclick = null;
+    } else {
+      btn.textContent = "Enroll";
+      btn.setAttribute("href", "#");
+      btn.classList.remove("is-primary");
+      btn.onclick = async function (e) {
+        e.preventDefault();
+        statusEl.textContent = "";
+        btn.style.opacity = "0.6";
+        try {
+          const { error } = await supabaseClient.rpc("enroll_in_course", { p_course: slug });
+          if (error) throw error;
+          window.location.href = "course.html?c=" + encodeURIComponent(slug);
+        } catch (err) {
+          console.error(err);
+          btn.style.opacity = "";
+          statusEl.textContent = "Could not enroll: " + (err && err.message ? err.message : err);
+          statusEl.className = "form-status error";
+        }
+      };
+    }
+  }
+
+  try {
+    const { data } = await supabaseClient.auth.getSession();
+    if (!data.session) return;
+    const { data: mine, error } = await supabaseClient.rpc("my_courses");
+    if (error) throw error;
+    const enrolled = new Set((mine || []).map(function (m) { return m.course_slug; }));
+    buttons.forEach(function (btn) { setState(btn, enrolled.has(btn.getAttribute("data-enroll"))); });
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = "Could not check your courses: " + (err && err.message ? err.message : err);
+    statusEl.className = "form-status error";
+  }
+})();
+</script>
+<script src="assets/courses-data.js"></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

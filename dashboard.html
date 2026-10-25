@@ -34,7 +34,16 @@
       <h1 id="welcome-heading">Welcome</h1>
       <p id="welcome-email" style="color:var(--grey);"></p>
 
-      <div class="section-head" style="margin-top:40px;">
+      <div class="section-head" style="margin-top:40px;" id="courses">
+        <h2>My Courses</h2>
+        <p class="section-lead">Courses you've enrolled in. Pick up where you left off.</p>
+      </div>
+
+      <div id="my-courses">
+        <p style="color:var(--grey);">Loading...</p>
+      </div>
+
+      <div class="section-head" style="margin-top:50px;">
         <h2>My Applications</h2>
         <p class="section-lead">Applications submitted using this account's email address.</p>
       </div>
@@ -44,8 +53,8 @@
       </div>
 
       <div class="btn-row" style="margin-top:30px;">
-        <a href="apply.html" class="btn btn-solid">Submit New Application</a>
-        <a href="courses.html" class="btn btn-outline">Browse Courses</a>
+        <a href="courses.html" class="btn btn-solid">Browse Courses</a>
+        <a href="apply.html" class="btn btn-outline">Submit New Application</a>
         <a href="login.html?logout=1" class="btn btn-outline">Log Out</a>
       </div>
     </div>
@@ -83,6 +92,7 @@
 </footer>
 
 <script src="assets/supabase-config.js"></script>
+<script src="assets/courses-data.js"></script>
 <script>
 const statusLabels = {
   pending: "Pending",
@@ -98,8 +108,74 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function safeNext(v) {
+  return typeof v === "string" && /^(courses|course|dashboard|apply|track)\.html(\?[A-Za-z0-9_=&.\-]*)?$/.test(v);
+}
+
+async function loadMyCourses(box) {
+  try {
+    const { data, error } = await supabaseClient.rpc("my_courses");
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      box.innerHTML =
+        '<p style="color:var(--grey);">You haven\'t enrolled in a course yet. <a href="courses.html" style="color:var(--blue); font-weight:600;">Browse courses</a> and pick one to start.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<div class="track-result">' +
+      data
+        .map(function (c) {
+          const info = typeof COURSES !== "undefined" && COURSES[c.course_slug] ? COURSES[c.course_slug] : null;
+          const title = info ? info.title : c.course_slug;
+          const label = c.status === "completed" ? "Completed" : "Enrolled";
+          return `
+        <div class="track-row">
+          <span>${escapeHtml(title)}</span>
+          <span>
+            <span class="status-badge status-approved">${label}</span>
+            <a href="course.html?c=${encodeURIComponent(c.course_slug)}" style="margin-left:12px; color:var(--blue); font-weight:600;">Continue</a>
+          </span>
+        </div>`;
+        })
+        .join("") +
+      "</div>";
+  } catch (err) {
+    console.error(err);
+    box.innerHTML = '<p style="color:#C4291C;">Could not load your courses: ' + escapeHtml(err && err.message ? err.message : err) + "</p>";
+  }
+}
+
+async function loadMyApplications(box) {
+  try {
+    // Only this member's own applications (matched by email) come back from the database
+    const { data, error } = await supabaseClient.rpc("my_applications");
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      box.innerHTML = '<p style="color:var(--grey);">You haven\'t submitted any applications yet.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<div class="track-result">' +
+      data
+        .map(function (a) {
+          return `
+        <div class="track-row">
+          <span>${escapeHtml(a.application_number)} &middot; ${escapeHtml(a.category.replace("_", " "))}</span>
+          <span>
+            <span class="status-badge status-${escapeHtml(a.status)}">${escapeHtml(statusLabels[a.status] || a.status)}</span>
+            <a href="track.html?number=${encodeURIComponent(a.application_number)}" style="margin-left:12px; color:var(--blue); font-weight:600;">Track</a>
+          </span>
+        </div>`;
+        })
+        .join("") +
+      "</div>";
+  } catch (err) {
+    console.error(err);
+    box.innerHTML = '<p style="color:#C4291C;">Could not load your applications: ' + escapeHtml(err && err.message ? err.message : err) + "</p>";
+  }
+}
+
 (async function init() {
-  const container = document.getElementById("my-applications");
   try {
     const { data: sessionData } = await supabaseClient.auth.getSession();
     if (!sessionData.session) {
@@ -107,39 +183,27 @@ function escapeHtml(str) {
       return;
     }
 
+    // Someone who came through "Log in to enroll" carries on to where they were going
+    const next = sessionStorage.getItem("tsNext");
+    if (next) {
+      sessionStorage.removeItem("tsNext");
+      if (safeNext(next) && next.indexOf("dashboard.html") !== 0) {
+        window.location.replace(next);
+        return;
+      }
+    }
+
     const user = sessionData.session.user;
     const meta = user.user_metadata || {};
     document.getElementById("welcome-heading").textContent = "Welcome, " + (meta.full_name || meta.name || user.email);
     document.getElementById("welcome-email").textContent = user.email;
 
-    // Only this member's own applications (matched by email) come back from the database
-    const { data, error } = await supabaseClient.rpc("my_applications");
-    if (error) throw error;
-
-    if (!data || data.length === 0) {
-      container.innerHTML = '<p style="color:var(--grey);">You haven\'t submitted any applications yet.</p>';
-      return;
-    }
-
-    container.innerHTML =
-      '<div class="track-result">' +
-      data
-        .map(
-          (a) => `
-        <div class="track-row">
-          <span>${escapeHtml(a.application_number)} &middot; ${escapeHtml(a.category.replace("_", " "))}</span>
-          <span>
-            <span class="status-badge status-${escapeHtml(a.status)}">${escapeHtml(statusLabels[a.status] || a.status)}</span>
-            <a href="track.html?number=${encodeURIComponent(a.application_number)}" style="margin-left:12px; color:var(--blue); font-weight:600;">Track</a>
-          </span>
-        </div>`
-        )
-        .join("") +
-      "</div>";
+    loadMyCourses(document.getElementById("my-courses"));
+    loadMyApplications(document.getElementById("my-applications"));
   } catch (err) {
     console.error(err);
-    container.innerHTML =
-      '<p style="color:#C4291C;">Could not load your applications: ' + escapeHtml(err && err.message ? err.message : err) + "</p>";
+    document.getElementById("my-courses").innerHTML =
+      '<p style="color:#C4291C;">Something went wrong: ' + escapeHtml(err && err.message ? err.message : err) + "</p>";
   }
 })();
 </script>

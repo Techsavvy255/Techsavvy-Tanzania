@@ -99,6 +99,12 @@
 
 <script src="assets/supabase-config.js"></script>
 <script>
+// "Log in to enroll" links carry ?next=... so the member lands back on their course after signing up
+const wantedNext = new URLSearchParams(window.location.search).get("next");
+if (wantedNext && /^(courses|course|dashboard|apply|track)\.html(\?[A-Za-z0-9_=&.\-]*)?$/.test(wantedNext)) {
+  sessionStorage.setItem("tsNext", wantedNext);
+}
+
 document.getElementById("google-btn").addEventListener("click", async () => {
   await supabaseClient.auth.signInWithOAuth({
     provider: "google",
