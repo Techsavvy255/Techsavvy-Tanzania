@@ -30,7 +30,7 @@
 <main>
   <section class="page-hero">
     <div class="wrap">
-      <span class="pill">Course</span>
+      <span class="pill">Course</span><span class="project-tag" id="course-level" style="margin-left:10px; display:none;"></span>
       <h1 id="course-title">Loading...</h1>
       <p id="course-summary"></p>
       <div class="btn-row" id="course-actions"></div>
@@ -42,6 +42,10 @@
       <div class="story-block">
         <h2>What you'll <em>learn</em></h2>
         <ul class="course-outcomes" id="course-outcomes"></ul>
+        <div id="course-reqs-block" style="margin-top:36px; display:none;">
+          <h2>Before you <em>start</em></h2>
+          <ul class="course-outcomes" id="course-requirements"></ul>
+        </div>
       </div>
       <div id="lessons-area" style="margin-top:50px;"></div>
     </div>
@@ -111,6 +115,16 @@
   titleEl.textContent = course.title;
   summaryEl.textContent = course.summary;
   course.outcomes.forEach(function (o) { outcomesEl.appendChild(make("li", {}, o)); });
+  if (course.level) {
+    const lv = document.getElementById("course-level");
+    lv.textContent = course.level;
+    lv.style.display = "";
+  }
+  if (course.requirements && course.requirements.length) {
+    const reqs = document.getElementById("course-requirements");
+    course.requirements.forEach(function (r) { reqs.appendChild(make("li", {}, r)); });
+    document.getElementById("course-reqs-block").style.display = "";
+  }
 
   let signedIn = false;
   let enrolled = false;
@@ -167,21 +181,35 @@
     actions.appendChild(make("a", { href: "dashboard.html", class: "btn btn-outline" }, "Back to my dashboard"));
 
     lessonsArea.appendChild(make("h2", {}, "Lessons"));
-    if (!course.lessons || course.lessons.length === 0) {
+
+    // Modules are the normal layout; a plain `lessons` list still works for a course that doesn't use them
+    const modules = course.modules && course.modules.length
+      ? course.modules
+      : course.lessons && course.lessons.length
+        ? [{ title: "", lessons: course.lessons }]
+        : [];
+    if (modules.length === 0) {
       lessonsArea.appendChild(make("div", { class: "notice-box" }, "Lessons for this course will appear here. We'll announce your start date soon."));
       return;
     }
-    const list = make("ol", { class: "lesson-list" });
-    course.lessons.forEach(function (l) {
-      const li = make("li");
-      if (l.url && /^https?:\/\//i.test(l.url)) {
-        li.appendChild(make("a", { href: l.url, target: "_blank", rel: "noopener" }, l.title));
-      } else {
-        li.textContent = l.title;
-      }
-      list.appendChild(li);
+
+    modules.forEach(function (m, mi) {
+      if (m.title) lessonsArea.appendChild(make("h3", { class: "module-title" }, "Module " + (mi + 1) + ": " + m.title));
+      const list = make("ol", { class: "lesson-list" });
+      m.lessons.forEach(function (l) {
+        const li = make("li");
+        const hasLink = l.url && /^https?:\/\//i.test(l.url);
+        if (hasLink) {
+          li.appendChild(make("a", { href: l.url, target: "_blank", rel: "noopener" }, l.title));
+        } else {
+          li.appendChild(make("span", { class: "lesson-name" }, l.title));
+          li.appendChild(make("span", { class: "soon-tag" }, "Material coming soon"));
+        }
+        if (l.summary) li.appendChild(make("div", { class: "lesson-summary" }, l.summary));
+        list.appendChild(li);
+      });
+      lessonsArea.appendChild(list);
     });
-    lessonsArea.appendChild(list);
   }
 
   render();
