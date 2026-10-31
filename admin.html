@@ -193,6 +193,58 @@ function renderTable() {
   document.getElementById(id).addEventListener("input", renderTable);
 });
 
+const SITE_URL = "https://techsavvy255.github.io/Techsavvy-Tanzania/";
+
+const statusNotes = {
+  pending: "We have received it and will review it soon.",
+  under_review: "Our team has started reviewing it.",
+  interview: "We would like to invite you to an interview and will share the details soon.",
+  approved: "Congratulations, your application has been approved!",
+  rejected: "Thank you for applying. We are not able to move forward with your application at this time.",
+};
+
+// Turns 0659 812 079, +255659812079 or 659812079 into 255659812079 (the form WhatsApp links need)
+function normalizePhone(raw) {
+  let d = String(raw || "").replace(/[^\d+]/g, "");
+  if (!d) return "";
+  if (d.charAt(0) === "+") d = d.slice(1);
+  else if (d.indexOf("00") === 0) d = d.slice(2);
+  else if (d.charAt(0) === "0") d = "255" + d.slice(1);
+  if (/^[67]\d{8}$/.test(d)) d = "255" + d; // a Tanzanian mobile number written without 0 or country code
+  return /^\d{9,15}$/.test(d) ? d : "";
+}
+
+function notifyMessage(app, status) {
+  return (
+    "Hello " + app.full_name + ", this is Techsavvy Tanzania. Your application " + app.application_number +
+    " is now: " + (statusLabels[status] || status) + ". " + (statusNotes[status] || "") +
+    " You can follow it any time here: " + SITE_URL + "track.html?number=" + encodeURIComponent(app.application_number)
+  );
+}
+
+// Keeps the WhatsApp / Email buttons in step with the status currently chosen in the form
+function updateNotify(app) {
+  const status = document.getElementById("status-select").value;
+  const msg = notifyMessage(app, status);
+  const wa = document.getElementById("notify-wa");
+  const phone = normalizePhone(app.phone);
+  if (phone) {
+    wa.setAttribute("href", "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg));
+    wa.style.display = "";
+  } else {
+    wa.style.display = "none";
+  }
+  document.getElementById("notify-mail").setAttribute(
+    "href",
+    "mailto:" + encodeURIComponent(app.email) +
+      "?subject=" + encodeURIComponent("Your Techsavvy Tanzania application " + app.application_number) +
+      "&body=" + encodeURIComponent(msg)
+  );
+  document.getElementById("notify-hint").textContent = phone
+    ? "Opens WhatsApp or your email app with a ready message about the selected status. Read it, then press send."
+    : "No usable phone number on this application, so only email is available. Opens your email app with a ready message.";
+}
+
 function openDetail(id) {
   const app = allApplications.find((a) => a.id === id);
   if (!app) return;
@@ -231,11 +283,22 @@ function openDetail(id) {
       <textarea id="notes-input">${escapeHtml(app.admin_notes || "")}</textarea>
     </div>
 
+    <div class="field" style="margin-top:24px;">
+      <label>Tell the applicant</label>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a id="notify-wa" class="btn btn-outline" style="padding:10px 18px;" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="notify-mail" class="btn btn-outline" style="padding:10px 18px;">Email</a>
+      </div>
+      <div class="field-hint" id="notify-hint"></div>
+    </div>
+
     <button class="form-submit" id="save-btn">Save Changes</button>
     <p class="form-status" id="modal-status"></p>
   `;
 
   document.getElementById("save-btn").addEventListener("click", () => saveChanges(app.id));
+  document.getElementById("status-select").addEventListener("change", () => updateNotify(app));
+  updateNotify(app);
   document.getElementById("modal-overlay").classList.add("open");
 }
 
