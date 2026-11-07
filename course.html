@@ -103,6 +103,19 @@
     return e;
   }
 
+  // What a member is told, depending on where their Learner application stands
+  function accessInfo(access) {
+    if (access === "approved") return null;
+    if (access === "rejected") {
+      return { text: "Your Learner application was not approved, so you can't enroll for now. If you think this is a mistake, please contact us.", linkText: "Contact us", linkHref: "mailto:techsavvymanagment@gmail.com" };
+    }
+    if (access === "pending" || access === "under_review" || access === "interview") {
+      const where = access === "pending" ? "pending" : access === "under_review" ? "under review" : "at the interview stage";
+      return { text: "Your Learner application is " + where + ". You can enroll as soon as it is approved.", linkText: "Go to my dashboard", linkHref: "dashboard.html" };
+    }
+    return { text: "To enroll in a course, first submit a Learner application. Once it is approved, you can enroll.", linkText: "Apply as a Learner", linkHref: "apply.html?category=learner" };
+  }
+
   if (!course) {
     titleEl.textContent = "Course not found";
     summaryEl.textContent = "We couldn't find that course.";
@@ -127,15 +140,21 @@
   }
 
   let signedIn = false;
+  let access = "none";
   let enrolled = false;
   let problem = "";
   try {
     const { data } = await supabaseClient.auth.getSession();
     if (data.session) {
       signedIn = true;
-      const { data: mine, error } = await supabaseClient.rpc("my_courses");
-      if (error) throw error;
-      enrolled = (mine || []).some(function (m) { return m.course_slug === slug; });
+      const a = await supabaseClient.rpc("learner_access");
+      if (a.error) throw a.error;
+      access = a.data || "none";
+      if (access === "approved") {
+        const mine = await supabaseClient.rpc("my_courses");
+        if (mine.error) throw mine.error;
+        enrolled = (mine.data || []).some(function (m) { return m.course_slug === slug; });
+      }
     }
   } catch (err) {
     console.error(err);
@@ -155,6 +174,14 @@
       return;
     }
 
+    // Not approved: the page says where their application stands instead of offering "Enroll"
+    const info = accessInfo(access);
+    if (info) {
+      actions.appendChild(make("a", { href: info.linkHref, class: "btn btn-solid" }, info.linkText));
+      lessonsArea.appendChild(make("div", { class: "notice-box" }, info.text));
+      return;
+    }
+
     if (!enrolled) {
       const btn = make("button", { type: "button", class: "btn btn-solid", id: "enroll-btn" }, "Enroll in this course");
       btn.addEventListener("click", async function () {
@@ -167,8 +194,15 @@
           render();
         } catch (err) {
           console.error(err);
-          btn.disabled = false;
-          problem = "Could not enroll: " + (err && err.message ? err.message : err);
+          const m = err && err.message ? err.message : String(err);
+          const marker = "learner_not_approved:";
+          const i = m.indexOf(marker);
+          if (i !== -1) {
+            access = m.slice(i + marker.length).trim();
+            problem = "";
+          } else {
+            problem = "Could not enroll: " + m;
+          }
           render();
         }
       });

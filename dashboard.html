@@ -112,8 +112,31 @@ function safeNext(v) {
   return typeof v === "string" && /^(courses|course|dashboard|apply|track)\.html(\?[A-Za-z0-9_=&.\-]*)?$/.test(v);
 }
 
+// What a member is told, depending on where their Learner application stands
+function accessInfo(access) {
+  if (access === "approved") return null;
+  if (access === "rejected") {
+    return { text: "Your Learner application was not approved, so you can't enroll for now. If you think this is a mistake, please contact us.", linkText: "Contact us", linkHref: "mailto:techsavvymanagment@gmail.com" };
+  }
+  if (access === "pending" || access === "under_review" || access === "interview") {
+    const where = access === "pending" ? "pending" : access === "under_review" ? "under review" : "at the interview stage";
+    return { text: "Your Learner application is " + where + ". You can enroll as soon as it is approved. You can follow it under My Applications below.", linkText: "", linkHref: "" };
+  }
+  return { text: "To enroll in a course, first submit a Learner application. Once it is approved, you can enroll.", linkText: "Apply as a Learner", linkHref: "apply.html?category=learner" };
+}
+
 async function loadMyCourses(box) {
   try {
+    const accessRes = await supabaseClient.rpc("learner_access");
+    if (accessRes.error) throw accessRes.error;
+    const info = accessInfo(accessRes.data || "none");
+    if (info) {
+      box.innerHTML =
+        '<div class="notice-box">' + escapeHtml(info.text) +
+        (info.linkHref ? ' <a href="' + escapeHtml(info.linkHref) + '" style="color:var(--blue); font-weight:600;">' + escapeHtml(info.linkText) + "</a>" : "") +
+        "</div>";
+      return;
+    }
     const { data, error } = await supabaseClient.rpc("my_courses");
     if (error) throw error;
     if (!data || data.length === 0) {

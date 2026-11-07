@@ -453,3 +453,6 @@ a:focus-visible, label:focus-visible { outline: 2px solid var(--blue); outline-o
 .track-row span.status-badge.status-approved { color: #1B7A3B; }
 .track-row span.status-badge.status-rejected { color: #A32A1E; }
 .notice-box { border: 1px dashed var(--line); border-radius: 6px; padding: 24px; color: var(--grey); }
+
+.course-cta.is-disabled { opacity: 0.55; cursor: not-allowed; }
+.course-cta.is-disabled:hover { border-color: var(--black); color: var(--black); }

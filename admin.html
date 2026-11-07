@@ -215,9 +215,13 @@ function normalizePhone(raw) {
 }
 
 function notifyMessage(app, status) {
+  let note = statusNotes[status] || "";
+  if (app.category === "learner" && status === "approved") {
+    note += " You can now log in with Google and enroll in a course at " + SITE_URL + "courses.html.";
+  }
   return (
     "Hello " + app.full_name + ", this is Techsavvy Tanzania. Your application " + app.application_number +
-    " is now: " + (statusLabels[status] || status) + ". " + (statusNotes[status] || "") +
+    " is now: " + (statusLabels[status] || status) + ". " + note +
     " You can follow it any time here: " + SITE_URL + "track.html?number=" + encodeURIComponent(app.application_number)
   );
 }

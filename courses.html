@@ -46,8 +46,9 @@
     <div class="wrap">
       <span class="pill">Our Courses</span>
       <h1>Learn <em>Real</em> Tech Skills</h1>
-      <p>Each course below is designed to be practical and hands-on. Log in with
-        your email or Google, enroll in a course, and continue it any time from your dashboard.</p>
+      <p>Each course below is designed to be practical and hands-on. Sign in with
+        Google and apply as a Learner. Once your application is approved, you can enroll in a
+        course and continue it any time from your dashboard.</p>
     </div>
   </section>
 
@@ -202,10 +203,49 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/supabase-config.js"></script>
 <script>
-// Signed-in members get "Enroll" / "Continue" on each course; everyone else keeps "Log in to enroll".
+// Signed-in members can enroll once their Learner application is approved.
 (async function () {
   const statusEl = document.getElementById("courses-status");
   const buttons = document.querySelectorAll("[data-enroll]");
+
+  // What a member is told, depending on where their Learner application stands
+  function accessInfo(access) {
+    if (access === "approved") return null;
+    if (access === "rejected") {
+      return { text: "Your Learner application was not approved, so you can't enroll for now. If you think this is a mistake, please contact us.", linkText: "Contact us", linkHref: "mailto:techsavvymanagment@gmail.com" };
+    }
+    if (access === "pending" || access === "under_review" || access === "interview") {
+      const where = access === "pending" ? "pending" : access === "under_review" ? "under review" : "at the interview stage";
+      return { text: "Your Learner application is " + where + ". You can enroll as soon as it is approved.", linkText: "Go to my dashboard", linkHref: "dashboard.html" };
+    }
+    return { text: "To enroll in a course, first submit a Learner application. Once it is approved, you can enroll.", linkText: "Apply as a Learner", linkHref: "apply.html?category=learner" };
+  }
+
+  function showInfo(info) {
+    statusEl.textContent = info.text + " ";
+    statusEl.className = "form-status";
+    const a = document.createElement("a");
+    a.setAttribute("href", info.linkHref);
+    a.style.color = "var(--blue)";
+    a.style.fontWeight = "600";
+    a.textContent = info.linkText;
+    statusEl.appendChild(a);
+  }
+
+  // Not approved yet: the buttons say why instead of offering "Enroll"
+  function lock(btn, access) {
+    btn.onclick = null;
+    btn.classList.remove("is-primary");
+    if (access === "none") {
+      btn.textContent = "Apply to enroll";
+      btn.setAttribute("href", "apply.html?category=learner");
+    } else {
+      btn.textContent = access === "rejected" ? "Not available" : "Awaiting approval";
+      btn.setAttribute("href", "#");
+      btn.classList.add("is-disabled");
+      btn.onclick = function (e) { e.preventDefault(); };
+    }
+  }
 
   function setState(btn, enrolled) {
     const slug = btn.getAttribute("data-enroll");
@@ -229,8 +269,18 @@
         } catch (err) {
           console.error(err);
           btn.style.opacity = "";
-          statusEl.textContent = "Could not enroll: " + (err && err.message ? err.message : err);
-          statusEl.className = "form-status error";
+          const m = err && err.message ? err.message : String(err);
+          const marker = "learner_not_approved:";
+          const i = m.indexOf(marker);
+          if (i !== -1) {
+            const access = m.slice(i + marker.length).trim();
+            const info = accessInfo(access);
+            if (info) showInfo(info);
+            buttons.forEach(function (b) { lock(b, access); });
+          } else {
+            statusEl.textContent = "Could not enroll: " + m;
+            statusEl.className = "form-status error";
+          }
         }
       };
     }
@@ -239,9 +289,20 @@
   try {
     const { data } = await supabaseClient.auth.getSession();
     if (!data.session) return;
-    const { data: mine, error } = await supabaseClient.rpc("my_courses");
-    if (error) throw error;
-    const enrolled = new Set((mine || []).map(function (m) { return m.course_slug; }));
+
+    const accessRes = await supabaseClient.rpc("learner_access");
+    if (accessRes.error) throw accessRes.error;
+    const access = accessRes.data || "none";
+    const info = accessInfo(access);
+    if (info) {
+      showInfo(info);
+      buttons.forEach(function (btn) { lock(btn, access); });
+      return;
+    }
+
+    const mineRes = await supabaseClient.rpc("my_courses");
+    if (mineRes.error) throw mineRes.error;
+    const enrolled = new Set((mineRes.data || []).map(function (m) { return m.course_slug; }));
     buttons.forEach(function (btn) { setState(btn, enrolled.has(btn.getAttribute("data-enroll"))); });
   } catch (err) {
     console.error(err);
