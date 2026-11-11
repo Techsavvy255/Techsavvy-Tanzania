@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en" class="auth-pending"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Artificial Intelligence &amp; ChatGPT — Techsavvy Tanzania</title>
+<style>html.auth-pending body{display:none!important}</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script>
+(async function(){
+  try {
+    const {data,error}=await supabaseClient.auth.getSession();
+    if(error||!data.session){window.location.replace("login.html?next="+encodeURIComponent("ai-learning.html"));return;}
+    const access=await supabaseClient.rpc("learner_access");
+    if(access.error||access.data!=="approved"){window.location.replace("apply.html?category=learner");return;}
+    const mine=await supabaseClient.rpc("my_courses");
+    if(mine.error||!(mine.data||[]).some(x=>x.course_slug==="ai-chatgpt")){window.location.replace("course.html?c=ai-chatgpt");return;}
+    document.documentElement.classList.remove("auth-pending");
+  } catch(e){console.error(e);window.location.replace("course.html?c=ai-chatgpt");}
+})();
+</script>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1646b8">
+  <title>Artificial Intelligence &amp; ChatGPT | Techsavvy Tanzania Online Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;family=Fraunces:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --blue:#1646b8; --deep:#102f7d; --ink:#101827; --muted:#49566a; --line:#d9e1ee; --pale:#eff4ff; --white:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Work Sans",sans-serif; color:var(--ink); background:#f5f7fb; }
+    .app-shell { width:100%; min-height:100%; }
+    .wrap { width:min(100% - 2rem,1180px); margin-inline:auto; }
+    .skip { position:absolute; left:1rem; top:-5rem; z-index:50; background:#fff; color:var(--deep); padding:.75rem; }
+    .skip:focus { top:.5rem; }
+    :focus-visible { outline:3px solid #f6ba40; outline-offset:3px; }
+    button, input, textarea { font:inherit; }
+    button { cursor:pointer; }
+    .mast { background:var(--ink); color:white; border-bottom:5px solid var(--blue); }
+    .mast-inner { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1rem 0; flex-wrap:wrap; }
+    .brand { display:flex; align-items:center; gap:.8rem; }
+    .mark { display:grid; place-items:center; width:2.65rem; height:2.65rem; border:2px solid #9ebcff; border-radius:.75rem; font-weight:800; letter-spacing:-.1em; color:#fff; }
+    .brand-name { font-weight:800; letter-spacing:-.03em; line-height:1.2; }
+    .brand-small { display:block; color:#b8c8ed; font-size:.73rem; letter-spacing:.13em; text-transform:uppercase; margin-top:.2rem; }
+    .top-actions { display:flex; align-items:center; flex-wrap:wrap; gap:.55rem; }
+    .nav-btn,.lang-btn { border:1px solid #8798b5; background:transparent; color:white; padding:.57rem .83rem; border-radius:.55rem; font-size:.85rem; font-weight:700; }
+    .nav-btn:hover,.lang-btn:hover,.nav-btn[aria-current="page"],.lang-btn[aria-pressed="true"] { background:var(--blue); border-color:#8dafff; }
+    .hero { color:white; background:linear-gradient(110deg,#12398f,#1646b8 65%,#1a55cf); padding:clamp(2rem,5vw,4rem) 0; position:relative; overflow:hidden; }
+    .hero:after { content:""; position:absolute; right:-9rem; top:-10rem; width:34rem; height:34rem; border:1px solid #ffffff45; border-radius:50%; box-shadow:0 0 0 4rem #ffffff0a,0 0 0 8rem #ffffff08; pointer-events:none; }
+    .hero-inner { position:relative; z-index:1; }
+    .eyebrow { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.17em; color:#c7d8ff; }
+    h1,h2,h3,h4 { line-height:1.18; }
+    .hero h1 { font-family:Fraunces,serif; font-size:clamp(2.2rem,5vw,4.3rem); max-width:800px; margin:.55rem 0 1rem; }
+    .hero p { max-width:680px; line-height:1.7; color:#e7eeff; }
+    .hero-facts { display:flex; gap:.6rem; flex-wrap:wrap; margin:1.5rem 0; }
+    .hero-facts span { border:1px solid #dbe6ff88; padding:.4rem .7rem; border-radius:99px; font-size:.82rem; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; border:1px solid transparent; border-radius:.6rem; padding:.74rem 1.05rem; font-weight:700; text-decoration:none; line-height:1.3; }
+    .btn-primary { background:#fff; color:#133a93; }
+    .btn-blue { background:var(--blue); color:#fff; }
+    .btn-blue:hover { background:var(--deep); }
+    .btn-outline { background:#fff; color:var(--deep); border-color:#a8b9d8; }
+    .btn:disabled { opacity:.55; cursor:not-allowed; }
+    .layout { display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:1.35rem; align-items:start; padding:1.6rem 0 3rem; }
+    .main-column { min-width:0; }
+    .panel { background:#fff; border:1px solid var(--line); border-radius:1rem; padding:clamp(1rem,2.3vw,1.55rem); box-shadow:0 8px 28px #122b5d0a; margin-bottom:1.2rem; }
+    .panel h2 { font-family:Fraunces,serif; font-size:1.55rem; margin:0 0 .7rem; }
+    .panel h3 { font-size:1.15rem; margin:1.3rem 0 .5rem; }
+    .panel h4 { font-size:1rem; margin:1rem 0 .4rem; }
+    .panel p,.panel li { line-height:1.65; }
+    .muted { color:var(--muted); }
+    .kicker { font-size:.75rem; letter-spacing:.13em; font-weight:800; color:var(--blue); text-transform:uppercase; }
+    .stat-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; }
+    .stat { padding:1rem; border:1px solid var(--line); border-radius:.7rem; background:#f9fbff; }
+    .stat strong { display:block; font-size:1.12rem; }
+    .stat span { font-size:.78rem; color:var(--muted); }
+    .progress-track { height:.7rem; border-radius:1rem; background:#dbe5f8; overflow:hidden; }
+    .progress-fill { height:100%; background:var(--blue); transition:width .2s; }
+    .side { position:sticky; top:1rem; }
+    .search { display:block; width:100%; border:1px solid #9bacc9; border-radius:.6rem; padding:.76rem; background:#fff; color:var(--ink); }
+    .module { border:1px solid var(--line); border-radius:.8rem; margin:.75rem 0; overflow:hidden; background:white; }
+    .module summary { cursor:pointer; padding:1rem; font-weight:700; list-style:none; display:flex; justify-content:space-between; gap:1rem; align-items:center; }
+    .module summary::-webkit-details-marker { display:none; }
+    .module summary:after { content:"+"; font-size:1.4rem; color:var(--blue); flex:none; }
+    .module[open] summary:after { content:"−"; }
+    .module[open] summary { background:#edf3ff; border-bottom:1px solid var(--line); }
+    .module-body { padding:0 1rem 1rem; }
+    .module-body ul { padding-left:1.2rem; }
+    .module-body li { margin:.35rem 0; }
+    .lesson-link { display:block; width:100%; text-align:left; background:#f8faff; border:1px solid var(--line); border-radius:.5rem; padding:.7rem; color:var(--deep); margin:.4rem 0; font-weight:600; }
+    .lesson-link:hover,.lesson-link[aria-current="page"] { background:#dce9ff; border-color:var(--blue); }
+    .badge { display:inline-block; padding:.25rem .5rem; border-radius:99px; background:#e8efff; color:#173c91; font-weight:700; font-size:.72rem; }
+    .badge.pending { background:#fff4df; color:#77500e; }
+    .section-card { padding:1rem 1.1rem; border:1px solid var(--line); border-radius:.75rem; margin:1rem 0; background:#fff; }
+    .section-card h3 { margin-top:0; }
+    .section-card ol,.section-card ul { padding-left:1.35rem; }
+    .section-card li { margin:.45rem 0; }
+    .soft { background:var(--pale); border-color:#bfd0f5; }
+    .privacy { border-left:4px solid #b35421; background:#fff8ee; padding:.8rem 1rem; border-radius:.35rem; }
+    .field { width:100%; border:1px solid #9bacc9; border-radius:.55rem; padding:.7rem; min-height:7rem; resize:vertical; }
+    .checkline { display:flex; align-items:flex-start; gap:.6rem; margin:.85rem 0; font-weight:600; }
+    .checkline input { width:1.2rem; height:1.2rem; margin-top:.18rem; accent-color:var(--blue); flex:none; }
+    .question { border:1px solid var(--line); border-radius:.7rem; padding:1rem; margin:1rem 0; }
+    .question legend { font-weight:700; padding:.2rem; }
+    .option { display:flex; gap:.55rem; align-items:flex-start; margin:.55rem 0; }
+    .option input { margin-top:.3rem; accent-color:var(--blue); }
+    .feedback { padding:.75rem; background:#eef4ff; border-radius:.5rem; margin-top:.7rem; }
+    .crumb { display:flex; flex-wrap:wrap; gap:.4rem; color:var(--muted); font-size:.86rem; margin-bottom:1rem; }
+    .pager { display:flex; justify-content:space-between; gap:.8rem; flex-wrap:wrap; margin-top:1.4rem; }
+    .table-scroll { overflow-x:auto; }
+    table { width:100%; min-width:520px; border-collapse:collapse; }
+    th,td { border-bottom:1px solid var(--line); padding:.7rem; text-align:left; vertical-align:top; }
+    th { background:#edf3ff; }
+    .hidden-view { display:none !important; }
+    .footer { padding:1rem 0 2rem; color:var(--muted); font-size:.85rem; }
+    @media(max-width:860px) { .layout { grid-template-columns:1fr; } .side { position:static; order:-1; } }
+    @media(max-width:560px) { .wrap { width:min(100% - 1.2rem,1180px); } .stat-grid { grid-template-columns:1fr 1fr; } .top-actions { width:100%; } .nav-btn { flex:1; } .hero h1 { font-size:2.25rem; } }
+    @media(prefers-reduced-motion:reduce) { *,*:before,*:after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+    @media print { body { background:white; color:black; } .mast,.side,.pager,.btn,.skip,.footer,.search-wrap { display:none !important; } .layout { display:block; padding:0; } .panel,.section-card { box-shadow:none; break-inside:avoid; } .hero { background:white !important; color:black; padding:.7rem 0; } .hero p,.eyebrow { color:black; } .hero:after { display:none; } }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  </head>
+ <body data-template-id="__page-root" style="background: rgb(245, 247, 251);"><a class="skip" href="#main">Skip to main content / Ruka hadi maudhui</a>
+  <div class="app-shell w-full">
+   <header class="mast canva-header">
+    <div class="wrap mast-inner">
+     <div class="brand">
+      <div class="mark" aria-hidden="true">
+       T.
+      </div>
+      <div>
+       <div data-template-id="institution-name" class="brand-name canva-text" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">Techsavvy Tanzania</div><span data-template-id="academy-label" class="brand-small canva-text" style="color: rgb(184, 200, 237); font-weight: 600; font-style: normal; font-size: 12px;">Online Academy</span></div>
+      </div>
+     </div>
+     <nav class="top-actions" aria-label="Main navigation"><button id="home-nav" class="nav-btn" type="button"></button> <button id="curriculum-nav" class="nav-btn" type="button"></button> <button id="lang-en" class="lang-btn" type="button" aria-label="Switch to English">English</button> <button id="lang-sw" class="lang-btn" type="button" aria-label="Badili kwenda Kiswahili">Kiswahili</button>
+     </nav>
+    </div>
+   </header>
+   <section class="hero canva-banner" aria-labelledby="course-title">
+    <div class="wrap hero-inner">
+     <div class="eyebrow" id="hero-eyebrow"></div>
+     <h1 id="course-title" data-template-id="course-title" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px;">Artificial Intelligence &amp; ChatGPT</h1>
+     <p id="hero-description"></p>
+     <div class="hero-facts" id="hero-facts"></div><button class="btn btn-primary" id="continue-btn" type="button"></button>
+    </div>
+   </section>
+   <div class="wrap layout">
+    <main id="main" class="main-column" tabindex="-1">
+     <div id="content" aria-live="polite"></div>
+    </main>
+    <aside class="side" aria-label="Course navigation">
+     <section class="panel search-wrap"><label for="search" id="search-label" class="font-bold block mb-2"></label> <input class="search" id="search" type="search" autocomplete="off">
+      <p id="search-hint" class="muted text-sm mt-2"></p>
+     </section>
+     <section class="panel" id="sidebar-panel">
+      <h2 id="side-heading"></h2>
+      <div id="side-progress"></div>
+      <div id="side-modules"></div>
+     </section>
+    </aside>
+   </div>
+   <footer class="wrap footer">
+    <span data-template-id="footer-name" class="canva-text" style="color: rgb(73, 86, 106); font-weight: 600; font-style: normal; font-size: 16px;">Techsavvy Tanzania Online Academy</span> · <span id="footer-note"></span>
+   </footer>
+  </div>
+  <script>
+"use strict";
+const course = {
+  title:"Artificial Intelligence & ChatGPT",
+  institution:"Techsavvy Tanzania Online Academy",
+  modules:[
+    {en:"AI Foundations and Responsible Learning Habits",sw:"Misingi ya AI na Tabia Bora za Kujifunza",focus:["AI concepts, data and responsible learning","Dhana za AI, data na kujifunza kwa uwajibikaji"],time:"4–5",purpose:["Build an accurate foundation before using AI tools.","Kujenga msingi sahihi kabla ya kutumia zana za AI."],outcomes:[["Distinguish AI from ordinary automation and general AI.","Explain data, models, training and inference.","Evaluate benefits, risks and responsible use."],["Tofautisha AI, uendeshaji wa kawaida na dhana ya AI ya jumla.","Eleza data, modeli, mafunzo na matumizi ya modeli.","Pima manufaa, hatari na matumizi yenye uwajibikaji."]],lessons:[
+      ["What Artificial Intelligence Is and Is Not","AI ni Nini na Si Nini","Define AI, distinguish narrow AI from general AI, and classify real tasks.","Eleza AI, tofautisha AI maalumu na AI ya jumla, na ainisha kazi halisi.","Classify tasks and explain why AI is a tool rather than a person.","Ainisha kazi na eleza kwa nini AI ni zana, si mtu."],
+      ["Data, Models, and How AI Produces Results","Data, Modeli na Namna AI Inavyotoa Majibu","Explain the relationship among data, training, models and inference.","Eleza uhusiano wa data, mafunzo, modeli na utabiri.","Describe a classifier and identify weaknesses in its data.","Eleza mfumo wa uainishaji na tambua mapungufu ya data yake."],
+      ["Everyday AI, Benefits, Risks, and the Learning Journey","AI ya Kila Siku, Manufaa, Hatari na Safari ya Kujifunza","Evaluate everyday applications using a responsible review process.","Tathmini matumizi ya kila siku kwa utaratibu wa uwajibikaji.","Balance benefits against risks and set personal safeguards.","Linganisha manufaa na hatari na weka hatua za tahadhari."]
+    ]},
+    {en:"Machine Learning and Large Language Models",sw:"Ujifunzaji wa Mashine na Modeli Kubwa za Lugha",focus:["Patterns, features, neural networks and model errors","Mifumo, vipengele, mitandao ya neva na makosa ya modeli"],time:"4–6",purpose:["Understand what models learn and where their predictions fail.","Kuelewa modeli zinavyojifunza na utabiri unapoweza kukosea."],outcomes:[["Identify features and predictions.","Explain the basic role of neural networks and LLMs.","Recognize error and uncertainty."],["Tambua vipengele na utabiri.","Eleza jukumu la msingi la mitandao ya neva na modeli za lugha.","Tambua makosa na kutokuwa na uhakika."]],lessons:[
+      ["Machine Learning: Patterns, Features, and Predictions","Ujifunzaji wa Mashine: Mifumo, Vipengele na Utabiri","Explore examples of training patterns and selecting useful features.","Chunguza mifano ya mifumo ya mafunzo na kuchagua vipengele muhimu.","Identify features, labels and predictions in a simple scenario.","Tambua vipengele, lebo na utabiri katika mfano rahisi."],
+      ["Neural Networks and Large Language Models","Mitandao ya Neva na Modeli Kubwa za Lugha","Introduce layered pattern learning and language-model behavior.","Tambulisha ujifunzaji wa mifumo kwa tabaka na utendaji wa modeli za lugha.","Describe what an LLM can generate and what it cannot verify alone.","Eleza modeli ya lugha inaweza kutoa nini na haiwezi kuthibitisha yenyewe nini."],
+      ["Why Models Make Mistakes","Kwa Nini Modeli Hukosea","Examine weak data, ambiguity and changing contexts.","Chunguza data dhaifu, utata na mabadiliko ya mazingira.","Suggest checks for uncertain or incorrect outputs.","Pendekeza njia za kuhakiki majibu yasiyo na uhakika."]
+    ]},
+    {en:"ChatGPT and Generative AI",sw:"ChatGPT na AI Zalishi",focus:["Conversational tools, generation and verification","Zana za mazungumzo, uzalishaji na uhakiki"],time:"4–5",purpose:["Use generative AI without confusing fluent output with evidence.","Kutumia AI zalishi bila kudhani majibu fasaha ni ushahidi."],outcomes:[["Describe conversational AI.","Create and revise useful drafts.","Verify generated claims."],["Eleza AI ya mazungumzo.","Andaa na boresha rasimu.","Hakiki madai yaliyotolewa na AI."]],lessons:[
+      ["ChatGPT as a Conversational AI Tool","ChatGPT kama Zana ya AI ya Mazungumzo","Explore conversational input, context and human review.","Chunguza mazungumzo, muktadha na ukaguzi wa binadamu.","Plan a safe, specific interaction with ChatGPT.","Panga mazungumzo salama na yenye maelekezo mahsusi."],
+      ["Generative AI for Text, Ideas, and Transformation","AI Zalishi kwa Maandishi, Mawazo na Kubadilisha Maudhui","Compare drafting, brainstorming and rewriting tasks.","Linganisha uandishi wa rasimu, mawazo na kuboresha maandishi.","Choose an appropriate task and evaluate its draft.","Chagua kazi inayofaa na tathmini rasimu yake."],
+      ["Verifying AI-Generated Content","Kuhakiki Maudhui Yaliyotolewa na AI","Practice checking claims, dates and attributed sources.","Fanya mazoezi ya kuhakiki madai, tarehe na vyanzo.","Build a verification checklist.","Tengeneza orodha ya ukaguzi."]
+    ]},
+    {en:"Prompt Engineering Fundamentals",sw:"Misingi ya Kuandika Maelekezo kwa AI",focus:["Context, format, examples and iteration","Muktadha, muundo, mifano na maboresho"],time:"4–6",purpose:["Write clearer instructions and assess resulting outputs.","Kuandika maelekezo yaliyo wazi na kutathmini majibu."],outcomes:[["Specify tasks and constraints.","Use examples and output formats.","Improve prompts through feedback."],["Bainisha kazi na mipaka.","Tumia mifano na miundo ya majibu.","Boresha maelekezo kwa mrejesho."]],lessons:[
+      ["The Anatomy of a Useful Prompt","Vipengele vya Maelekezo Yenye Manufaa","Study task, context, audience and constraints.","Jifunze kazi, muktadha, walengwa na mipaka.","Draft a clear prompt for a defined audience.","Andika maelekezo wazi kwa walengwa maalumu."],
+      ["Roles, Examples, and Clear Output Formats","Majukumu, Mifano na Miundo Wazi ya Majibu","Explore role descriptions, examples and structured answers.","Chunguza maelezo ya jukumu, mifano na majibu yenye muundo.","Request an output with a usable format.","Omba jibu lenye muundo unaotumika."],
+      ["Iteration, Feedback, and Prompt Improvement","Kurudia, Mrejesho na Kuboresha Maelekezo","Review weak outputs and revise instructions.","Kagua majibu dhaifu na rekebisha maelekezo.","Document an improved prompt and why it works better.","Andika maelekezo yaliyoboreshwa na sababu zake."]
+    ]},
+    {en:"Advanced Prompt Engineering",sw:"Uandishi wa Maelekezo wa Kiwango cha Juu",focus:["Task decomposition, critique and reusable systems","Kugawa kazi, kukosoa na mifumo inayorudiwa"],time:"5–6",purpose:["Manage complex work with reviewable prompts.","Kusimamia kazi changamano kwa maelekezo yanayoweza kukaguliwa."],outcomes:[["Break down complex work.","Request critique without assuming correctness.","Build reusable prompt templates."],["Gawa kazi changamano.","Omba ukosoaji bila kudhani majibu ni sahihi.","Unda violezo vya maelekezo vinavyorudiwa."]],lessons:[
+      ["Decomposing Complex Tasks","Kugawa Kazi Changamano","Separate a large task into verifiable stages.","Gawa kazi kubwa katika hatua zinazoweza kuhakikiwa.","Create a staged task plan.","Tengeneza mpango wa hatua za kazi."],
+      ["Reasoning, Critique, and Quality-Control Prompts","Maelekezo ya Uchambuzi, Ukosoaji na Udhibiti wa Ubora","Ask for assumptions, checks and alternative approaches.","Omba dhana, ukaguzi na njia mbadala.","Design a quality-control checklist.","Buni orodha ya udhibiti wa ubora."],
+      ["Reusable Prompt Systems and Templates","Mifumo na Violezo vya Maelekezo Vinavyorudiwa","Plan templates with inputs, limits and review steps.","Panga violezo vyenye taarifa, mipaka na hatua za ukaguzi.","Create a reusable prompt template.","Tengeneza kiolezo cha maelekezo kinachotumika tena."]
+    ]},
+    {en:"AI for Education, Research, and Productivity",sw:"AI kwa Elimu, Utafiti na Ufanisi",focus:["Learning support, evidence and workflows","Msaada wa kujifunza, ushahidi na mtiririko wa kazi"],time:"4–6",purpose:["Support learning and work without outsourcing judgment.","Kusaidia kujifunza na kazi bila kuacha kufanya maamuzi mwenyewe."],outcomes:[["Plan AI-supported study.","Check research evidence.","Design responsible productivity routines."],["Panga kujifunza kwa msaada wa AI.","Hakiki ushahidi wa utafiti.","Buni utaratibu wa kazi wenye uwajibikaji."]],lessons:[
+      ["AI-Supported Study Systems","Mifumo ya Kusoma kwa Msaada wa AI","Use questions, summaries and self-testing responsibly.","Tumia maswali, muhtasari na kujipima kwa uwajibikaji.","Design a study routine with independent practice.","Buni ratiba yenye mazoezi ya kujitegemea."],
+      ["Research, Evidence, and Source Checking","Utafiti, Ushahidi na Ukaguzi wa Vyanzo","Distinguish generated suggestions from verified sources.","Tofautisha mapendekezo ya AI na vyanzo vilivyohakikiwa.","Plan a source-checking process.","Panga utaratibu wa kuhakiki vyanzo."],
+      ["Individual and Team Productivity","Ufanisi wa Mtu Binafsi na Timu","Identify useful drafting and planning tasks with human oversight.","Tambua kazi za uandishi na mipango zinazohitaji usimamizi wa binadamu.","Map a reviewable team workflow.","Chora mtiririko wa kazi wa timu unaokaguliwa."]
+    ]},
+    {en:"AI for Business, Entrepreneurship, and Innovation",sw:"AI kwa Biashara, Ujasiriamali na Ubunifu",focus:["Customer insight, communication and decisions","Uelewa wa wateja, mawasiliano na maamuzi"],time:"4–6",purpose:["Explore business applications with privacy and evidence checks.","Chunguza matumizi ya biashara kwa kuzingatia faragha na ushahidi."],outcomes:[["Plan ethical market exploration.","Draft and review business content.","Evaluate ideas with human judgment."],["Panga utafiti wa soko wenye maadili.","Andaa na hakiki maudhui ya biashara.","Tathmini mawazo kwa maamuzi ya binadamu."]],lessons:[
+      ["Customer and Market Research","Utafiti wa Wateja na Soko","Develop research questions without exposing customer data.","Andaa maswali ya utafiti bila kufichua taarifa za wateja.","Design a privacy-safe research plan.","Buni mpango wa utafiti unaolinda faragha."],
+      ["Business Content and Communication","Maudhui ya Biashara na Mawasiliano","Draft clear messages and check factual claims.","Andaa ujumbe wazi na hakiki madai.","Review a sample customer message.","Kagua mfano wa ujumbe kwa mteja."],
+      ["Innovation, Prototyping, and Decision Support","Ubunifu, Majaribio na Msaada wa Maamuzi","Compare ideas and test assumptions before making decisions.","Linganisha mawazo na jaribu dhana kabla ya maamuzi.","Plan a small, testable prototype.","Panga mfano mdogo unaoweza kujaribiwa."]
+    ]},
+    {en:"Practical AI Applications and Workflows",sw:"Matumizi Halisi ya AI na Mitiririko ya Kazi",focus:["Workflow design, documents and controlled automation","Ubunifu wa kazi, nyaraka na uendeshaji wa hatua unaosimamiwa"],time:"5–7",purpose:["Combine AI steps into useful, reviewable processes.","Unganisha hatua za AI katika kazi zenye manufaa zinazokaguliwa."],outcomes:[["Map an end-to-end workflow.","Structure document information.","Keep human control over automation."],["Chora mtiririko wa kazi wa mwanzo hadi mwisho.","Panga taarifa za nyaraka.","Dumisha usimamizi wa binadamu katika uendeshaji wa hatua."]],lessons:[
+      ["Designing an End-to-End AI Workflow","Kubuni Mtiririko Kamili wa Kazi ya AI","Map inputs, review points and outputs.","Chora taarifa za kuingiza, hatua za ukaguzi na matokeo.","Design a reviewable workflow.","Buni mtiririko unaoweza kukaguliwa."],
+      ["Documents and Structured Information","Nyaraka na Taarifa Zenye Muundo","Create document outlines and structured summaries.","Tengeneza mihtasari na mpangilio wa taarifa.","Review a sample document outline.","Kagua mpangilio wa mfano wa nyaraka."],
+      ["Simple Automation with Human Control","Uendeshaji Rahisi wa Hatua kwa Udhibiti wa Binadamu","Identify repeatable tasks and approval steps.","Tambua kazi zinazorudiwa na hatua za kuidhinisha.","Plan a safe, human-reviewed automation.","Panga utaratibu salama unaokaguliwa na binadamu."]
+    ]},
+    {en:"Ethics, Privacy, Security, and Responsible Use",sw:"Maadili, Faragha, Usalama na Matumizi Yenye Uwajibikaji",focus:["Fairness, privacy, transparency and accountability","Usawa, faragha, uwazi na uwajibikaji"],time:"4–6",purpose:["Recognize harms and establish safeguards.","Tambua madhara na weka hatua za kujilinda."],outcomes:[["Evaluate inclusion and fairness.","Protect sensitive information.","Explain accountability and disclosure."],["Tathmini ushirikishwaji na usawa.","Linda taarifa nyeti.","Eleza uwajibikaji na kuweka wazi matumizi ya AI."]],lessons:[
+      ["Fairness and Inclusion","Usawa na Ushirikishwaji","Identify exclusion and bias in AI-enabled decisions.","Tambua ubaguzi na upendeleo katika maamuzi ya AI.","Propose inclusive review questions.","Pendekeza maswali ya ukaguzi jumuishi."],
+      ["Privacy and Security","Faragha na Usalama","Recognize unsafe inputs and basic protective habits.","Tambua taarifa zisizofaa kuingizwa na tabia za kujilinda.","Create an information-safety checklist.","Tengeneza orodha ya kulinda taarifa."],
+      ["Transparency, Accountability, and Responsible Deployment","Uwazi, Uwajibikaji na Kutumia AI kwa Tahadhari","Plan disclosure, review and responsibility for results.","Panga namna ya kuweka wazi matumizi, ukaguzi na wajibu wa matokeo.","Write a responsible-use statement.","Andika tamko la matumizi yenye uwajibikaji."]
+    ]},
+    {en:"Final Practical Project and Course Assessment",sw:"Mradi wa Mwisho na Tathmini ya Kozi",focus:["Project planning, testing and final assessment","Mpango wa mradi, majaribio na tathmini ya mwisho"],time:"6–8",purpose:["Demonstrate responsible AI use on a real-world problem.","Onyesha matumizi ya AI yenye uwajibikaji katika tatizo halisi."],outcomes:[["Define a feasible project.","Test and document outputs.","Present work and complete the final assessment."],["Bainisha mradi unaowezekana.","Jaribu na andika matokeo.","Wasilisha kazi na fanya tathmini ya mwisho."]],lessons:[
+      ["Project Planning","Kupanga Mradi","Select a problem, users, success measures and safeguards.","Chagua tatizo, watumiaji, vipimo vya mafanikio na tahadhari.","Draft a project brief.","Andaa muhtasari wa mradi."],
+      ["Project Building and Testing","Kujenga na Kujaribu Mradi","Build a prototype, test it and revise its limitations.","Tengeneza mfano, ujaribu na urekebishe mapungufu.","Record testing evidence and improvements.","Andika ushahidi wa majaribio na maboresho."],
+      ["Final Examination, Presentation, and Submission","Mtihani wa Mwisho, Uwasilishaji na Kukabidhi Kazi","Review course knowledge and prepare project deliverables.","Pitia maarifa ya kozi na tayarisha kazi za mradi.","Present process, results, limits and next steps.","Wasilisha mchakato, matokeo, mipaka na hatua zinazofuata."]
+    ]}
+  ]
+};
+const full = [
+  {
+    overview:{
+      en:"AI is a broad field of computer systems designed to perform selected tasks associated with human intelligence, such as recognizing patterns, producing language, or making predictions. This lesson builds a practical vocabulary without treating software as a person.",
+      sw:"AI ni eneo pana la mifumo ya kompyuta inayoundwa kufanya baadhi ya kazi zinazohusishwa na akili ya binadamu, kama kutambua mifumo, kutoa lugha au kufanya utabiri. Somo hili linajenga msamiati wa vitendo bila kuichukulia programu kama mtu."
+    },
+    objectives:{
+      en:["Describe AI in plain language.","Distinguish narrow AI from the idea of general AI.","Identify what AI systems can and cannot reliably do.","Classify a task by its inputs, output and human review."],
+      sw:["Eleza AI kwa lugha rahisi.","Tofautisha AI inayofanya kazi maalumu na dhana ya AI ya jumla.","Tambua uwezo na mapungufu ya mifumo ya AI.","Ainisha kazi kwa taarifa zinazoingizwa, matokeo na ukaguzi wa binadamu."]
+    },
+    explanation:{
+      en:["AI is not one tool or a thinking person. A system may be excellent at a defined task yet fail when the situation changes. Narrow AI is built for particular kinds of work, such as recognizing speech or suggesting a route. General AI describes a hypothetical system able to handle a wide range of intellectual tasks at human-like breadth; do not assume today's tools have achieved it.","AI can summarize, classify or propose ideas quickly. It can also misunderstand a request, reproduce bias, invent plausible-sounding details or miss local context. A natural conversational style does not demonstrate awareness, understanding or reliable judgment. People remain responsible for important decisions."],
+      sw:["AI si zana moja wala mtu anayefikiri. Mfumo unaweza kufanya vizuri kazi fulani lakini ukashindwa mazingira yanapobadilika. AI inayofanya kazi maalumu huundwa kwa aina fulani za kazi, kama kutambua sauti au kupendekeza njia. AI ya jumla ni dhana ya mfumo unaoweza kushughulikia kazi nyingi za kiakili kwa upana unaofanana na wa binadamu; tusidhani zana zilizopo zimefikia kiwango hicho.","AI inaweza kufupisha, kuainisha au kupendekeza mawazo kwa haraka. Pia inaweza kuelewa vibaya swali, kurudia upendeleo, kubuni taarifa zinazoonekana sahihi au kukosa muktadha wa eneo. Mazungumzo yanayoonekana ya kawaida hayathibitishi ufahamu au maamuzi ya kutegemewa. Binadamu hubaki na wajibu wa maamuzi muhimu."]
+    },
+    examples:{
+      en:["In Tanzania, a student might use a language tool to draft revision questions, then check answers against course materials. A small business might sort fictional customer enquiries by topic, while a person reviews uncertain messages.","Internationally, recommendation systems suggest media and translation tools help with first drafts. Neither should be treated as a source of guaranteed truth."],
+      sw:["Tanzania, mwanafunzi anaweza kutumia zana ya lugha kuandaa maswali ya kujipima, kisha kuyahakiki kwa nyenzo za masomo. Biashara ndogo inaweza kupanga ujumbe wa mfano wa wateja kwa mada, huku mtu akikagua ujumbe usioeleweka.","Kimataifa, mifumo ya mapendekezo huchagua maudhui na zana za tafsiri husaidia rasimu za mwanzo. Hakuna mojawapo inayopaswa kuchukuliwa kuwa chanzo cha ukweli usio na makosa."]
+    },
+    demo:{
+      en:["Choose a task: 'Sort fictional shop messages into delivery, returns or other.'","Identify the input: written messages that contain no real customer details.","Identify the desired output: one category per message, with an 'uncertain' option.","Ask whether the system uses learned patterns rather than only fixed rules; discuss why the distinction can be blurred.","Have a person check uncertain and high-impact cases. Compare with a calculator following fixed arithmetic rules."],
+      sw:["Chagua kazi: 'Panga ujumbe wa kubuni wa dukani kuwa usafirishaji, kurudisha bidhaa au nyingine.'","Tambua kinachoingizwa: ujumbe wa maandishi usio na taarifa za wateja halisi.","Tambua matokeo yanayotakiwa: kundi moja kwa kila ujumbe na chaguo la 'sina uhakika'.","Jiulize kama mfumo unatumia mifumo iliyojifunza badala ya kanuni zilizowekwa pekee; mipaka ya tofauti hii si rahisi kila wakati.","Mtu akague visa visivyo wazi au vyenye athari kubwa. Linganisha na kikokotoo kinachofuata kanuni za hesabu."]
+    },
+    activity:{
+      en:"AI Around Me: List three tools you encounter. For each, note the task, possible input data, benefit, limitation and who should review its output. If you are unsure whether it uses AI, say so rather than guessing.",
+      sw:"AI Katika Maisha Yangu: Orodhesha zana tatu unazokutana nazo. Kwa kila moja, andika kazi yake, data inayoweza kuingizwa, faida, mpaka wake na anayepaswa kukagua matokeo. Ikiwa hujui kama inatumia AI, sema hivyo badala ya kubahatisha."
+    },
+    exercise:{
+      en:"“AI is a tool, not a person”: Write a bilingual note of approximately 150–200 words in total. Explain one useful capability, two limitations and one decision that must remain with a person. Use only fictional or public examples.",
+      sw:"“AI ni zana, si mtu”: Andika maelezo kwa Kiingereza na Kiswahili yenye takribani maneno 150–200 kwa jumla. Eleza uwezo mmoja wenye manufaa, mipaka miwili na uamuzi mmoja unaopaswa kubaki kwa binadamu. Tumia mifano ya kubuni au iliyo wazi kwa umma pekee."
+    },
+    takeaways:{
+      en:["AI covers many task-specific systems; it is not a person.","Fluent output is not proof of truth or understanding.","Define the task and keep a human responsible for review."],
+      sw:["AI inajumuisha mifumo mingi ya kazi maalumu; si mtu.","Jibu fasaha si uthibitisho wa ukweli au uelewa.","Bainisha kazi na mhusishe binadamu katika ukaguzi."]
+    },
+    further:{
+      en:"Next, observe one familiar digital tool and write down what evidence would help establish whether it actually uses AI. Compare the tool's public description with what you can directly verify. Do not rely on invented citations.",
+      sw:"Kabla ya somo linalofuata, chunguza zana moja ya kidijitali unayoifahamu na uandike ushahidi unaoweza kusaidia kujua kama kweli inatumia AI. Linganisha maelezo yake ya wazi na unachoweza kuthibitisha mwenyewe; usitegemee marejeo ya kubuni."
+    },
+    questions:[
+      {q:["Which best describes AI?","Ni maelezo gani yanayofaa zaidi kwa AI?"],choices:[["A single chatbot","A broad field of systems performing selected tasks associated with human intelligence","A person inside a computer"],["Chatbot moja","Eneo pana la mifumo inayofanya baadhi ya kazi zinazohusishwa na akili ya binadamu","Mtu aliye ndani ya kompyuta"]],correct:1,why:["AI includes many different task-specific systems.","AI inajumuisha mifumo mingi ya kazi tofauti."]},
+      {q:["Does a fluent answer prove a system understands or is correct?","Je, jibu fasaha linathibitisha mfumo unaelewa au uko sahihi?"],choices:[["Yes, always","Only if it is fast","No; important claims still need checking"],["Ndiyo, kila wakati","Ikiwa tu linatolewa haraka","Hapana; madai muhimu bado yahakikiwe"]],correct:2,why:["Fluency can coexist with errors or missing context.","Ufasaha unaweza kwenda pamoja na makosa au muktadha uliokosekana."]},
+      {q:["What is a responsible role for a person in an AI-assisted task?","Jukumu la binadamu katika kazi inayosaidiwa na AI ni lipi?"],choices:[["Review uncertain or important results","Assume the output is always safe","Provide passwords for better answers"],["Kukagua matokeo yasiyo wazi au muhimu","Kudhani kila jibu ni salama","Kutoa nywila ili kupata majibu bora"]],correct:0,why:["People should check outputs and remain accountable.","Binadamu wanapaswa kukagua matokeo na kubaki na uwajibikaji."]}
+    ]
+  },
+  {
+    overview:{
+      en:"AI outputs are produced by models shaped through data and training. This lesson separates the examples used to develop a system from the model used later to produce a result.",
+      sw:"Majibu ya AI hutolewa na modeli iliyojengwa kupitia data na mafunzo. Somo hili linatofautisha mifano iliyotumika kuunda mfumo na modeli inayotumika baadaye kutoa jibu."
+    },
+    objectives:{
+      en:["Distinguish data from a model.","Explain training and inference in everyday language.","Describe why a language model produces plausible continuations rather than guaranteed facts.","Spot missing, inaccurate, outdated or unfair examples."],
+      sw:["Tofautisha data na modeli.","Eleza mafunzo na matumizi ya modeli kwa lugha ya kawaida.","Eleza kwa nini modeli ya lugha hutoa mwendelezo unaowezekana badala ya ukweli wa uhakika.","Tambua mifano iliyopungua, isiyo sahihi, iliyopitwa na wakati au isiyo ya haki."]
+    },
+    explanation:{
+      en:["Data are examples or observations: here, sample messages and their intended categories. A model is a learned set of relationships produced during training; it is not simply a copy of every example. Training adjusts a model using examples. Inference is using the trained model on a new input to produce a result.","A language model learns statistical patterns in sequences and generates likely next pieces of text in context. That process can create helpful explanations but does not independently establish that a claim is true. If training examples are incomplete, inaccurate, outdated or unfair, outputs may fail for certain languages, situations or groups. Evaluation with representative, privacy-safe examples is essential."],
+      sw:["Data ni mifano au taarifa zilizokusanywa: hapa ni ujumbe wa mfano na makundi yake. Modeli ni mpangilio wa uhusiano uliojifunzwa wakati wa mafunzo; si nakala tu ya kila mfano. Mafunzo hubadilisha modeli kwa kutumia mifano. Matumizi ya modeli ni kuitumia kwenye taarifa mpya ili kupata matokeo.","Modeli ya lugha hujifunza mifumo ya uwezekano katika mfuatano wa maneno na kutoa sehemu zinazoweza kufuata kulingana na muktadha. Hilo linaweza kusaidia kueleza mambo, lakini halithibitishi lenyewe kuwa dai ni kweli. Data ya mafunzo ikiwa imepungua, ina makosa, imepitwa na wakati au ina upendeleo, matokeo yanaweza kushindwa kwa lugha, mazingira au makundi fulani. Majaribio kwa mifano inayowakilisha watu mbalimbali na inayolinda faragha ni muhimu."]
+    },
+    examples:{
+      en:["A fictional shop classifier trained only on English enquiries might struggle with Kiswahili or mixed-language messages. A student asking an AI tool about a changing timetable should verify the answer against the institution's current notice.","A translation draft can be useful internationally, but local meaning and terminology still need review."],
+      sw:["Mfumo wa kubuni wa kupanga ujumbe wa dukani uliofundishwa kwa Kiingereza pekee unaweza kushindwa kwa Kiswahili au ujumbe wa lugha mchanganyiko. Mwanafunzi akiuliza AI kuhusu ratiba inayobadilika anapaswa kuhakiki kwenye taarifa ya sasa ya taasisi.","Rasimu ya tafsiri inaweza kusaidia kimataifa, lakini maana ya eneo na istilahi bado zinahitaji ukaguzi."]
+    },
+    demo:{
+      en:["Create three fictional messages: 'When will my order arrive?', 'Nataka kurudisha bidhaa', and 'What time do you open?'","Assign intended labels: delivery, returns and general enquiry.","Imagine training with many labelled examples; the model learns patterns rather than memorizing an exact instruction for every future message.","Try a new fictional mixed-language message: 'Order yangu itafika lini?' The model predicts a category during inference.","Check whether the prediction is correct; record uncertainty and add representative examples during future development without using private customer messages."],
+      sw:["Tengeneza ujumbe mitatu ya kubuni: 'When will my order arrive?', 'Nataka kurudisha bidhaa', na 'What time do you open?'","Weka makundi yaliyokusudiwa: usafirishaji, kurudisha bidhaa na swali la jumla.","Fikiria mafunzo kwa mifano mingi yenye makundi; modeli hujifunza mifumo badala ya kukariri maagizo kwa kila ujumbe ujao.","Jaribu ujumbe mpya wa kubuni wa lugha mchanganyiko: 'Order yangu itafika lini?' Modeli hutabiri kundi wakati wa matumizi.","Hakiki utabiri; andika hali ya kutokuwa na uhakika na panga mifano inayowakilisha lugha mbalimbali bila kutumia ujumbe binafsi wa wateja."]
+    },
+    activity:{
+      en:"Data Detective: Examine the fictional messages in the demonstration. Which languages and message types are missing? Write two likely failure cases and two safe ways to improve the examples and human review.",
+      sw:"Mpelelezi wa Data: Chunguza ujumbe wa kubuni kwenye mfano. Ni lugha na aina gani za ujumbe hazipo? Andika hali mbili zinazoweza kusababisha makosa na njia mbili salama za kuboresha mifano na ukaguzi wa binadamu."
+    },
+    exercise:{
+      en:"Create a one-page bilingual beginner model card for the fictional message classifier. Include intended use, input, output categories, sample training data, languages tested, known limitations, privacy rules and a human escalation step. Do not claim real testing was performed.",
+      sw:"Tengeneza ukurasa mmoja wa maelezo ya modeli kwa Kiingereza na Kiswahili kuhusu mfumo wa kubuni wa kupanga ujumbe. Jumuisha matumizi yaliyokusudiwa, taarifa zinazoingizwa, makundi ya matokeo, data ya mfano ya mafunzo, lugha zinazopaswa kujaribiwa, mapungufu yanayojulikana, kanuni za faragha na hatua ya kumhusisha binadamu. Usidai majaribio halisi yamefanyika."
+    },
+    takeaways:{
+      en:["Data are examples; a model learns relationships from them.","Training builds or adjusts a model; inference uses it.","Quality, coverage and freshness of data affect reliability."],
+      sw:["Data ni mifano; modeli hujifunza uhusiano kutoka humo.","Mafunzo hujenga au kurekebisha modeli; matumizi huleta jibu.","Ubora, uwakilishi na usasa wa data huathiri uaminifu."]
+    },
+    further:{
+      en:"Sketch a simple input → model → output → human review diagram. Add one question about where errors could enter. Use fictional data in any practice activity.",
+      sw:"Chora mchoro rahisi wa taarifa zinazoingia → modeli → matokeo → ukaguzi wa binadamu. Ongeza swali moja kuhusu mahali kosa linaweza kuingia. Tumia data ya kubuni katika mazoezi."
+    },
+    questions:[
+      {q:["What happens during inference?","Nini hutokea wakati wa kutumia modeli kutoa jibu?"],choices:[["A trained model processes a new input","All examples are deleted","A person becomes the model"],["Modeli iliyofundishwa hushughulikia taarifa mpya","Mifano yote hufutwa","Mtu anakuwa modeli"]],correct:0,why:["Inference uses an existing trained model for a new case.","Katika hatua hii modeli iliyofundishwa hutumika kwa mfano mpya."]},
+      {q:["Why might an English-only classifier fail on Kiswahili messages?","Kwa nini mfumo uliofundishwa kwa Kiingereza pekee unaweza kushindwa kwa ujumbe wa Kiswahili?"],choices:[["Kiswahili messages are always wrong","The examples may not represent that language","All classifiers work identically"],["Ujumbe wa Kiswahili huwa si sahihi","Mifano inaweza isiwe imeiwakilisha lugha hiyo","Mifumo yote ya uainishaji hufanya kazi sawasawa"]],correct:1,why:["Missing representative examples can reduce performance.","Ukosefu wa mifano inayowakilisha lugha unaweza kupunguza ubora."]},
+      {q:["Does likely next text guarantee a factual answer?","Je, mwendelezo wa maneno unaowezekana unahakikisha ukweli?"],choices:[["Yes","Only for long answers","No; factual claims need independent checking"],["Ndiyo","Kwa majibu marefu tu","Hapana; madai ya ukweli yanahitaji uhakiki wa kujitegemea"]],correct:2,why:["Plausible text and verified evidence are different things.","Maandishi yanayoonekana sahihi na ushahidi uliothibitishwa ni mambo tofauti."]}
+    ]
+  },
+  {
+    overview:{
+      en:"Everyday AI can support learning, accessibility and work, but its usefulness depends on context, verification and human responsibility. This lesson turns those principles into a practical review habit.",
+      sw:"AI ya kila siku inaweza kusaidia kujifunza, upatikanaji wa huduma na kazi, lakini manufaa yake hutegemea muktadha, uhakiki na uwajibikaji wa binadamu. Somo hili linageuza kanuni hizo kuwa utaratibu wa vitendo wa ukaguzi."
+    },
+    objectives:{
+      en:["Identify everyday AI uses in Tanzania and elsewhere.","Compare benefits against practical risks.","Apply a five-question review to a generated message.","Create a personal responsible-use agreement."],
+      sw:["Tambua matumizi ya AI ya kila siku Tanzania na kwingineko.","Linganisha manufaa na hatari zinazowezekana.","Tumia maswali matano kukagua ujumbe uliotolewa na AI.","Tengeneza makubaliano binafsi ya kutumia AI kwa uwajibikaji."]
+    },
+    explanation:{
+      en:["AI may assist with translation drafts, study questions, document outlines, customer-message sorting and accessibility support. In Tanzania, mixed Kiswahili–English contexts and local needs make human review particularly important. International uses may include recommendation and writing assistance; availability, price and features of specific products can change, so check current terms rather than assuming every tool is free.","Possible benefits include time saved on first drafts, wider access to ideas and help organizing information. Risks include incorrect claims, unfair representation, private-data exposure, overreliance and unclear attribution. For health, financial or other consequential topics, do not treat generated content as professional advice; use appropriate qualified sources and review processes."],
+      sw:["AI inaweza kusaidia rasimu za tafsiri, maswali ya kujipima, mipangilio ya nyaraka, kupanga ujumbe wa wateja na kuongeza ufikivu. Tanzania, matumizi ya Kiswahili na Kiingereza pamoja na mahitaji ya eneo yanafanya ukaguzi wa binadamu uwe muhimu. Kimataifa, zipo zana za mapendekezo na uandishi; upatikanaji, bei na vipengele vya bidhaa vinaweza kubadilika, kwa hiyo angalia masharti ya sasa badala ya kudhani kila zana ni bure.","Manufaa yanayowezekana ni kuokoa muda katika rasimu, kupata mawazo mbalimbali na kupanga taarifa. Hatari ni madai yasiyo sahihi, uwakilishi usio wa haki, kufichua taarifa binafsi, kutegemea AI kupita kiasi na kutoweka wazi chanzo cha kazi. Kwa mada za afya, fedha au zenye athari kubwa, usichukulie maudhui ya AI kuwa ushauri wa kitaalamu; tumia vyanzo na taratibu sahihi za ukaguzi."]
+    },
+    examples:{
+      en:["A Tanzanian student can request practice questions in Kiswahili and check them against class notes. An entrepreneur can brainstorm a fictional shop announcement and verify the opening hours before publishing.","Internationally, automatic captions or translation drafts can improve access but need review for names, local expressions and intended meaning."],
+      sw:["Mwanafunzi Tanzania anaweza kuomba maswali ya kujipima kwa Kiswahili na kuyalinganisha na daftari la somo. Mjasiriamali anaweza kuandaa tangazo la duka la kubuni na kuhakiki saa za kufungua kabla ya kulichapisha.","Kimataifa, manukuu ya kiotomatiki au rasimu za tafsiri zinaweza kuongeza ufikivu, lakini zinahitaji ukaguzi wa majina, misemo ya eneo na maana iliyokusudiwa."]
+    },
+    demo:{
+      en:["Read this fictional AI draft: 'Our community health event is tomorrow at 9 a.m. Everyone should follow the same health advice.' No real event or medical advice is asserted.","Ask: Who is the intended audience and what is the purpose?","Ask: Which claims, such as date and time, need confirmation from the event organizer?","Ask: Could the message exclude people or imply inappropriate one-size-fits-all health advice?","Ask: Is any private information included, and should professional advice be sought instead?","Ask: Who approves the final message and how will AI assistance be disclosed? Rewrite the draft only after these checks."],
+      sw:["Soma rasimu hii ya kubuni ya AI: 'Tukio letu la uhamasishaji wa afya ni kesho saa tatu asubuhi. Kila mtu afuate ushauri uleule wa afya.' Hakuna tukio halisi wala ushauri wa kitabibu unaothibitishwa hapa.","Uliza: Walengwa ni nani na lengo ni lipi?","Uliza: Ni madai gani, kama tarehe na saa, yanahitaji kuthibitishwa na waandaaji?","Uliza: Je, ujumbe unaweza kuwaacha wengine nje au kudokeza kwamba ushauri mmoja wa afya unafaa wote?","Uliza: Kuna taarifa binafsi, na je, ushauri wa mtaalamu unahitajika?","Uliza: Nani atakubali ujumbe wa mwisho na matumizi ya AI yatawekwa wazi vipi? Rekebisha rasimu baada ya ukaguzi huu."]
+    },
+    activity:{
+      en:"Benefit–Risk Balance: Choose a fictional study, community or business use. List three benefits and three risks. For every risk, propose a practical safeguard and name the person responsible for checking it.",
+      sw:"Kupima Manufaa na Hatari: Chagua matumizi ya kubuni ya masomo, jamii au biashara. Andika manufaa matatu na hatari tatu. Kwa kila hatari, pendekeza hatua ya tahadhari na mtaje anayewajibika kuikagua."
+    },
+    exercise:{
+      en:"Write a bilingual responsible-AI learning contract of 5–7 statements. Cover privacy, checking factual claims, disclosing AI drafting assistance, practicing your own learning and reviewing outputs before use. Keep the promises specific and achievable.",
+      sw:"Andika makubaliano ya kujifunza AI kwa uwajibikaji yenye kauli 5–7 kwa Kiingereza na Kiswahili. Zungumzia faragha, kuhakiki madai, kuweka wazi msaada wa AI katika rasimu, kujifunza kwa juhudi zako na kukagua majibu kabla ya kuyatumia. Kauli ziwe mahsusi na zinazotekelezeka."
+    },
+    takeaways:{
+      en:["AI benefits depend on context and human checking.","Privacy, accuracy, inclusion and disclosure matter.","A review routine is more reliable than blind trust."],
+      sw:["Manufaa ya AI hutegemea muktadha na ukaguzi wa binadamu.","Faragha, usahihi, ushirikishwaji na uwazi ni muhimu.","Utaratibu wa ukaguzi ni bora kuliko kuamini kila jibu bila kulipima."]
+    },
+    further:{
+      en:"Keep your learning contract nearby for later modules. Revisit it whenever a new AI tool changes how you collect data, communicate with others or make decisions.",
+      sw:"Hifadhi makubaliano yako ya kujifunza kwa ajili ya moduli zijazo. Yatazame tena kila zana mpya ya AI inapobadili namna unavyokusanya taarifa, kuwasiliana au kufanya maamuzi."
+    },
+    questions:[
+      {q:["What should you do before publishing an AI-drafted event time?","Ufanye nini kabla ya kuchapisha muda wa tukio uliotolewa kwenye rasimu ya AI?"],choices:[["Verify it with the organizer","Assume it is correct","Remove the organizer's name"],["Uhakiki kwa waandaaji","Udhanie ni sahihi","Uondoe jina la waandaaji"]],correct:0,why:["Time-sensitive claims require confirmation from an appropriate source.","Madai kuhusu muda yanahitaji uthibitisho kutoka chanzo kinachofaa."]},
+      {q:["Which input is appropriate for a practice AI activity?","Ni taarifa gani inafaa kwa zoezi la AI?"],choices:[["Private customer records","Fictional example messages","Someone else's password"],["Taarifa binafsi za wateja","Ujumbe wa mfano wa kubuni","Nywila ya mtu mwingine"]],correct:1,why:["Fictional examples allow practice without exposing personal data.","Mifano ya kubuni huruhusu mazoezi bila kufichua taarifa binafsi."]},
+      {q:["Which practice supports responsible use?","Ni tabia ipi inaunga mkono matumizi yenye uwajibikaji?"],choices:[["Publish without review","Hide AI drafting assistance when disclosure is expected","Check claims, review effects and disclose assistance"],["Chapisha bila ukaguzi","Ficha msaada wa AI pale uwazi unapohitajika","Hakiki madai, pima athari na weka wazi msaada"]],correct:2,why:["Review, verification and appropriate disclosure preserve accountability.","Ukaguzi, uhakiki na uwazi unaofaa huimarisha uwajibikaji."]}
+    ]
+  }
+];
+const t = {
+  en:{home:"Dashboard",curriculum:"Curriculum",continue:"Continue learning →",tag:"ONLINE · SELF-PACED · FREE",hero:"A practical bilingual path from AI fundamentals to responsible real-world applications.",level:"Beginner to Advanced",duration:"6–8 weeks",free:"Free",mode:"Online · self-paced",search:"Search the course",searchHint:"Search modules, lessons and available lesson content.",modules:"Course modules",progress:"Learning progress",overview:"Course dashboard",audience:"For beginners, students, young professionals, entrepreneurs and technology enthusiasts.",assessment:"Assessment approach",assessmentText:"Module quizzes, practical assignments, knowledge checks, a final examination and a final practical project. Full assessment materials for later modules are still being developed.",certificate:"Certificate-readiness direction",certificateText:"Complete all required modules, score at least 70% in the final assessment, and pass the final practical project. This prototype does not issue certificates or accept official submissions.",local:"Your progress is saved only in this browser. It is not an official course record.",completion:"Module 1 completion",completionRule:"Finish the three available lessons, their activities and exercises, pass every knowledge check, and mark the privacy-safe assignment complete. Later modules remain explorable but cannot yet count as complete.",ready:"Readiness summary",readyText:"Module 1 complete",notReady:"Module 1 in progress",pending:"Further modules require developed lessons, assessment and project review before certificate readiness can be verified.",integration:"Repository integration notes",integrationText:"This is a standalone GitHub Pages-compatible implementation. The existing repository architecture must still be inspected before replacing files. The owner should merge this course data and interface into the existing course loader, including the course.html?c=ai-chatgpt route, without overwriting unrelated files. No repository inspection, upload, commit or deployment is claimed.",reset:"Reset local progress",confirmReset:"Delete all local course progress and notes?",cancel:"Cancel",confirm:"Yes, reset",time:"Recommended study time",hours:"hours",focus:"Focus",purpose:"Purpose",outcomes:"Outcomes",lessons:"Lessons",available:"Module 1 content available",future:"Full lesson content in a later course phase",completed:"Completed",inProgress:"In progress",explore:"Explore",nothing:"No matching modules or lessons.",lesson:"Lesson",back:"Dashboard",previous:"← Previous",next:"Next →",moduleOverview:"Module overview",prerequisites:"Prerequisites",prereqText:"No previous AI experience required. Basic reading and everyday digital skills are helpful.",moduleOutcomes:"Six learning outcomes",six:["Explain AI as a field and distinguish it from a person or a fixed-rule tool.","Distinguish narrow AI from the concept of general AI.","Describe data, models, training and inference.","Identify strengths and limitations of AI-generated results.","Assess everyday AI benefits, risks, privacy and fairness.","Apply human verification and responsible learning habits."],progression:"Progression note",progressionText:"Complete Lessons 1–3, their activities, exercises and knowledge checks, then finish the assignment before moving into machine learning concepts in Module 2.",objectives:"Learning objectives",explanation:"Explanation",examples:"Real-world examples",demo:"Practical demonstration",activity:"Learner activity",exercise:"Practical exercise",takeaways:"Key takeaways",check:"Knowledge check",further:"Further learning",privacy:"Privacy reminder: Do not enter passwords, private customer information, financial account details, medical records or other sensitive personal data. Use fictional examples.",activityDone:"I completed the learner activity",exerciseDone:"I completed the practical exercise",notes:"My private-in-this-browser study notes",saveNotes:"Save notes",saved:"Notes saved locally.",submitAnswer:"Check answer",retry:"Retry",choose:"Choose an answer before checking.",correct:"Correct.",incorrect:"Not yet.",score:"Knowledge checks passed",markLesson:"Mark lesson content reviewed",lessonDone:"Lesson content reviewed",assignment:"Module 1 practical assignment",assignmentBrief:"Choose a realistic context and prepare a short bilingual briefing about one useful, responsibly used AI application.",requirements:"Required components",requirementsList:["Context and intended audience.","Explanation in English and Kiswahili.","Three benefits and three risks.","Five-step safeguard plan.","One clearly fictional example.","Reflection on your own learning and remaining limitations."],submission:"Document guidance",submissionText:"Prepare an accessible, titled document of approximately 500–700 words. Use the headings Context, Bilingual explanation, Benefits and risks, Safeguards, Fictional example, and Reflection. Review all claims and disclose any AI drafting assistance. This page only records your own completion; it does not upload a document.",rubric:"Marking guide",rubricRows:[["Context and audience","15"],["Clear bilingual explanation","20"],["Three benefits and three risks","20"],["Five practical safeguards","20"],["Fictional example and reflection","15"],["Accessible structure, verification and disclosure","10"]],pass:"Total: 100 marks. Recommended assignment pass mark: 50%. This prototype does not grade or receive the document.",assignmentDone:"I prepared and reviewed my privacy-safe assignment (local completion only)",checklist:"Completion checklist",checklistItems:["Complete all three lessons.","Complete activities and practical exercises.","Pass all nine knowledge checks.","Prepare and mark the privacy-safe assignment complete.","Review the module outcomes and prepare for Module 2."],later:"Curriculum detail · full lesson content to be developed in a later course phase.",lessonPurpose:"Lesson purpose",lessonOutcome:"Expected outcome",futureNotice:"This lesson outline is available for exploration. Teaching content, activities and assessment will be developed in a later course phase; it cannot be marked complete yet.",finalPlan:"Final assessment and project direction",finalText:"Plan a practical AI-supported response to a real-world problem, document safe inputs, prompts or workflow, human review, test results, limitations and a presentation. Proposed deliverables: project brief, working example or prototype, testing log, responsible-use reflection and presentation. A final examination and project rubric must be developed before any official grading or certificate decision.",footer:"Standalone learning prototype; local progress only."},
+  sw:{home:"Mwanzo",curriculum:"Mtaala",continue:"Endelea kujifunza →",tag:"MTANDAONI · KWA KASI YAKO · BURE",hero:"Safari ya kujifunza kwa lugha mbili, kuanzia misingi ya AI hadi matumizi halisi yenye uwajibikaji.",level:"Mwanzo hadi kiwango cha juu",duration:"Wiki 6–8",free:"Bure",mode:"Mtandaoni · kwa kasi yako",search:"Tafuta kwenye kozi",searchHint:"Tafuta moduli, masomo na maudhui yaliyopo.",modules:"Moduli za kozi",progress:"Maendeleo ya kujifunza",overview:"Dashibodi ya kozi",audience:"Kwa wanaoanza, wanafunzi, wataalamu vijana, wajasiriamali na wapenda teknolojia.",assessment:"Namna ya kutathmini",assessmentText:"Maswali ya moduli, kazi za vitendo, maswali ya kujipima, mtihani wa mwisho na mradi wa mwisho. Tathmini kamili za moduli zijazo bado zinaandaliwa.",certificate:"Masharti ya kuwa tayari kwa cheti",certificateText:"Kamilisha moduli zote zinazohitajika, pata angalau asilimia 70 katika tathmini ya mwisho, na ufaulu mradi wa mwisho. Mfano huu hautoi vyeti wala kupokea kazi rasmi.",local:"Maendeleo yako huhifadhiwa kwenye kivinjari hiki pekee. Si rekodi rasmi ya kozi.",completion:"Kukamilisha Moduli ya 1",completionRule:"Maliza masomo matatu yaliyopo, shughuli na mazoezi yake, ufaulu maswali yote ya kujipima, kisha weka alama kuwa umekamilisha kazi ya moduli inayolinda faragha. Moduli zijazo zinaweza kuchunguzwa lakini bado haziwezi kuhesabiwa zimekamilika.",ready:"Muhtasari wa utayari",readyText:"Moduli ya 1 imekamilika",notReady:"Moduli ya 1 inaendelea",pending:"Masomo, tathmini na ukaguzi wa mradi wa moduli zilizobaki vinahitajika kabla ya kuthibitisha utayari wa cheti.",integration:"Maelezo ya kuunganisha na repository",integrationText:"Huu ni mfano wa kujitegemea unaofaa kwa GitHub Pages. Muundo wa repository iliyopo bado unahitaji kukaguliwa kabla ya kubadilisha faili. Mmiliki aunganishe data na mwonekano huu kwenye mfumo uliopo wa kupakia kozi, ukiwemo njia ya course.html?c=ai-chatgpt, bila kufuta faili zisizohusika. Hakuna madai ya ukaguzi, kupakia, commit au deployment iliyofanyika.",reset:"Futa maendeleo ya hapa",confirmReset:"Unataka kufuta maendeleo na maandishi yote yaliyohifadhiwa kwenye kivinjari hiki?",cancel:"Ghairi",confirm:"Ndiyo, futa",time:"Muda unaopendekezwa",hours:"saa",focus:"Lengo kuu",purpose:"Dhumuni",outcomes:"Matokeo ya kujifunza",lessons:"Masomo",available:"Maudhui ya Moduli ya 1 yapo",future:"Maudhui kamili katika awamu ijayo",completed:"Imekamilika",inProgress:"Inaendelea",explore:"Chunguza",nothing:"Hakuna moduli au somo linalolingana.",lesson:"Somo",back:"Mwanzo",previous:"← Lililotangulia",next:"Linalofuata →",moduleOverview:"Muhtasari wa moduli",prerequisites:"Mahitaji ya awali",prereqText:"Huhitaji kuwa na uzoefu wa AI. Uwezo wa kawaida wa kusoma na kutumia vifaa vya kidijitali utasaidia.",moduleOutcomes:"Matokeo sita ya kujifunza",six:["Eleza AI kama eneo la taaluma na uitofautishe na mtu au zana ya kanuni zisizobadilika.","Tofautisha AI ya kazi maalumu na dhana ya AI ya jumla.","Eleza data, modeli, mafunzo na matumizi ya modeli.","Tambua uwezo na mapungufu ya majibu yanayotolewa na AI.","Tathmini manufaa, hatari, faragha na usawa katika AI ya kila siku.","Tumia uhakiki wa binadamu na tabia bora za kujifunza."],progression:"Hatua inayofuata",progressionText:"Kamilisha Masomo ya 1–3, shughuli, mazoezi na maswali yake, kisha fanya kazi ya moduli kabla ya kuingia kwenye ujifunzaji wa mashine katika Moduli ya 2.",objectives:"Malengo ya somo",explanation:"Maelezo",examples:"Mifano ya maisha halisi",demo:"Onyesho la hatua kwa hatua",activity:"Shughuli ya mwanafunzi",exercise:"Zoezi la vitendo",takeaways:"Mambo muhimu",check:"Maswali ya kujipima",further:"Kujifunza zaidi",privacy:"Kumbusho la faragha: Usiweke nywila, taarifa binafsi za wateja, taarifa za akaunti za fedha, rekodi za afya au taarifa nyingine nyeti za mtu. Tumia mifano ya kubuni.",activityDone:"Nimekamilisha shughuli ya mwanafunzi",exerciseDone:"Nimekamilisha zoezi la vitendo",notes:"Maandishi yangu ya kujifunza yanayobaki kwenye kivinjari hiki",saveNotes:"Hifadhi maandishi",saved:"Maandishi yamehifadhiwa hapa.",submitAnswer:"Kagua jibu",retry:"Jaribu tena",choose:"Chagua jibu kabla ya kukagua.",correct:"Sahihi.",incorrect:"Bado si sahihi.",score:"Maswali niliyofaulu",markLesson:"Weka alama kuwa nimepitia somo",lessonDone:"Nimepitia somo",assignment:"Kazi ya vitendo ya Moduli ya 1",assignmentBrief:"Chagua mazingira halisi yanayowezekana na uandae maelezo mafupi ya lugha mbili kuhusu matumizi moja ya AI yenye manufaa na uwajibikaji.",requirements:"Vipengele vinavyohitajika",requirementsList:["Mazingira na walengwa.","Maelezo kwa Kiingereza na Kiswahili.","Manufaa matatu na hatari tatu.","Mpango wa tahadhari wa hatua tano.","Mfano mmoja unaoelezwa wazi kuwa wa kubuni.","Tafakari kuhusu ulichojifunza na mipaka iliyobaki."],submission:"Mwongozo wa nyaraka",submissionText:"Andaa nyaraka yenye kichwa, inayofikika kwa urahisi, ya takribani maneno 500–700. Tumia vichwa Muktadha, Maelezo ya lugha mbili, Manufaa na hatari, Tahadhari, Mfano wa kubuni, na Tafakari. Hakiki madai yote na weka wazi msaada wowote wa AI katika rasimu. Ukurasa huu huweka kumbukumbu yako tu; haupakii nyaraka.",rubric:"Mwongozo wa alama",rubricRows:[["Muktadha na walengwa","15"],["Maelezo wazi ya lugha mbili","20"],["Manufaa matatu na hatari tatu","20"],["Tahadhari tano zinazotekelezeka","20"],["Mfano wa kubuni na tafakari","15"],["Muundo unaofikika, uhakiki na uwazi","10"]],pass:"Jumla: alama 100. Alama zinazopendekezwa za kufaulu kazi: 50%. Mfano huu hausifishi wala haupokei nyaraka.",assignmentDone:"Nimeandaa na kukagua kazi yangu inayolinda faragha (alama ya hapa pekee)",checklist:"Orodha ya kukamilisha",checklistItems:["Kamilisha masomo yote matatu.","Kamilisha shughuli na mazoezi ya vitendo.","Faulu maswali yote tisa ya kujipima.","Andaa kazi inayolinda faragha na iwekee alama ya kukamilika.","Pitia matokeo ya moduli na jiandae kwa Moduli ya 2."],later:"Maelezo ya mtaala · maudhui kamili ya somo yataandaliwa katika awamu ijayo.",lessonPurpose:"Dhumuni la somo",lessonOutcome:"Matokeo yanayotarajiwa",futureNotice:"Muhtasari wa somo hili unaweza kuchunguzwa. Maudhui ya kufundishia, shughuli na tathmini vitaandaliwa katika awamu ijayo; bado haliwezi kuwekewa alama ya kukamilika.",finalPlan:"Mwelekeo wa tathmini na mradi wa mwisho",finalText:"Panga suluhisho la AI kwa tatizo halisi; andika taarifa salama zinazoingizwa, maelekezo au mtiririko wa kazi, ukaguzi wa binadamu, matokeo ya majaribio, mipaka na uwasilishaji. Kazi zinazopendekezwa: muhtasari wa mradi, mfano unaofanya kazi, kumbukumbu ya majaribio, tafakari ya uwajibikaji na uwasilishaji. Mtihani wa mwisho na mwongozo wa alama za mradi lazima viandaliwe kabla ya upimaji rasmi au uamuzi wa cheti.",footer:"Mfano wa kujifunza wa kujitegemea; maendeleo ya hapa pekee."}
+};
+const KEY="techsavvy-tanzania.ai-chatgpt.course.v1";
+const blank=()=>({lang:"en",lessons:{},activities:{},exercises:{},checks:{},notes:{},assignment:false});
+let state=blank(), view={type:"home",m:0,l:0}, searchTerm="", resetOpen=false;
+try { const v=JSON.parse(localStorage.getItem(KEY)); if(v && typeof v==="object") state={...blank(),...v,lessons:v.lessons||{},activities:v.activities||{},exercises:v.exercises||{},checks:v.checks||{},notes:v.notes||{}}; } catch(e) {}
+if(!["en","sw"].includes(state.lang)) state.lang="en";
+const $=id=>document.getElementById(id);
+const langIndex=()=>state.lang==="en"?0:1;
+const tr=k=>t[state.lang][k];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){ $("footer-note").textContent=tr("local"); }}
+function key(m,l){return `${m}-${l}`;}
+function progressCount(){let count=0;for(let i=0;i<3;i++){let k=key(0,i); if(state.lessons[k])count++;if(state.activities[k])count++;if(state.exercises[k])count++;for(let q=0;q<3;q++)if(state.checks[`${k}-${q}`])count++;}if(state.assignment)count++;return count;}
+function complete(){return progressCount()===19;}
+function opts(items,tag="li"){return items.map(x=>`<${tag}>${esc(x)}</${tag}>`).join("");}
+function card(title,body,soft=false){return `<section class="section-card${soft?" soft":""}"><h3>${esc(title)}</h3>${body}</section>`;}
+function list(items,ordered=false){return `<${ordered?"ol":"ul"}>${opts(items)}</${ordered?"ol":"ul"}>`;}
+function renderChrome(){
+ document.documentElement.lang=state.lang;
+ $("home-nav").textContent=tr("home");$("curriculum-nav").textContent=tr("curriculum");
+ $("home-nav").setAttribute("aria-current",view.type==="home"?"page":"false");
+ $("curriculum-nav").setAttribute("aria-current",view.type==="curriculum"?"page":"false");
+ $("lang-en").setAttribute("aria-pressed",String(state.lang==="en"));$("lang-sw").setAttribute("aria-pressed",String(state.lang==="sw"));
+ $("hero-eyebrow").textContent=tr("tag");$("hero-description").textContent=tr("hero");
+ $("hero-facts").innerHTML=[tr("level"),tr("duration"),tr("free"),tr("mode")].map(x=>`<span>${esc(x)}</span>`).join("");
+ $("continue-btn").textContent=tr("continue");
+ $("search-label").textContent=tr("search");$("search").placeholder=tr("search");$("search-hint").textContent=tr("searchHint");
+ $("side-heading").textContent=tr("modules");$("footer-note").textContent=tr("footer");
+ let n=progressCount(),p=Math.round(n/19*100);
+ $("side-progress").innerHTML=`<p class="muted">${esc(tr("progress"))}: <strong>${p}%</strong></p><div class="progress-track" role="progressbar" aria-label="${esc(tr("progress"))}" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:${p}%"></div></div>`;
+}
+function moduleHTML(m,side=false){
+ let item=course.modules[m],i=langIndex(), needle=searchTerm.toLocaleLowerCase(), searchable=[item.en,item.sw,item.focus[0],item.focus[1],item.purpose[0],item.purpose[1],...item.lessons.flat()];
+ if(m===0) searchable.push(...full.flatMap(x=>Object.values(x).flatMap(v=>typeof v==="object"?JSON.stringify(v):String(v))));
+ let moduleMatch=searchable.some(v=>String(v).toLocaleLowerCase().includes(needle));
+ if(needle&&!moduleMatch)return "";
+ let matched=item.lessons.map((x,l)=>({x,l})).filter(({x,l})=>!needle||[...x,...(m===0?[JSON.stringify(full[l])]:[])].some(v=>String(v).toLocaleLowerCase().includes(needle))||[item.en,item.sw].some(v=>v.toLocaleLowerCase().includes(needle)));
+ if(!matched.length) matched=item.lessons.map((x,l)=>({x,l}));
+ return `<details class="module" data-module="${m}" ${needle||view.m===m&&view.type==="lesson"?"open":""}><summary><span>${String(m+1).padStart(2,"0")} · ${esc(item[state.lang])}</span><span class="badge ${m?"pending":""}">${esc(m===0?(complete()?tr("completed"):tr("available")):tr("future"))}</span></summary><div class="module-body">
+ ${side?"":`<p><strong>${esc(tr("focus"))}:</strong> ${esc(item.focus[i])}</p><p><strong>${esc(tr("time"))}:</strong> ${esc(item.time)} ${esc(tr("hours"))}</p><p><strong>${esc(tr("purpose"))}:</strong> ${esc(item.purpose[i])}</p><h4>${esc(tr("outcomes"))}</h4>${list(item.outcomes[i])}<p class="badge ${m?"pending":""}">${esc(m?tr("future"):tr("available"))}</p><h4>${esc(tr("lessons"))}</h4>`}
+ ${matched.map(({x,l})=>`<button type="button" class="lesson-link" data-go="${m},${l}" ${view.type==="lesson"&&view.m===m&&view.l===l?'aria-current="page"':""}>${esc(tr("lesson"))} ${m*3+l+1}: ${esc(x[i===0?0:1])}${m===0&&state.lessons[key(m,l)]?" ✓":""}</button>`).join("")}
+ ${m===0&&!side?`<button type="button" class="lesson-link" data-assignment="1">${esc(tr("assignment"))}${state.assignment?" ✓":""}</button>`:""}
+ </div></details>`;
+}
+function renderSidebar(){
+ const html=course.modules.map((_,m)=>moduleHTML(m,true)).join("");
+ $("side-modules").innerHTML=html||`<p>${esc(tr("nothing"))}</p>`;
+}
+function renderHome(){
+ let p=Math.round(progressCount()/19*100);
+ return `<section class="panel"><div class="kicker">${esc(tr("overview"))}</div><h2>${esc(tr("overview"))}</h2><p>${esc(tr("audience"))}</p><div class="stat-grid"><div class="stat"><strong>${esc(tr("level"))}</strong><span>${esc(tr("mode"))}</span></div><div class="stat"><strong>${esc(tr("duration"))}</strong><span>${esc(tr("free"))}</span></div><div class="stat"><strong>10</strong><span>${esc(tr("modules"))}</span></div><div class="stat"><strong>30</strong><span>${esc(tr("lessons"))}</span></div></div></section>
+ <section class="panel"><h2>${esc(tr("progress"))} · ${p}%</h2><div class="progress-track" role="progressbar" aria-label="${esc(tr("progress"))}" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="width:${p}%"></div></div><p class="muted">${esc(tr("local"))}</p><h3>${esc(tr("completion"))}</h3><p>${esc(tr("completionRule"))}</p><h3>${esc(tr("ready"))}</h3><p><span class="badge ${complete()?"":"pending"}">${esc(complete()?tr("readyText"):tr("notReady"))}</span></p><p>${esc(tr("pending"))}</p></section>
+ <section class="panel"><h2>${esc(tr("assessment"))}</h2><p>${esc(tr("assessmentText"))}</p><h3>${esc(tr("certificate"))}</h3><p>${esc(tr("certificateText"))}</p></section>
+ ${renderBottom()}`;
+}
+function renderBottom(){
+ return `<section class="panel"><h2>${esc(tr("integration"))}</h2><p>${esc(tr("integrationText"))}</p></section>
+ <section class="panel"><h2>${esc(tr("reset"))}</h2><p class="muted">${esc(tr("local"))}</p>${resetOpen?`<p><strong>${esc(tr("confirmReset"))}</strong></p><div class="flex gap-2 flex-wrap"><button class="btn btn-blue" data-reset-confirm="1" type="button">${esc(tr("confirm"))}</button><button class="btn btn-outline" data-reset-cancel="1" type="button">${esc(tr("cancel"))}</button></div>`:`<button class="btn btn-outline" data-reset-open="1" type="button">${esc(tr("reset"))}</button>`}</section>`;
+}
+function renderCurriculum(){
+ let html=course.modules.map((_,m)=>moduleHTML(m)).join("");
+ return `<section class="panel"><div class="kicker">10 ${esc(tr("modules"))} · 30 ${esc(tr("lessons"))}</div><h2>${esc(tr("curriculum"))}</h2><p class="muted">${esc(tr("later"))}</p>${html||`<p>${esc(tr("nothing"))}</p>`}</section>${renderBottom()}`;
+}
+function renderOverview(){
+ let item=course.modules[0],i=langIndex();
+ return card(tr("moduleOverview"),`<p><strong>${esc(tr("focus"))}:</strong> ${esc(item.focus[i])}</p><p><strong>${esc(tr("time"))}:</strong> 4–5 ${esc(tr("hours"))}</p><p>${esc(item.purpose[i])}</p><h4>${esc(tr("prerequisites"))}</h4><p>${esc(tr("prereqText"))}</p><h4>${esc(tr("moduleOutcomes"))}</h4>${list(tr("six"),true)}<h4>${esc(tr("progression"))}</h4><p>${esc(tr("progressionText"))}</p>`,true);
+}
+function renderQuestion(m,l,q){
+ const id=`${key(m,l)}-${q}`, question=full[l].questions[q],i=langIndex(),done=!!state.checks[id];
+ return `<fieldset class="question" data-question="${q}"><legend>${q+1}. ${esc(question.q[i])}</legend>${question.choices[i].map((v,j)=>`<label class="option"><input type="radio" name="q-${q}" value="${j}"> <span>${esc(v)}</span></label>`).join("")}
+ <button type="button" class="btn btn-blue" data-check="${q}">${esc(tr("submitAnswer"))}</button><div class="feedback" id="feedback-${q}" role="status" ${done?"":"hidden"}>${done?`${esc(tr("correct"))} ${esc(question.why[i])}`:""}</div>${done?`<p class="muted">${esc(tr("completed"))}</p>`:""}</fieldset>`;
+}
+function lessonPager(m,l){
+ let index=m*3+l;
+ return `<nav class="pager" aria-label="Lesson navigation">
+ ${index>0?`<button class="btn btn-outline" data-go="${Math.floor((index-1)/3)},${(index-1)%3}" type="button">${esc(tr("previous"))}</button>`:`<button class="btn btn-outline" data-home="1" type="button">${esc(tr("back"))}</button>`}
+ ${index<29?`<button class="btn btn-blue" data-go="${Math.floor((index+1)/3)},${(index+1)%3}" type="button">${esc(tr("next"))}</button>`:`<button class="btn btn-blue" data-home="1" type="button">${esc(tr("back"))}</button>`}
+ </nav>`;
+}
+function renderLesson(m,l){
+ const item=course.modules[m],lesson=item.lessons[l],i=langIndex(),k=key(m,l), f=full[l];
+ let intro=`<div class="crumb"><span>${esc(tr("curriculum"))}</span><span aria-hidden="true">›</span><span>${esc(item[state.lang])}</span><span aria-hidden="true">›</span><span>${esc(tr("lesson"))} ${m*3+l+1}</span></div><div class="kicker">${esc(tr("lesson"))} ${m*3+l+1} / 30</div><h2>${esc(lesson[i])}</h2><p class="muted">${esc(lesson[i===0?2:3])}</p>`;
+ if(m!==0)return `<article class="panel">${intro}<p class="badge pending">${esc(tr("future"))}</p>${card(tr("lessonPurpose"),`<p>${esc(lesson[i===0?2:3])}</p>`,true)}${card(tr("lessonOutcome"),`<p>${esc(lesson[i===0?4:5])}</p>`)}<p class="privacy">${esc(tr("futureNotice"))}</p>${m===9?card(tr("finalPlan"),`<p>${esc(tr("finalText"))}</p>`):""}${lessonPager(m,l)}</article>`;
+ return `<article class="panel">${intro}<p class="badge">${esc(tr("available"))}</p>${l===0?renderOverview():""}
+ ${card(tr("explanation"),`<p>${esc(f.overview[state.lang])}</p>${f.explanation[state.lang].map(x=>`<p>${esc(x)}</p>`).join("")}`,true)}
+ ${card(tr("objectives"),list(f.objectives[state.lang]))}
+ ${card(tr("examples"),f.examples[state.lang].map(x=>`<p>${esc(x)}</p>`).join(""))}
+ ${card(tr("demo"),list(f.demo[state.lang],true),true)}
+ ${card(tr("activity"),`<p>${esc(f.activity[state.lang])}</p><p class="privacy">${esc(tr("privacy"))}</p><label class="checkline"><input type="checkbox" data-toggle="activities" ${state.activities[k]?"checked":""}><span>${esc(tr("activityDone"))}</span></label>`)}
+ ${card(tr("exercise"),`<p>${esc(f.exercise[state.lang])}</p><label class="checkline"><input type="checkbox" data-toggle="exercises" ${state.exercises[k]?"checked":""}><span>${esc(tr("exerciseDone"))}</span></label><label for="notes" class="block font-bold mb-2">${esc(tr("notes"))}</label><textarea id="notes" class="field" maxlength="12000">${esc(state.notes[k]||"")}</textarea><button type="button" class="btn btn-outline mt-2" data-save-notes="1">${esc(tr("saveNotes"))}</button><p id="note-status" role="status"></p>`)}
+ ${card(tr("takeaways"),list(f.takeaways[state.lang]),true)}
+ ${card(tr("check"),`<p>${esc(tr("score"))}: ${[0,1,2].filter(q=>state.checks[`${k}-${q}`]).length}/3</p>${[0,1,2].map(q=>renderQuestion(m,l,q)).join("")}`)}
+ ${card(tr("further"),`<p>${esc(f.further[state.lang])}</p>`)}
+ <label class="checkline"><input type="checkbox" data-toggle="lessons" ${state.lessons[k]?"checked":""}><span>${esc(tr("markLesson"))}</span></label>
+ ${l===2?`<button class="btn btn-outline mt-3" data-assignment="1" type="button">${esc(tr("assignment"))} →</button>`:""}${lessonPager(m,l)}</article>`;
+}
+function renderAssignment(){
+ let rows=tr("rubricRows");
+ return `<article class="panel"><div class="crumb">${esc(course.modules[0][state.lang])} › ${esc(tr("assignment"))}</div><h2>${esc(tr("assignment"))}</h2><p>${esc(tr("assignmentBrief"))}</p>
+ ${card(tr("requirements"),list(tr("requirementsList"),true),true)}
+ ${card(tr("submission"),`<p>${esc(tr("submissionText"))}</p><p class="privacy">${esc(tr("privacy"))}</p>`)}
+ ${card(tr("rubric"),`<div class="table-scroll"><table><thead><tr><th scope="col">${esc(tr("rubric"))}</th><th scope="col">/100</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</tbody></table></div><p>${esc(tr("pass"))}</p>`)}
+ ${card(tr("checklist"),list(tr("checklistItems")))}
+ <label class="checkline"><input type="checkbox" data-assignment-toggle="1" ${state.assignment?"checked":""}><span>${esc(tr("assignmentDone"))}</span></label><button type="button" class="btn btn-outline mt-3" data-go="0,2">${esc(tr("previous"))}</button></article>`;
+}
+function render(){
+ renderChrome(); renderSidebar();
+ $("content").innerHTML=view.type==="home"?renderHome():view.type==="curriculum"?renderCurriculum():view.type==="assignment"?renderAssignment():renderLesson(view.m,view.l);
+}
+function navigate(type,m=0,l=0){
+ view={type,m,l};resetOpen=false;render();$("main").focus({preventScroll:true});$("main").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function refreshProgress(){
+ renderChrome();renderSidebar();
+ if(view.type==="home"||view.type==="curriculum") $("content").innerHTML=view.type==="home"?renderHome():renderCurriculum();
+}
+$("home-nav").addEventListener("click",()=>navigate("home"));
+$("curriculum-nav").addEventListener("click",()=>navigate("curriculum"));
+$("continue-btn").addEventListener("click",()=>{
+ let l=[0,1,2].find(i=>!state.lessons[key(0,i)]||!state.activities[key(0,i)]||!state.exercises[key(0,i)]||[0,1,2].some(q=>!state.checks[`${key(0,i)}-${q}`]));
+ navigate(l===undefined?"assignment":"lesson",0,l??0);
+});
+for(const code of ["en","sw"])$(code==="en"?"lang-en":"lang-sw").addEventListener("click",()=>{state.lang=code;save();render();});
+$("search").addEventListener("input",e=>{
+ searchTerm=e.target.value.trim();
+ if(view.type==="home"&&searchTerm)view={type:"curriculum",m:0,l:0};
+ renderChrome();renderSidebar();$("content").innerHTML=view.type==="curriculum"?renderCurriculum():view.type==="home"?renderHome():view.type==="assignment"?renderAssignment():renderLesson(view.m,view.l);
+});
+document.addEventListener("click",e=>{
+ const target=e.target.closest("button");if(!target)return;
+ if(target.dataset.go){let [m,l]=target.dataset.go.split(",").map(Number);navigate("lesson",m,l);}
+ else if(target.dataset.home)navigate("home");
+ else if(target.dataset.assignment)navigate("assignment");
+ else if(target.dataset.resetOpen){resetOpen=true;render();}
+ else if(target.dataset.resetCancel){resetOpen=false;render();}
+ else if(target.dataset.resetConfirm){let language=state.lang;state=blank();state.lang=language;save();navigate("home");}
+ else if(target.dataset.saveNotes&&view.type==="lesson"){state.notes[key(view.m,view.l)]=$("notes").value;save();$("note-status").textContent=tr("saved");}
+ else if(target.dataset.check!==undefined&&view.type==="lesson"&&view.m===0){
+   let q=Number(target.dataset.check), field=target.closest("fieldset"),selected=field.querySelector("input:checked"),feedback=field.querySelector(".feedback");
+   if(!selected){feedback.hidden=false;feedback.textContent=tr("choose");return;}
+   let correct=Number(selected.value)===full[view.l].questions[q].correct, id=`${key(0,view.l)}-${q}`;
+   if(correct){state.checks[id]=true;save();}
+   feedback.hidden=false;feedback.textContent=`${tr(correct?"correct":"incorrect")} ${correct?full[view.l].questions[q].why[langIndex()]:""}`;
+   target.textContent=correct?tr("submitAnswer"):tr("retry");
+   refreshProgress();
+ }
+});
+document.addEventListener("change",e=>{
+ if(e.target.dataset.toggle&&view.type==="lesson"){state[e.target.dataset.toggle][key(view.m,view.l)]=e.target.checked;save();refreshProgress();}
+ if(e.target.dataset.assignmentToggle){state.assignment=e.target.checked;save();refreshProgress();}
+});
+render();
+</script>
+ 
+</body></html>

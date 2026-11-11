@@ -214,6 +214,13 @@
     actions.appendChild(make("span", { class: "status-badge status-approved" }, "You're enrolled"));
     actions.appendChild(make("a", { href: "dashboard.html", class: "btn btn-outline" }, "Back to my dashboard"));
 
+    if (slug === "ai-chatgpt") {
+      actions.appendChild(make("a", { href: "ai-learning.html", class: "btn btn-solid" }, "Start learning"));
+      lessonsArea.appendChild(make("div", { class: "notice-box" },
+        "Your AI & ChatGPT learning workspace is ready. Open it to access the bilingual lessons, activities, notes and progress tracking."));
+      return;
+    }
+
     lessonsArea.appendChild(make("h2", {}, "Lessons"));
 
     // Modules are the normal layout; a plain `lessons` list still works for a course that doesn't use them
