@@ -66,6 +66,21 @@
           </tbody>
         </table>
       </div>
+
+      <div class="section-head" style="margin-top:56px;">
+        <h2>Course Enrollments</h2>
+        <p class="section-lead">Members who have enrolled in a course, newest first.</p>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="app-table">
+          <thead>
+            <tr><th>Member</th><th>Course</th><th>Status</th><th>Date</th></tr>
+          </thead>
+          <tbody id="enroll-table-body">
+            <tr><td colspan="4">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 </main>
@@ -79,6 +94,7 @@
 </div>
 
 <script src="assets/supabase-config.js"></script>
+<script src="courses-data.js"></script>
 <script>
 let allApplications = [];
 
@@ -112,6 +128,7 @@ function escapeHtml(str) {
       return;
     }
     loadApplications();
+    loadEnrollments();
   } catch (err) {
     tbody.innerHTML =
       '<tr><td colspan="6">Could not verify admin access: ' +
@@ -140,6 +157,27 @@ async function loadApplications() {
   allApplications = data || [];
   updateStats();
   renderTable();
+}
+
+async function loadEnrollments() {
+  const tbody = document.getElementById("enroll-table-body");
+  try {
+    const { data, error } = await supabaseClient.rpc("admin_enrollments");
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4">No course enrollments yet.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = data
+      .map(function (e) {
+        const info = typeof COURSES !== "undefined" && COURSES[e.course_slug] ? COURSES[e.course_slug] : null;
+        return "<tr><td>" + escapeHtml(e.email) + "</td><td>" + escapeHtml(info ? info.title : e.course_slug) + "</td><td>" +
+          escapeHtml(e.status === "completed" ? "Completed" : "Enrolled") + "</td><td>" + new Date(e.enrolled_at).toLocaleDateString() + "</td></tr>";
+      })
+      .join("");
+  } catch (err) {
+    tbody.innerHTML = '<tr><td colspan="4">Could not load enrollments: ' + escapeHtml(err && err.message ? err.message : err) + "</td></tr>";
+  }
 }
 
 function updateStats() {

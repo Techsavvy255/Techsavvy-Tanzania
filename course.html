@@ -79,7 +79,7 @@
       <a href="mailto:techsavvymanagment@gmail.com">techsavvymanagment@gmail.com</a>
     </div>
   </div>
-  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved.</p></div>
+  <div class="wrap footer-bottom"><p>&copy; 2026 Techsavvy Tanzania. All rights reserved. &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Use</a></p></div>
 </footer>
 
 <script src="assets/supabase-config.js"></script>
@@ -213,13 +213,6 @@
 
     actions.appendChild(make("span", { class: "status-badge status-approved" }, "You're enrolled"));
     actions.appendChild(make("a", { href: "dashboard.html", class: "btn btn-outline" }, "Back to my dashboard"));
-
-    if (slug === "ai-chatgpt") {
-      actions.appendChild(make("a", { href: "ai-learning.html", class: "btn btn-solid" }, "Start learning"));
-      lessonsArea.appendChild(make("div", { class: "notice-box" },
-        "Your AI & ChatGPT learning workspace is ready. Open it to access the bilingual lessons, activities, notes and progress tracking."));
-      return;
-    }
 
     lessonsArea.appendChild(make("h2", {}, "Lessons"));
 

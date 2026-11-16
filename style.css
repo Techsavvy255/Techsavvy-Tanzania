@@ -456,3 +456,11 @@ a:focus-visible, label:focus-visible { outline: 2px solid var(--blue); outline-o
 
 .course-cta.is-disabled { opacity: 0.55; cursor: not-allowed; }
 .course-cta.is-disabled:hover { border-color: var(--black); color: var(--black); }
+
+/* ===== Legal pages ===== */
+.legal h2 { font-size: 1.25rem; margin-top: 34px; }
+.legal ul { padding-left: 22px; }
+.legal li { margin-bottom: 8px; }
+.legal a { color: var(--blue); font-weight: 600; }
+.footer-bottom a { color: var(--grey); text-decoration: underline; }
+.footer-bottom a:hover { color: var(--blue); }
